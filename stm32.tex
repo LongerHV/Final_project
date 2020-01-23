@@ -22,6 +22,8 @@
 % \usepackage{mathtools}
 \usepackage{geometry}
 % \usepackage[page]{appendix} 
+% \usepackage[style=authoryear,backend=biber]{biblatex}
+% \usepackage[backend=bibtex,style=verbose-trad2]{biblatex}
 
 \usepackage{setspace}
 \onehalfspacing
@@ -448,19 +450,51 @@ List of frameworks and additional tools used for software development:
 
 
 
-\chapter{Bibliography}
-\begin{enumerate}
-    \item Udo Zölzer, DAFX: Digital Audio Effects, 2002 John Wiley \& Sons Ltd, ISBN: 0-470-84604-6
-    \item Udo Zölzer, Digital Audio Signal Processing, 2008 John Wiley \& Sons Ltd, ISBN: 978-0-470-99785-7
-\end{enumerate}
-\newpage
+% \chapter{Bibliography}
+% \begin{enumerate}
+%     \item Udo Zölzer, DAFX: Digital Audio Effects, 2002 John Wiley \& Sons Ltd, ISBN: 0-470-84604-6
+%     \item Udo Zölzer, Digital Audio Signal Processing, 2008 John Wiley \& Sons Ltd, ISBN: 978-0-470-99785-7
+% \end{enumerate}
+% \newpage
 
 
 
-\section{Attachments}
+% \section{Attachments}
 
-\newpage
+% \newpage
 
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\backmatter
+\pagenumbering{Roman}
+\stepcounter{PagesWithoutNumbers}
+\setcounter{page}{\value{PagesWithoutNumbers}}
+
+\pagestyle{onlyPageNumbers}
+
+%%%%%%%%%%% bibliography %%%%%%%%%%%%
+% \bibliographystyle{plain}
+\bibliographystyle{ieeetr}
+\bibliography{thebibliography}
+
+%%%%%%%%%  appendices %%%%%%%%%%%%%%%%%%% 
+
+% \begin{appendices} 
+
+% \end{appendices}
+
+ 
+
+% \chapter*{List of abbreviations and symbols}
+
+% \begin{itemize}
+% \item[DNA] deoxyribonucleic acid
+% \item[MVC] model--view--controller 
+% \item[$N$] cardinality of data set
+% \item[$\mu$] membership function of a fuzzy set
+% \item[$\mathbb{E}$] set of edges of a graph
+% \item[$\mathcal{L}$] Laplace transformation
+% \end{itemize}
 
 \end{document}

@@ -21,5 +21,3 @@
 \contentsline {section}{\numberline {5.7}User manual}{12}{section.5.7}% 
 \contentsline {chapter}{\numberline {6}Testing}{13}{chapter.6}% 
 \contentsline {chapter}{\numberline {7}Conclusions}{15}{chapter.7}% 
-\contentsline {chapter}{\numberline {8}Bibliography}{17}{chapter.8}% 
-\contentsline {section}{\numberline {8.1}Attachments}{18}{section.8.1}% 
