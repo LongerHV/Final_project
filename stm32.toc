@@ -1,25 +1,25 @@
-\contentsline {section}{\numberline {1}Introduction}{3}% 
-\contentsline {section}{\numberline {2}Goals and tasks of the project}{4}% 
-\contentsline {section}{\numberline {3}Topic analysis}{5}% 
-\contentsline {subsection}{\numberline {3.1}Data acquisition}{5}% 
-\contentsline {subsection}{\numberline {3.2}Processing audio}{5}% 
-\contentsline {subsection}{\numberline {3.3}Effects}{5}% 
-\contentsline {section}{\numberline {4}External specification}{6}% 
-\contentsline {subsection}{\numberline {4.1}Block diagram}{6}% 
-\contentsline {subsection}{\numberline {4.2}Desctiption}{6}% 
-\contentsline {subsection}{\numberline {4.3}Choice of components}{7}% 
-\contentsline {subsection}{\numberline {4.4}Schematic}{7}% 
-\contentsline {subsection}{\numberline {4.5}PCB}{7}% 
-\contentsline {subsection}{\numberline {4.6}Assembly}{8}% 
-\contentsline {section}{\numberline {5}Internal specification}{9}% 
-\contentsline {subsection}{\numberline {5.1}Programming language}{9}% 
-\contentsline {subsection}{\numberline {5.2}IDE}{9}% 
-\contentsline {subsection}{\numberline {5.3}Text editor}{9}% 
-\contentsline {subsection}{\numberline {5.4}Frameworks and tools}{9}% 
-\contentsline {subsection}{\numberline {5.5}Software block diagram}{10}% 
-\contentsline {subsection}{\numberline {5.6}Description of functions and objects}{10}% 
-\contentsline {subsection}{\numberline {5.7}User manual}{10}% 
-\contentsline {section}{\numberline {6}Testing}{11}% 
-\contentsline {section}{\numberline {7}Conclusions}{12}% 
-\contentsline {section}{\numberline {8}Bibliography}{13}% 
-\contentsline {section}{\numberline {9}Attachments}{14}% 
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}% 
+\contentsline {chapter}{\numberline {2}Goals and tasks of the project}{3}{chapter.2}% 
+\contentsline {chapter}{\numberline {3}Topic analysis}{5}{chapter.3}% 
+\contentsline {section}{\numberline {3.1}Data acquisition}{5}{section.3.1}% 
+\contentsline {section}{\numberline {3.2}Processing audio}{5}{section.3.2}% 
+\contentsline {section}{\numberline {3.3}Effects}{5}{section.3.3}% 
+\contentsline {chapter}{\numberline {4}External specification}{7}{chapter.4}% 
+\contentsline {section}{\numberline {4.1}Block diagram}{7}{section.4.1}% 
+\contentsline {section}{\numberline {4.2}Desctiption}{7}{section.4.2}% 
+\contentsline {section}{\numberline {4.3}Choice of components}{9}{section.4.3}% 
+\contentsline {section}{\numberline {4.4}Schematic}{10}{section.4.4}% 
+\contentsline {section}{\numberline {4.5}PCB}{10}{section.4.5}% 
+\contentsline {section}{\numberline {4.6}Assembly}{10}{section.4.6}% 
+\contentsline {chapter}{\numberline {5}Internal specification}{11}{chapter.5}% 
+\contentsline {section}{\numberline {5.1}Programming language}{11}{section.5.1}% 
+\contentsline {section}{\numberline {5.2}IDE}{11}{section.5.2}% 
+\contentsline {section}{\numberline {5.3}Text editor}{11}{section.5.3}% 
+\contentsline {section}{\numberline {5.4}Frameworks and tools}{12}{section.5.4}% 
+\contentsline {section}{\numberline {5.5}Software block diagram}{12}{section.5.5}% 
+\contentsline {section}{\numberline {5.6}Description of functions and objects}{12}{section.5.6}% 
+\contentsline {section}{\numberline {5.7}User manual}{12}{section.5.7}% 
+\contentsline {chapter}{\numberline {6}Testing}{13}{chapter.6}% 
+\contentsline {chapter}{\numberline {7}Conclusions}{15}{chapter.7}% 
+\contentsline {chapter}{\numberline {8}Bibliography}{17}{chapter.8}% 
+\contentsline {section}{\numberline {8.1}Attachments}{18}{section.8.1}% 
