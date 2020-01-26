@@ -238,6 +238,14 @@ texcl=true, % wylacza tryb verbatim w komentarzach jednolinijkowych
 
 
 \chapter{Introduction}
+The rapid development of technology lead to the moment, when anybody can afford a development board 
+and learn how to program microcontrollers without even leaving house.
+Hobbysts all around the world create products in wide range of applications, that can easily compete
+with their professional counterparts in both price and quality.
+
+One example of such a field is market of sound related equipment.
+More and more small companies are growing out of nowhere,
+providing butique studio recording and processing equipment with great customer service and support.
 
 
 
@@ -255,17 +263,13 @@ Following tasks are required to finish the project:
         \item operational amplifiers
         \item additional devices
     \end{itemize}
-\end{enumerate}
 
-\begin{enumerate}
     \item List of features
     \begin{itemize}
         \item list of audio effects
         \item user interface
     \end{itemize}
-\end{enumerate}
 
-\begin{enumerate}
     \item Creating the physical layer of device
     \begin{itemize}
         \item block diagram
@@ -273,9 +277,7 @@ Following tasks are required to finish the project:
         \item PCB
         \item assembly 
     \end{itemize}
-\end{enumerate}
 
-\begin{enumerate}
     \item Developing software
     \begin{itemize}
         \item choosing programming language
@@ -284,17 +286,31 @@ Following tasks are required to finish the project:
     \end{itemize}
 \end{enumerate}
 
-\newpage
 
 
 
 \chapter{Topic analysis}
+This chapter is devoted to main concerns related to the project.
 
 \section{Data acquisition}
+The nature of audio signal is analog. This means,
+that it should be conditioned in a proper way before it can be processed by digital circuitry.
+To do it, signal must be reduced from continuous-time to discrete-time.
+This process is called sampling and requires reading value of the signal in equal intervals of time.
+To establish proper samping frequency we need concept of Nyquist frequency.
+It determines minimum sampling frequency of the system based on maximum frequency of the signal.
+Range of audible frequencies is considered to be 20Hz to 20kHz
+and we need the whole range to acheive reasonable quality.
+
 
 \section{Processing audio}
 
 \section{Effects}
+\begin{itemize}
+    \item
+    \item
+    \item
+\end{itemize}
 
 \newpage
 
