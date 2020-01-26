@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019 Gentoo Linux) (preloaded format=pdflatex 2020.1.23)  26 JAN 2020 15:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019 Gentoo Linux) (preloaded format=pdflatex 2020.1.23)  26 JAN 2020 16:26
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -274,39 +274,69 @@ Package: booktabs 2016/04/27 v1.618033 publication quality tables
 \@thisruleclass=\count113
 \@lastruleclass=\count114
 \@thisrulewidth=\dimen130
+) (/usr/share/texmf-dist/tex/latex/mathtools/mathtools.sty
+Package: mathtools 2018/01/08 v1.21 mathematical typesetting tools
+ (/usr/share/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count115
+\calc@Bcount=\count116
+\calc@Adimen=\dimen131
+\calc@Bdimen=\dimen132
+\calc@Askip=\skip50
+\calc@Bskip=\skip51
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count117
+\calc@Cskip=\skip52
+) (/usr/share/texmf-dist/tex/latex/mathtools/mhsetup.sty
+Package: mhsetup 2017/03/31 v1.3 programming setup (MH)
+)
+LaTeX Info: Thecontrolsequence`\('isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\)'isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\['isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
+\g_MT_multlinerow_int=\count118
+\l_MT_multwidth_dim=\dimen133
+\origjot=\skip53
+\l_MT_shortvdotswithinadjustabove_dim=\dimen134
+\l_MT_shortvdotswithinadjustbelow_dim=\dimen135
+\l_MT_above_intertext_sep=\dimen136
+\l_MT_below_intertext_sep=\dimen137
+\l_MT_above_shortintertext_sep=\dimen138
+\l_MT_below_shortintertext_sep=\dimen139
 ) (/usr/share/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2018/04/16 v5.8 Page Geometry
-\Gm@cnth=\count115
-\Gm@cntv=\count116
-\c@Gm@tempcnt=\count117
-\Gm@bindingoffset=\dimen131
-\Gm@wd@mp=\dimen132
-\Gm@odd@mp=\dimen133
-\Gm@even@mp=\dimen134
-\Gm@layoutwidth=\dimen135
-\Gm@layoutheight=\dimen136
-\Gm@layouthoffset=\dimen137
-\Gm@layoutvoffset=\dimen138
+\Gm@cnth=\count119
+\Gm@cntv=\count120
+\c@Gm@tempcnt=\count121
+\Gm@bindingoffset=\dimen140
+\Gm@wd@mp=\dimen141
+\Gm@odd@mp=\dimen142
+\Gm@even@mp=\dimen143
+\Gm@layoutwidth=\dimen144
+\Gm@layoutheight=\dimen145
+\Gm@layouthoffset=\dimen146
+\Gm@layoutvoffset=\dimen147
 \Gm@dimlist=\toks28
 ) (/usr/share/texmf-dist/tex/latex/setspace/setspace.sty
 Package: setspace 2011/12/19 v6.7a set line spacing
 ) (/usr/share/texmf-dist/tex/latex/listings/listings.sty
-\lst@mode=\count118
+\lst@mode=\count122
 \lst@gtempboxa=\box29
 \lst@token=\toks29
-\lst@length=\count119
-\lst@currlwidth=\dimen139
-\lst@column=\count120
-\lst@pos=\count121
-\lst@lostspace=\dimen140
-\lst@width=\dimen141
-\lst@newlines=\count122
-\lst@lineno=\count123
-\lst@maxwidth=\dimen142
+\lst@length=\count123
+\lst@currlwidth=\dimen148
+\lst@column=\count124
+\lst@pos=\count125
+\lst@lostspace=\dimen149
+\lst@width=\dimen150
+\lst@newlines=\count126
+\lst@lineno=\count127
+\lst@maxwidth=\dimen151
  (/usr/share/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2019/02/27 1.8b (Carsten Heinz)
-\c@lstnumber=\count124
-\lst@skipnumbers=\count125
+\c@lstnumber=\count128
+\lst@skipnumbers=\count129
 \lst@framebox=\box30
 ) (/usr/share/texmf-dist/tex/latex/listings/listings.cfg
 File: listings.cfg 2019/02/27 1.8b listings configuration
@@ -314,15 +344,15 @@ File: listings.cfg 2019/02/27 1.8b listings configuration
 Package: listings 2019/02/27 1.8b (Carsten Heinz)
  (/usr/share/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
 Package: fancyhdr 2019/01/31 v3.10 Extensive control of page headers and footers
-\f@nch@headwidth=\skip50
-\f@nch@O@elh=\skip51
-\f@nch@O@erh=\skip52
-\f@nch@O@olh=\skip53
-\f@nch@O@orh=\skip54
-\f@nch@O@elf=\skip55
-\f@nch@O@erf=\skip56
-\f@nch@O@olf=\skip57
-\f@nch@O@orf=\skip58
+\f@nch@headwidth=\skip54
+\f@nch@O@elh=\skip55
+\f@nch@O@erh=\skip56
+\f@nch@O@olh=\skip57
+\f@nch@O@orh=\skip58
+\f@nch@O@elf=\skip59
+\f@nch@O@erf=\skip60
+\f@nch@O@olf=\skip61
+\f@nch@O@orf=\skip62
 ) (/usr/share/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2019/02/27 1.8b listings language file
 ) (/usr/share/texmf-dist/tex/latex/listings/lstlang1.sty
@@ -330,7 +360,7 @@ File: lstlang1.sty 2019/02/27 1.8b listings language file
 ) (/usr/share/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2019/02/27 1.8b (Carsten Heinz)
 )
-\c@PagesWithoutNumbers=\count126
+\c@PagesWithoutNumbers=\count130
  (/home/michal/Documents/STM32DSP/stm32.aux)
 \openout1 = `stm32.aux'.
 
@@ -353,16 +383,16 @@ LaTeX Font Info:    Try loading font information for T1+lmr on input line 160.
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) (/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count127
-\scratchdimen=\dimen143
+\scratchcounter=\count131
+\scratchdimen=\dimen152
 \scratchbox=\box31
-\nofMPsegments=\count128
-\nofMParguments=\count129
+\nofMPsegments=\count132
+\nofMParguments=\count133
 \everyMPshowfont=\toks30
-\MPscratchCnt=\count130
-\MPscratchDim=\dimen144
-\MPnumerator=\count131
-\makeMPintoPDFobject=\count132
+\MPscratchCnt=\count134
+\MPscratchDim=\dimen153
+\MPnumerator=\count135
+\makeMPintoPDFobject=\count136
 \everyMPtoPDFconversion=\toks31
 ) (/usr/share/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
@@ -383,7 +413,7 @@ Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
  (/usr/share/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count133
+\c@section@level=\count137
 )
 LaTeX Info: Redefining \ref on input line 160.
 LaTeX Info: Redefining \pageref on input line 160.
@@ -427,7 +457,7 @@ LaTeX Info: Redefining \nameref on input line 160.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-\c@lstlisting=\count134
+\c@lstlisting=\count138
 *geometry* verbose mode - [ newgeometry ] result:
 * driver: pdftex
 * paper: a4paper
@@ -464,7 +494,7 @@ LaTeX Font Info:    Try loading font information for T1+lmss on input line 169.
 (/usr/share/texmf-dist/tex/latex/lm/t1lmss.fd
 File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-<polsl.pdf, id=96, 1202.12112pt x 1203.56645pt>
+<polsl.pdf, id=100, 1202.12112pt x 1203.56645pt>
 File: polsl.pdf Graphic file (type pdf)
 <use polsl.pdf>
 Package pdftex.def Info: polsl.pdf  used on input line 173.
@@ -551,13 +581,16 @@ LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 262.
  [3] [4]
 Chapter 3.
-[5
 
-] [6
+Underfull \vbox (badness 1132) has occurred while \output is active []
 
-]
+ [5
+
+] [6]
 Chapter 4.
-[7] [8] [9] [10]
+[7
+
+] [8] [9] [10]
 Chapter 5.
 [11
 
@@ -576,31 +609,31 @@ Chapter 7.
 LaTeX Warning: Empty `thebibliography' environment on input line 3.
 
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 516.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 528.
  [3
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 516.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 528.
  (/home/michal/Documents/STM32DSP/stm32.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 516.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 516.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 528.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 528.
 Package rerunfilecheck Info: File `stm32.out' has not changed.
-(rerunfilecheck)             Checksum: 3A507A17B44CC8D3526F6A5F7E886993;1339.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 516.
+(rerunfilecheck)             Checksum: 3272A68DC4F6FFE95312C7B096352FCF;1403.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 528.
  ) 
 Here is how much of TeX's memory you used:
- 8488 strings out of 494553
- 120653 string characters out of 6177841
- 401360 words of memory out of 5000000
- 11966 multiletter control sequences out of 15000+600000
+ 9034 strings out of 494553
+ 130259 string characters out of 6177841
+ 413637 words of memory out of 5000000
+ 12501 multiletter control sequences out of 15000+600000
  55615 words of font info for 48 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 33i,10n,58p,268b,468s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmri12.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
-Output written on /home/michal/Documents/STM32DSP/stm32.pdf (21 pages, 143919 bytes).
+ 33i,10n,58p,268b,470s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmri12.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
+Output written on /home/michal/Documents/STM32DSP/stm32.pdf (21 pages, 147872 bytes).
 PDF statistics:
- 260 PDF objects out of 1000 (max. 8388607)
- 227 compressed objects within 3 object streams
- 49 named destinations out of 1000 (max. 500000)
- 190 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 273 PDF objects out of 1000 (max. 8388607)
+ 239 compressed objects within 3 object streams
+ 50 named destinations out of 1000 (max. 500000)
+ 198 words of extra memory for PDF output out of 10000 (max. 10000000)
 
