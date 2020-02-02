@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019 Gentoo Linux) (preloaded format=pdflatex 2020.1.23)  26 JAN 2020 16:26
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019 Gentoo Linux) (preloaded format=pdflatex 2020.1.23)  2 FEB 2020 11:58
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**/home/michal/Documents/STM32DSP/stm32.tex
+**stm32.tex
 (/home/michal/Documents/STM32DSP/stm32.tex
 LaTeX2e <2018-12-01>
 (/usr/share/texmf-dist/tex/latex/base/book.cls
@@ -274,19 +274,253 @@ Package: booktabs 2016/04/27 v1.618033 publication quality tables
 \@thisruleclass=\count113
 \@lastruleclass=\count114
 \@thisrulewidth=\dimen130
-) (/usr/share/texmf-dist/tex/latex/mathtools/mathtools.sty
+) (/usr/share/texmf-site/tex/latex/pgf/frontendlayer/tikz.sty (/usr/share/texmf-site/tex/latex/pgf/basiclayer/pgf.sty (/usr/share/texmf-site/tex/latex/pgf/utilities/pgfrcs.sty (/usr/share/texmf-site/tex/generic/pgf/utilities/pgfutil-common.tex
+\pgfutil@everybye=\toks28
+\pgfutil@tempdima=\dimen131
+\pgfutil@tempdimb=\dimen132
+ (/usr/share/texmf-site/tex/generic/pgf/utilities/pgfutil-common-lists.tex)) (/usr/share/texmf-site/tex/generic/pgf/utilities/pgfutil-latex.def
+\pgfutil@abb=\box29
+ (/usr/share/texmf-dist/tex/latex/ms/everyshi.sty
+Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
+)) (/usr/share/texmf-site/tex/generic/pgf/utilities/pgfrcs.code.tex (/usr/share/texmf-site/tex/generic/pgf/pgf.revision.tex)
+Package: pgfrcs 2019/08/03 v3.1.4b (3.1.4b)
+))
+Package: pgf 2019/08/03 v3.1.4b (3.1.4b)
+ (/usr/share/texmf-site/tex/latex/pgf/basiclayer/pgfcore.sty (/usr/share/texmf-site/tex/latex/pgf/systemlayer/pgfsys.sty (/usr/share/texmf-site/tex/generic/pgf/systemlayer/pgfsys.code.tex
+Package: pgfsys 2019/08/03 v3.1.4b (3.1.4b)
+ (/usr/share/texmf-site/tex/generic/pgf/utilities/pgfkeys.code.tex
+\pgfkeys@pathtoks=\toks29
+\pgfkeys@temptoks=\toks30
+ (/usr/share/texmf-site/tex/generic/pgf/utilities/pgfkeysfiltered.code.tex
+\pgfkeys@tmptoks=\toks31
+))
+\pgf@x=\dimen133
+\pgf@y=\dimen134
+\pgf@xa=\dimen135
+\pgf@ya=\dimen136
+\pgf@xb=\dimen137
+\pgf@yb=\dimen138
+\pgf@xc=\dimen139
+\pgf@yc=\dimen140
+\pgf@xd=\dimen141
+\pgf@yd=\dimen142
+\w@pgf@writea=\write3
+\r@pgf@reada=\read1
+\c@pgf@counta=\count115
+\c@pgf@countb=\count116
+\c@pgf@countc=\count117
+\c@pgf@countd=\count118
+\t@pgf@toka=\toks32
+\t@pgf@tokb=\toks33
+\t@pgf@tokc=\toks34
+\pgf@sys@id@count=\count119
+ (/usr/share/texmf-site/tex/generic/pgf/systemlayer/pgf.cfg
+File: pgf.cfg 2019/08/03 v3.1.4b (3.1.4b)
+)
+Driver file for pgf: pgfsys-pdftex.def
+ (/usr/share/texmf-site/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
+File: pgfsys-pdftex.def 2019/08/03 v3.1.4b (3.1.4b)
+ (/usr/share/texmf-site/tex/generic/pgf/systemlayer/pgfsys-common-pdf.def
+File: pgfsys-common-pdf.def 2019/08/03 v3.1.4b (3.1.4b)
+))) (/usr/share/texmf-site/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex
+File: pgfsyssoftpath.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+\pgfsyssoftpath@smallbuffer@items=\count120
+\pgfsyssoftpath@bigbuffer@items=\count121
+) (/usr/share/texmf-site/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
+File: pgfsysprotocol.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+)) (/usr/share/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
+ (/usr/share/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 225.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1352.
+Package xcolor Info: Model `RGB' extended on input line 1364.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
+) (/usr/share/texmf-site/tex/generic/pgf/basiclayer/pgfcore.code.tex
+Package: pgfcore 2019/08/03 v3.1.4b (3.1.4b)
+ (/usr/share/texmf-site/tex/generic/pgf/math/pgfmath.code.tex (/usr/share/texmf-site/tex/generic/pgf/math/pgfmathcalc.code.tex (/usr/share/texmf-site/tex/generic/pgf/math/pgfmathutil.code.tex) (/usr/share/texmf-site/tex/generic/pgf/math/pgfmathparser.code.tex
+\pgfmath@dimen=\dimen143
+\pgfmath@count=\count122
+\pgfmath@box=\box30
+\pgfmath@toks=\toks35
+\pgfmath@stack@operand=\toks36
+\pgfmath@stack@operation=\toks37
+) (/usr/share/texmf-site/tex/generic/pgf/math/pgfmathfunctions.code.tex (/usr/share/texmf-site/tex/generic/pgf/math/pgfmathfunctions.basic.code.tex) (/usr/share/texmf-site/tex/generic/pgf/math/pgfmathfunctions.trigonometric.code.tex) (/usr/share/texmf-site/tex/generic/pgf/math/pgfmathfunctions.random.code.tex) (/usr/share/texmf-site/tex/generic/pgf/math/pgfmathfunctions.comparison.code.tex) (/usr/share/texmf-site/tex/generic/pgf/math/pgfmathfunctions.base.code.tex) (/usr/share/texmf-site/tex/generic/pgf/math/pgfmathfunctions.round.code.tex) (/usr/share/texmf-site/tex/generic/pgf/math/pgfmathfunctions.misc.code.tex) (/usr/share/texmf-site/tex/generic/pgf/math/pgfmathfunctions.integerarithmetics.code.tex))) (/usr/share/texmf-site/tex/generic/pgf/math/pgfmathfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count123
+)) (/usr/share/texmf-site/tex/generic/pgf/math/pgfint.code.tex) (/usr/share/texmf-site/tex/generic/pgf/basiclayer/pgfcorepoints.code.tex
+File: pgfcorepoints.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+\pgf@picminx=\dimen144
+\pgf@picmaxx=\dimen145
+\pgf@picminy=\dimen146
+\pgf@picmaxy=\dimen147
+\pgf@pathminx=\dimen148
+\pgf@pathmaxx=\dimen149
+\pgf@pathminy=\dimen150
+\pgf@pathmaxy=\dimen151
+\pgf@xx=\dimen152
+\pgf@xy=\dimen153
+\pgf@yx=\dimen154
+\pgf@yy=\dimen155
+\pgf@zx=\dimen156
+\pgf@zy=\dimen157
+) (/usr/share/texmf-site/tex/generic/pgf/basiclayer/pgfcorepathconstruct.code.tex
+File: pgfcorepathconstruct.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+\pgf@path@lastx=\dimen158
+\pgf@path@lasty=\dimen159
+) (/usr/share/texmf-site/tex/generic/pgf/basiclayer/pgfcorepathusage.code.tex
+File: pgfcorepathusage.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+\pgf@shorten@end@additional=\dimen160
+\pgf@shorten@start@additional=\dimen161
+) (/usr/share/texmf-site/tex/generic/pgf/basiclayer/pgfcorescopes.code.tex
+File: pgfcorescopes.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+\pgfpic=\box31
+\pgf@hbox=\box32
+\pgf@layerbox@main=\box33
+\pgf@picture@serial@count=\count124
+) (/usr/share/texmf-site/tex/generic/pgf/basiclayer/pgfcoregraphicstate.code.tex
+File: pgfcoregraphicstate.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+\pgflinewidth=\dimen162
+) (/usr/share/texmf-site/tex/generic/pgf/basiclayer/pgfcoretransformations.code.tex
+File: pgfcoretransformations.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+\pgf@pt@x=\dimen163
+\pgf@pt@y=\dimen164
+\pgf@pt@temp=\dimen165
+) (/usr/share/texmf-site/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
+File: pgfcorequick.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+) (/usr/share/texmf-site/tex/generic/pgf/basiclayer/pgfcoreobjects.code.tex
+File: pgfcoreobjects.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+) (/usr/share/texmf-site/tex/generic/pgf/basiclayer/pgfcorepathprocessing.code.tex
+File: pgfcorepathprocessing.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+) (/usr/share/texmf-site/tex/generic/pgf/basiclayer/pgfcorearrows.code.tex
+File: pgfcorearrows.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+\pgfarrowsep=\dimen166
+) (/usr/share/texmf-site/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
+File: pgfcoreshade.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+\pgf@max=\dimen167
+\pgf@sys@shading@range@num=\count125
+\pgf@shadingcount=\count126
+) (/usr/share/texmf-site/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
+File: pgfcoreimage.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+ (/usr/share/texmf-site/tex/generic/pgf/basiclayer/pgfcoreexternal.code.tex
+File: pgfcoreexternal.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+\pgfexternal@startupbox=\box34
+)) (/usr/share/texmf-site/tex/generic/pgf/basiclayer/pgfcorelayers.code.tex
+File: pgfcorelayers.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+) (/usr/share/texmf-site/tex/generic/pgf/basiclayer/pgfcoretransparency.code.tex
+File: pgfcoretransparency.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+) (/usr/share/texmf-site/tex/generic/pgf/basiclayer/pgfcorepatterns.code.tex
+File: pgfcorepatterns.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+) (/usr/share/texmf-site/tex/generic/pgf/basiclayer/pgfcorerdf.code.tex
+File: pgfcorerdf.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+))) (/usr/share/texmf-site/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
+File: pgfmoduleshapes.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+\pgfnodeparttextbox=\box35
+) (/usr/share/texmf-site/tex/generic/pgf/modules/pgfmoduleplot.code.tex
+File: pgfmoduleplot.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+) (/usr/share/texmf-site/tex/latex/pgf/compatibility/pgfcomp-version-0-65.sty
+Package: pgfcomp-version-0-65 2019/08/03 v3.1.4b (3.1.4b)
+\pgf@nodesepstart=\dimen168
+\pgf@nodesepend=\dimen169
+) (/usr/share/texmf-site/tex/latex/pgf/compatibility/pgfcomp-version-1-18.sty
+Package: pgfcomp-version-1-18 2019/08/03 v3.1.4b (3.1.4b)
+)) (/usr/share/texmf-site/tex/latex/pgf/utilities/pgffor.sty (/usr/share/texmf-site/tex/latex/pgf/utilities/pgfkeys.sty (/usr/share/texmf-site/tex/generic/pgf/utilities/pgfkeys.code.tex)) (/usr/share/texmf-site/tex/latex/pgf/math/pgfmath.sty (/usr/share/texmf-site/tex/generic/pgf/math/pgfmath.code.tex)) (/usr/share/texmf-site/tex/generic/pgf/utilities/pgffor.code.tex
+Package: pgffor 2019/08/03 v3.1.4b (3.1.4b)
+ (/usr/share/texmf-site/tex/generic/pgf/math/pgfmath.code.tex)
+\pgffor@iter=\dimen170
+\pgffor@skip=\dimen171
+\pgffor@stack=\toks38
+\pgffor@toks=\toks39
+)) (/usr/share/texmf-site/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
+Package: tikz 2019/08/03 v3.1.4b (3.1.4b)
+ (/usr/share/texmf-site/tex/generic/pgf/libraries/pgflibraryplothandlers.code.tex
+File: pgflibraryplothandlers.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+\pgf@plot@mark@count=\count127
+\pgfplotmarksize=\dimen172
+)
+\tikz@lastx=\dimen173
+\tikz@lasty=\dimen174
+\tikz@lastxsaved=\dimen175
+\tikz@lastysaved=\dimen176
+\tikz@lastmovetox=\dimen177
+\tikz@lastmovetoy=\dimen178
+\tikzleveldistance=\dimen179
+\tikzsiblingdistance=\dimen180
+\tikz@figbox=\box36
+\tikz@figbox@bg=\box37
+\tikz@tempbox=\box38
+\tikz@tempbox@bg=\box39
+\tikztreelevel=\count128
+\tikznumberofchildren=\count129
+\tikznumberofcurrentchild=\count130
+\tikz@fig@count=\count131
+ (/usr/share/texmf-site/tex/generic/pgf/modules/pgfmodulematrix.code.tex
+File: pgfmodulematrix.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+\pgfmatrixcurrentrow=\count132
+\pgfmatrixcurrentcolumn=\count133
+\pgf@matrix@numberofcolumns=\count134
+)
+\tikz@expandcount=\count135
+ (/usr/share/texmf-site/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopaths.code.tex
+File: tikzlibrarytopaths.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+))) (/usr/share/texmf-dist/tex/latex/pgfplots/pgfplots.sty (/usr/share/texmf-dist/tex/generic/pgfplots/pgfplots.revision.tex)
+Package: pgfplots 2018/03/28 v1.16 Data Visualization (1.16)
+ (/usr/share/texmf-dist/tex/generic/pgfplots/pgfplots.code.tex (/usr/share/texmf-dist/tex/generic/pgfplots/pgfplotscore.code.tex
+\t@pgfplots@toka=\toks40
+\t@pgfplots@tokb=\toks41
+\t@pgfplots@tokc=\toks42
+\pgfplots@tmpa=\dimen181
+\c@pgfplots@coordindex=\count136
+\c@pgfplots@scanlineindex=\count137
+ (/usr/share/texmf-dist/tex/generic/pgfplots/sys/pgfplotssysgeneric.code.tex)) (/usr/share/texmf-dist/tex/generic/pgfplots/libs/pgfplotslibrary.code.tex) (/usr/share/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldpgfsupp_loader.code.tex (/usr/share/texmf-site/tex/generic/pgf/libraries/pgflibraryfpu.code.tex)) (/usr/share/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.code.tex (/usr/share/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsliststructure.code.tex) (/usr/share/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsliststructureext.code.tex) (/usr/share/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsarray.code.tex
+\c@pgfplotsarray@tmp=\count138
+) (/usr/share/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsmatrix.code.tex) (/usr/share/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstableshared.code.tex
+\c@pgfplotstable@counta=\count139
+\t@pgfplotstable@a=\toks43
+) (/usr/share/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsdeque.code.tex) (/usr/share/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.code.tex (/usr/share/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.data.code.tex)) (/usr/share/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.verb.code.tex) (/usr/share/texmf-dist/tex/generic/pgfplots/libs/pgflibrarypgfplots.surfshading.code.tex
+\c@pgfplotslibrarysurf@no=\count140
+ (/usr/share/texmf-dist/tex/generic/pgfplots/sys/pgflibrarypgfplots.surfshading.pgfsys-pdftex.def))) (/usr/share/texmf-dist/tex/generic/pgfplots/util/pgfplotscolormap.code.tex (/usr/share/texmf-dist/tex/generic/pgfplots/util/pgfplotscolor.code.tex)) (/usr/share/texmf-dist/tex/generic/pgfplots/pgfplotsstackedplots.code.tex) (/usr/share/texmf-dist/tex/generic/pgfplots/pgfplotsplothandlers.code.tex (/usr/share/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplothandler.code.tex (/usr/share/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplotimage.code.tex))) (/usr/share/texmf-dist/tex/generic/pgfplots/pgfplots.scaling.code.tex) (/usr/share/texmf-dist/tex/generic/pgfplots/pgfplotscoordprocessing.code.tex) (/usr/share/texmf-dist/tex/generic/pgfplots/pgfplots.errorbars.code.tex) (/usr/share/texmf-dist/tex/generic/pgfplots/pgfplots.markers.code.tex) (/usr/share/texmf-dist/tex/generic/pgfplots/pgfplotsticks.code.tex) (/usr/share/texmf-dist/tex/generic/pgfplots/pgfplots.paths.code.tex) (/usr/share/texmf-site/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.code.tex (/usr/share/texmf-site/tex/generic/pgf/modules/pgfmoduledecorations.code.tex
+\pgfdecoratedcompleteddistance=\dimen182
+\pgfdecoratedremainingdistance=\dimen183
+\pgfdecoratedinputsegmentcompleteddistance=\dimen184
+\pgfdecoratedinputsegmentremainingdistance=\dimen185
+\pgf@decorate@distancetomove=\dimen186
+\pgf@decorate@repeatstate=\count141
+\pgfdecorationsegmentamplitude=\dimen187
+\pgfdecorationsegmentlength=\dimen188
+)
+\tikz@lib@dec@box=\box40
+) (/usr/share/texmf-site/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.pathmorphing.code.tex (/usr/share/texmf-site/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.pathmorphing.code.tex)) (/usr/share/texmf-site/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.pathreplacing.code.tex (/usr/share/texmf-site/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.pathreplacing.code.tex))
+\pgfplots@numplots=\count142
+\pgfplots@xmin@reg=\dimen189
+\pgfplots@xmax@reg=\dimen190
+\pgfplots@ymin@reg=\dimen191
+\pgfplots@ymax@reg=\dimen192
+\pgfplots@zmin@reg=\dimen193
+\pgfplots@zmax@reg=\dimen194
+) (/usr/share/texmf-site/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryplotmarks.code.tex
+File: tikzlibraryplotmarks.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+ (/usr/share/texmf-site/tex/generic/pgf/libraries/pgflibraryplotmarks.code.tex
+File: pgflibraryplotmarks.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+))) (/usr/share/texmf-dist/tex/latex/mathtools/mathtools.sty
 Package: mathtools 2018/01/08 v1.21 mathematical typesetting tools
  (/usr/share/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count115
-\calc@Bcount=\count116
-\calc@Adimen=\dimen131
-\calc@Bdimen=\dimen132
+\calc@Acount=\count143
+\calc@Bcount=\count144
+\calc@Adimen=\dimen195
+\calc@Bdimen=\dimen196
 \calc@Askip=\skip50
 \calc@Bskip=\skip51
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count117
+\calc@Ccount=\count145
 \calc@Cskip=\skip52
 ) (/usr/share/texmf-dist/tex/latex/mathtools/mhsetup.sty
 Package: mhsetup 2017/03/31 v1.3 programming setup (MH)
@@ -295,49 +529,55 @@ LaTeX Info: Thecontrolsequence`\('isalreadyrobust on input line 129.
 LaTeX Info: Thecontrolsequence`\)'isalreadyrobust on input line 129.
 LaTeX Info: Thecontrolsequence`\['isalreadyrobust on input line 129.
 LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
-\g_MT_multlinerow_int=\count118
-\l_MT_multwidth_dim=\dimen133
+\g_MT_multlinerow_int=\count146
+\l_MT_multwidth_dim=\dimen197
 \origjot=\skip53
-\l_MT_shortvdotswithinadjustabove_dim=\dimen134
-\l_MT_shortvdotswithinadjustbelow_dim=\dimen135
-\l_MT_above_intertext_sep=\dimen136
-\l_MT_below_intertext_sep=\dimen137
-\l_MT_above_shortintertext_sep=\dimen138
-\l_MT_below_shortintertext_sep=\dimen139
+\l_MT_shortvdotswithinadjustabove_dim=\dimen198
+\l_MT_shortvdotswithinadjustbelow_dim=\dimen199
+\l_MT_above_intertext_sep=\dimen256
+\l_MT_below_intertext_sep=\dimen257
+\l_MT_above_shortintertext_sep=\dimen258
+\l_MT_below_shortintertext_sep=\dimen259
 ) (/usr/share/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2018/04/16 v5.8 Page Geometry
-\Gm@cnth=\count119
-\Gm@cntv=\count120
-\c@Gm@tempcnt=\count121
-\Gm@bindingoffset=\dimen140
-\Gm@wd@mp=\dimen141
-\Gm@odd@mp=\dimen142
-\Gm@even@mp=\dimen143
-\Gm@layoutwidth=\dimen144
-\Gm@layoutheight=\dimen145
-\Gm@layouthoffset=\dimen146
-\Gm@layoutvoffset=\dimen147
-\Gm@dimlist=\toks28
+\Gm@cnth=\count147
+\Gm@cntv=\count148
+\c@Gm@tempcnt=\count149
+\Gm@bindingoffset=\dimen260
+\Gm@wd@mp=\dimen261
+\Gm@odd@mp=\dimen262
+\Gm@even@mp=\dimen263
+\Gm@layoutwidth=\dimen264
+\Gm@layoutheight=\dimen265
+\Gm@layouthoffset=\dimen266
+\Gm@layoutvoffset=\dimen267
+\Gm@dimlist=\toks44
+) (/usr/share/texmf-dist/tex/latex/appendix/appendix.sty
+Package: appendix 2009/09/02 v1.2b extra appendix facilities
+\c@@pps=\count150
+\c@@ppsavesec=\count151
+\c@@ppsaveapp=\count152
 ) (/usr/share/texmf-dist/tex/latex/setspace/setspace.sty
 Package: setspace 2011/12/19 v6.7a set line spacing
-) (/usr/share/texmf-dist/tex/latex/listings/listings.sty
-\lst@mode=\count122
-\lst@gtempboxa=\box29
-\lst@token=\toks29
-\lst@length=\count123
-\lst@currlwidth=\dimen148
-\lst@column=\count124
-\lst@pos=\count125
-\lst@lostspace=\dimen149
-\lst@width=\dimen150
-\lst@newlines=\count126
-\lst@lineno=\count127
-\lst@maxwidth=\dimen151
+)
+(/usr/share/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count153
+\lst@gtempboxa=\box41
+\lst@token=\toks45
+\lst@length=\count154
+\lst@currlwidth=\dimen268
+\lst@column=\count155
+\lst@pos=\count156
+\lst@lostspace=\dimen269
+\lst@width=\dimen270
+\lst@newlines=\count157
+\lst@lineno=\count158
+\lst@maxwidth=\dimen271
  (/usr/share/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2019/02/27 1.8b (Carsten Heinz)
-\c@lstnumber=\count128
-\lst@skipnumbers=\count129
-\lst@framebox=\box30
+\c@lstnumber=\count159
+\lst@skipnumbers=\count160
+\lst@framebox=\box42
 ) (/usr/share/texmf-dist/tex/latex/listings/listings.cfg
 File: listings.cfg 2019/02/27 1.8b listings configuration
 ))
@@ -360,7 +600,7 @@ File: lstlang1.sty 2019/02/27 1.8b listings language file
 ) (/usr/share/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2019/02/27 1.8b (Carsten Heinz)
 )
-\c@PagesWithoutNumbers=\count130
+\c@PagesWithoutNumbers=\count161
  (/home/michal/Documents/STM32DSP/stm32.aux)
 \openout1 = `stm32.aux'.
 
@@ -383,17 +623,17 @@ LaTeX Font Info:    Try loading font information for T1+lmr on input line 160.
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) (/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count131
-\scratchdimen=\dimen152
-\scratchbox=\box31
-\nofMPsegments=\count132
-\nofMParguments=\count133
-\everyMPshowfont=\toks30
-\MPscratchCnt=\count134
-\MPscratchDim=\dimen153
-\MPnumerator=\count135
-\makeMPintoPDFobject=\count136
-\everyMPtoPDFconversion=\toks31
+\scratchcounter=\count162
+\scratchdimen=\dimen272
+\scratchbox=\box43
+\nofMPsegments=\count163
+\nofMParguments=\count164
+\everyMPshowfont=\toks46
+\MPscratchCnt=\count165
+\MPscratchDim=\dimen273
+\MPnumerator=\count166
+\makeMPintoPDFobject=\count167
+\everyMPtoPDFconversion=\toks47
 ) (/usr/share/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
  (/usr/share/texmf-dist/tex/latex/oberdiek/grfext.sty
@@ -406,22 +646,26 @@ Package grfext Info: Graphics extension search list:
  (/usr/share/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-\AtBeginShipoutBox=\box32
+\AtBeginShipoutBox=\box44
 Package hyperref Info: Link coloring OFF on input line 160.
  (/usr/share/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
  (/usr/share/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count137
+\c@section@level=\count168
 )
 LaTeX Info: Redefining \ref on input line 160.
 LaTeX Info: Redefining \pageref on input line 160.
 LaTeX Info: Redefining \nameref on input line 160.
  (/home/michal/Documents/STM32DSP/stm32.out) (/home/michal/Documents/STM32DSP/stm32.out)
-\@outlinefile=\write3
-\openout3 = `stm32.out'.
+\@outlinefile=\write4
+\openout4 = `stm32.out'.
 
+ ABD: EveryShipout initializing macros
+
+Package pgfplots Warning: running in backwards compatibility mode (unsuitable tick labels; missing features). Consider writing \pgfplotsset{compat=1.16} into your preamble.
+ on input line 160.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -457,7 +701,7 @@ LaTeX Info: Redefining \nameref on input line 160.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-\c@lstlisting=\count138
+\c@lstlisting=\count169
 *geometry* verbose mode - [ newgeometry ] result:
 * driver: pdftex
 * paper: a4paper
@@ -494,7 +738,7 @@ LaTeX Font Info:    Try loading font information for T1+lmss on input line 169.
 (/usr/share/texmf-dist/tex/latex/lm/t1lmss.fd
 File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-<polsl.pdf, id=100, 1202.12112pt x 1203.56645pt>
+<polsl.pdf, id=103, 1202.12112pt x 1203.56645pt>
 File: polsl.pdf Graphic file (type pdf)
 <use polsl.pdf>
 Package pdftex.def Info: polsl.pdf  used on input line 173.
@@ -546,8 +790,8 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
 ])
-\tf@toc=\write4
-\openout4 = `stm32.toc'.
+\tf@toc=\write5
+\openout5 = `stm32.toc'.
 
 
 
@@ -561,24 +805,24 @@ Chapter 1.
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.252 \chapter
+l.244 \chapter
               {Goals and tasks of the project} [1
 
 
 ]pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.252 \chapter
+l.244 \chapter
               {Goals and tasks of the project} [2
 
 ]
 Chapter 2.
-LaTeX Font Info:    Try loading font information for OMS+lmr on input line 262.
+LaTeX Font Info:    Try loading font information for OMS+lmr on input line 254.
 (/usr/share/texmf-dist/tex/latex/lm/omslmr.fd
 File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 262.
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 254.
  [3] [4]
 Chapter 3.
 
@@ -608,32 +852,33 @@ Chapter 7.
 
 LaTeX Warning: Empty `thebibliography' environment on input line 3.
 
-)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 528.
- [3
+) [3
 
-]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 528.
+] [4
+
+] [5] [6]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 548.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 548.
  (/home/michal/Documents/STM32DSP/stm32.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 528.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 528.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 548.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 548.
 Package rerunfilecheck Info: File `stm32.out' has not changed.
 (rerunfilecheck)             Checksum: 3272A68DC4F6FFE95312C7B096352FCF;1403.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 528.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 548.
  ) 
 Here is how much of TeX's memory you used:
- 9034 strings out of 494553
- 130259 string characters out of 6177841
- 413637 words of memory out of 5000000
- 12501 multiletter control sequences out of 15000+600000
+ 29077 strings out of 494553
+ 677889 string characters out of 6177841
+ 1030446 words of memory out of 5000000
+ 32189 multiletter control sequences out of 15000+600000
  55615 words of font info for 48 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 33i,10n,58p,268b,470s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,11n,96p,723b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmri12.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
-Output written on /home/michal/Documents/STM32DSP/stm32.pdf (21 pages, 147872 bytes).
+Output written on /home/michal/Documents/STM32DSP/stm32.pdf (24 pages, 151153 bytes).
 PDF statistics:
- 273 PDF objects out of 1000 (max. 8388607)
- 239 compressed objects within 3 object streams
- 50 named destinations out of 1000 (max. 500000)
- 198 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 289 PDF objects out of 1000 (max. 8388607)
+ 252 compressed objects within 3 object streams
+ 54 named destinations out of 1000 (max. 500000)
+ 210 words of extra memory for PDF output out of 10000 (max. 10000000)
 

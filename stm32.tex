@@ -17,11 +17,11 @@
 \usepackage{graphicx} 
 \usepackage{hyperref}
 \usepackage{booktabs}
-% \usepackage{tikz}
-% \usepackage{pgfplots}
+\usepackage{tikz}
+\usepackage{pgfplots}
 \usepackage{mathtools}
 \usepackage{geometry}
-% \usepackage[page]{appendix} 
+\usepackage[page]{appendix} 
 % \usepackage[style=authoryear,backend=biber]{biblatex}
 % \usepackage[backend=bibtex,style=verbose-trad2]{biblatex}
 
@@ -150,7 +150,7 @@ texcl=true, % wylacza tryb verbatim w komentarzach jednolinijkowych
 
 
 \newcommand{\Author}{Michał Mieszczak}
-\newcommand{\Supervisor}{Jerzy Fiołka, Dr Inż.}
+\newcommand{\Supervisor}{Dr Inż. Jerzy Fiołka}
 \newcommand{\Consultant}{Name Surname, PhD}
 \newcommand{\Title}{Realization of digital audio effects on high-performance MCU platform.}
 \newcommand{\Polsl}{Silesian University of Technology}
@@ -212,13 +212,8 @@ texcl=true, % wylacza tryb verbatim w komentarzach jednolinijkowych
 
 \cleardoublepage
  
-
 \rmfamily
 \normalfont
-
-
-% \tableofcontents
-% \newpage
 
 %%%%%%%%%%%%%%%%%% Table of contents %%%%%%%%%%%%%%%%%%%%%%
 \pagenumbering{Roman}
@@ -233,10 +228,6 @@ texcl=true, % wylacza tryb verbatim w komentarzach jednolinijkowych
 
 
 
-
-
-
-
 \chapter{Introduction}
 The rapid development of technology lead to the moment, when anybody can afford a development board 
 and learn how to program microcontrollers without even leaving house.
@@ -246,6 +237,7 @@ with their professional counterparts in both price and quality.
 One example of such a field is market of sound related equipment.
 More and more small companies are growing out of nowhere,
 providing butique studio recording and processing equipment with great customer service and support.
+
 
 
 
@@ -312,12 +304,24 @@ This means, that signal can take one of finite number of values.
 The count of possible values is equal to \(2^n\), where n is the bit depth of the converter.
 
 As stereo signal consists of two separate channels,
-there sould be two identical preaplifiers and converters.
-
+there sould be two identical sets of preaplifiers and converters.
 
 \section{Output generation}
+Processed digital signal must be converted back to analog.
+This is done using DAC and corresponding amplifier.
+DAC converts digital value into specific analog voltage,
+outputs it and holds the value until succesive sample is to be outputted.
 
 \section{Processing audio}
+Digital signals are usually processed in blocks.
+This approach allows to use FFT necessary for some effects.
+Furthermore it can reduce time needed to process each sample.
+One drawback of this method is latency introduced.
+The whole block of samples needs to be collected before it can be processed.
+In case of blocks consisting og 512 samples,
+there is 1024 samples delay introduced between collecting and outputting specific sample.
+In combination with 48kHz sampling frequency this results in 21.3 ms latency.
+Outputting, processing and collecting subsequent blocks off data must be performed simultaneously.
 
 \section{Effects}
 \begin{itemize}
@@ -514,15 +518,31 @@ List of frameworks and additional tools used for software development:
 
  
 
-% \chapter*{List of abbreviations and symbols}
+\chapter*{List of abbreviations and symbols}
 
-% \begin{itemize}
-% \item[DNA] deoxyribonucleic acid
-% \item[MVC] model--view--controller 
+\begin{itemize}
+\item[ADC] - Analog to digital converter
+\item[API] - Application programming interface
+\item[DAC] - Digital to analog converter
+\item[DC] - Direct current
+\item[DMA] - Direct memory access
+\item[DSP] - Digital signal processing
+\item[EDA] - Electronic design automation
+\item[FFT] - Fast fourier transform
+\item[FMC] - Flexible momory controller
+\item[FPU] - Floating-point uint
+\item[GPIO] - General purpose input/output
+\item[IDE] - Integrated development environment
+\item[LCD] - Liquid crystal display
+\item[PCB] - Printed circuit board
+\item[RAM] - Random access memory
+\item[ROM] - Read only memory
+\item[SDRAM] - Synchronous dynamic random access memory
+\item[SMD] - Surface mounted device
 % \item[$N$] cardinality of data set
 % \item[$\mu$] membership function of a fuzzy set
 % \item[$\mathbb{E}$] set of edges of a graph
 % \item[$\mathcal{L}$] Laplace transformation
-% \end{itemize}
+\end{itemize}
 
 \end{document}
