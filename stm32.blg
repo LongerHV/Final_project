@@ -1,20 +1,20 @@
 This is BibTeX, Version 0.99d (TeX Live 2019 Gentoo Linux)
 Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: stm32.aux
-The style file: ieeetr.bst
+The style file: plain.bst
 I found no \citation commands---while reading file stm32.aux
 Database file #1: thebibliography.bib
 You've used 0 entries,
-            1876 wiz_defined-function locations,
-            477 strings with 3475 characters,
-and the built_in function-call counts, 20 in all, are:
+            2118 wiz_defined-function locations,
+            497 strings with 3998 characters,
+and the built_in function-call counts, 18 in all, are:
 = -- 0
 > -- 0
 < -- 0
 + -- 0
 - -- 0
 * -- 2
-:= -- 9
+:= -- 7
 add.period$ -- 0
 call.type$ -- 0
 change.case$ -- 0

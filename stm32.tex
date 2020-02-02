@@ -314,20 +314,21 @@ outputs it and holds the value until succesive sample is to be outputted.
 
 \section{Processing audio}
 Digital signals are usually processed in blocks.
-This approach allows to use FFT necessary for some effects.
+This approach allows to use FFT, which is necessary for some effects.
 Furthermore it can reduce time needed to process each sample.
 One drawback of this method is latency introduced.
 The whole block of samples needs to be collected before it can be processed.
-In case of blocks consisting og 512 samples,
-there is 1024 samples delay introduced between collecting and outputting specific sample.
+In case of blocks consisting of 512 samples,
+there is 1024 samples delay between collecting and outputting specific sample.
 In combination with 48kHz sampling frequency this results in 21.3 ms latency.
 Outputting, processing and collecting subsequent blocks off data must be performed simultaneously.
 
 \section{Effects}
 \begin{itemize}
-    \item
-    \item
-    \item
+    \item Delay
+    \item Modulation
+    \item Biquad filter
+    \item Drive
 \end{itemize}
 
 
@@ -339,22 +340,29 @@ Outputting, processing and collecting subsequent blocks off data must be perform
 
 \section{Desctiption}
 Device was designed in a form of a “shield” for NUCLEO development board.
-The NUCLEO board provides a ST-Link programmer/debugger and voltage regulators required to power the board from 5V USB.
-The shield is populated with analog and digital parts as well as two audio jacks for analog input and output.
+The NUCLEO board provides a ST-Link programmer/debugger
+and voltage regulators required to power the board from 5V USB.
+The shield is populated with analog and digital parts
+as well as two audio jacks for analog input and output.
 Separate power lines and ground planes are used for digital and analog supply.
 
-Device relays on both onboard digital to analog and analog to digital converters present in the microcontroller, so external preamplifiers are the only thing needed on the audio path.
+Device relays on both onboard digital to analog
+and analog to digital converters present in the microcontroller,
+so external preamplifiers are the only thing needed on the audio path.
 Input preamplifier consist of two stages.
 First stage acts as a buffer and provides about 14.5dB boost.
 Boost is added to improve performance of converters.
 At this point DC offset is added, because unipolar voltage supply was used.
-The second stage is a basic phase inverter.
-Outputs of both stages are fed into differential inputs of ADC and are sampled by microcontroller.
+The second stage is a basic phase inverter with unity gain.
+Outputs of both stages are fed into differential inputs of ADC
+and are sampled by microcontroller.
+
 Output preamplifier consist of single inverting operational amplifier.
 It provides -20dB attenuation necessary to achieve line level on output.
-After output stage there is a 1.
-5Hz high-pass filter, whose task is to eliminate DC offset.
-Both input and output preamplifiers are stereo and introduce 20kHz low-pass filter to prevent aliasing and noise.
+After output stage there is a 1.5Hz high-pass filter,
+whose task is to eliminate DC offset.
+Both input and output preamplifiers are stereo and introduce 20kHz low-pass filter
+to prevent aliasing and noise.
 All 3 operational amplifiers are decoupled using a 100nF capacitor.
 
 TFT LCD is used to provide necessary information to the user.
@@ -363,29 +371,37 @@ Display communicates with microcontroller through full duplex SPI connection.
 
 To allow user to interact with the device, a rotary encoder was introduced.
 It is connected to microcontroller and is handled by internal timer.
-Push button of the encoder and additional user button are connected to GPIOs (General Purpose Input/Output) of the microcontroller.
+Push button of the encoder and additional user button are connected
+to GPIOs of the microcontroller with external pull-up resistors.
 
-Additionally  the board is equipped with 32MB SDRAM chip (only 16MB is accessible).
+Additionally the board is equipped with 32MB SDRAM chip
+(of which only 16MB is accessible).
 It is not used by the program of this project, but allows for future improvements.
-SDRAM can be handled by FMC (Flexible Memory Controller) present in the microcontroller.
+SDRAM is handled by FMC present in the microcontroller.
 \newpage
 
 \section{Choice of components}
 
 \begin{itemize}
     \item Microcontroller
+
     The microcontroller should meet certain parameters to be chosen.
     One of the most important parameters is the clock speed.
-    Digital signal processing requires a lot of processor instructions per each audio sample,
-    so high clock speed is preferred.
+    Digital signal processing requires a lot of processor instructions
+    per each audio sample, so high clock speed is preferred.
 
     The second important criterion is amount of memory.
-    The microcontroller should have at least 128kB of ROM to fit the written program.
-    Size of RAM should be as high as possible, because delay effects require a lot of memory.
+    The microcontroller should have at least 128kB of ROM
+    to fit the written program.
+    Size of RAM should be as high as possible,
+    because delay effects require a lot of memory.
 
-    Presence of FPU (floating-point unit) is preferred due to its performance benefits.
+    Presence of FPU is preferred due to its performance benefits.
+    Dedicated floating-point hardware greatly decreases time
+    needed for floating-point calculations.
 
-    To reduce the total cost of the device, proper A/D and D/A converters could be included in the microcontroller.
+    To reduce the total cost of the device,
+    proper A/D and D/A converters could be included in the microcontroller.
 
     All of above criterion is met by STM32H743ZI microcontroller.
     It is based on Arm Cortex-M7 32-bit RISC core.
@@ -395,22 +411,26 @@ SDRAM can be handled by FMC (Flexible Memory Controller) present in the microcon
         \item 1MB of RAM and 2MB of Flash memory
         \item single and double precision FPU and set of DPS instructions
         \item 16-bit ADC and 12-bit DAC
-        \item 140 I/Os and selection of peripherals such as hardware SPI, I2C, I2S, UART, SPDIF, USB OTG
+        \item 140 I/Os and selection of peripherals such as hardware
+        SPI, I2C, I2S, UART, SPDIF, USB OTG
     \end{itemize}
 
     The STM32H743ZI comes one the NUCLEO-H743ZI evaluation board.
-    It includes ST-LINK debugger/programmer, which simplified development of the device. 
+    It includes ST-LINK debugger/programmer,
+    which simplified development of the device. 
     \item Operational amplifiers
     \item Additional devices
 \end{itemize}
 
 \section{Schematic}
-Schematic was created using KiCad EDA, which is both cross-platform and open source software.
+Schematic was created using KiCad EDA,
+which is both cross-platform and open source software.
 It provides rich library of components and very intuitive user interface.
 
 \section{PCB}
 PCB layout was prepared using KiCad EDA as well.
-All elements except for gold pin headers, rotary encoder and audio jacks are SMD (surface mounted).
+All elements except for gold pin headers,
+rotary encoder and audio jacks are SMD (surface mounted).
 To reduce cost of the project, the PCB was designed as 2 layer board only.
 This decision resulted in increased difficulty of routing process.
 
@@ -426,16 +446,20 @@ The PCB was assembled by hand using 50W soldering iron and hot air rework statio
 C language is the most popular choice for STM32 development.
 It is widely supported by ST and other companies providing frameworks and libraries. 
 
-Since the object oriented approach was preferred in this project, C++ language was chosen.
-It allows to benefit from libraries written in C and gives advantages of using classes with inheritance and polymorphism.
+Since the object oriented approach was preferred in this project,
+C++ language was chosen.
+This allows to benefit from libraries written in C
+and gives advantages of using classes with inheritance and polymorphism.
 
 \section{IDE}
 The popular environments for STM32 development are Keil uVision, IAR and SW4STM32.
 ST also provides its own STM32CubeIDE, which is based on Eclipse.
 
-But this time PlatformIO IDE was chosen.
-It is open source IDE and comes as a plugin for Visual Studio Code and Atom text editors.
-It provides all necessary libraries, frameworks, debugger server and GNU embedded toolchain for Arm.
+Another choice is PlatformIO IDE.
+It is free and open source IDE and
+comes as a plugin for Visual Studio Code and Atom text editors.
+It provides all libraries, frameworks,
+debugger server and compiler necessery for STM32 software development.
 
 \section{Text editor}
 Visual Studio Code is a free code editor developed by Microsoft.
@@ -447,17 +471,25 @@ which simplify the process of software development.
 List of frameworks and additional tools used for software development:
 
 \begin{itemize}
+    \item HAL drivers
+    - Hardware Abstraction Layer driver is a library written in C language, provided by ST.
+    It allows an easy use of microcontroller and code compatibility between different STM32 devices.
     \item STM32CubeMX
     - a graphical tool that allows an easy STM32 configuration.
     It generates configuration code for the microcontroller and desired peripherals in C language.
-    \item HAL drivers
-    - (Hardware Abstraction Layer) driver is a library provided by ST.
-    it allows an easy use of microcontroller and code compatibility between different STM32 devices.
+    STM32CubeMX uses HAL driver in generated initialization code.
     \item CMSIS
-    - CMSIS (Cortex Microcontroller Software Interface Standard) is a hardware abstraction layer provided by Arm.
+    - Cortex Microcontroller Software Interface Standard
+    is a hardware abstraction layer provided by Arm.
     It is compatible with all Arm Cortex microprocessors and microcontrollers.
     It includes API for Cortex-M and Cortex-A core and peripherals as well as additional tools
     (DSP library, neural network kernels, real-time operating systems).
+    \item OpenOCD
+    - Open On-Chip Debugger provides programming and debugging support of boundary scan interface.
+    It supports ST-Link, which was used for both programming and debugging of STM32 microcontroller.
+    \item GNU Embedded Toolchain for Arm
+    is a suite of tools for C, C++ and Assembly programming.
+    It contains the GCC Compiler.
 \end{itemize}
 
 \section{Software block diagram}
@@ -506,8 +538,8 @@ List of frameworks and additional tools used for software development:
 \pagestyle{onlyPageNumbers}
 
 %%%%%%%%%%% bibliography %%%%%%%%%%%%
-% \bibliographystyle{plain}
-\bibliographystyle{ieeetr}
+\bibliographystyle{plain}
+% \bibliographystyle{ieeetr}
 \bibliography{thebibliography}
 
 %%%%%%%%%  appendices %%%%%%%%%%%%%%%%%%% 
@@ -531,6 +563,7 @@ List of frameworks and additional tools used for software development:
 \item[FFT] - Fast fourier transform
 \item[FMC] - Flexible momory controller
 \item[FPU] - Floating-point uint
+\item[GCC] - GNU Compiler Collection
 \item[GPIO] - General purpose input/output
 \item[IDE] - Integrated development environment
 \item[LCD] - Liquid crystal display

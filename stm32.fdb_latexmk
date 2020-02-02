@@ -1,13 +1,13 @@
 # Fdb version 3
-["bibtex stm32"] 1580640076 "stm32.aux" "stm32.bbl" "stm32" 1580641117
-  "/usr/share/texmf-dist/bibtex/bst/base/ieeetr.bst" 1292289607 18361 1a00e58565e7f19bf2b3e1bfb82254ae ""
-  "stm32.aux" 1580641117 4008 d6d4b442f1f8ed421c6dd112249984a7 ""
+["bibtex stm32"] 1580666677 "stm32.aux" "stm32.bbl" "stm32" 1580666933
+  "/usr/share/texmf-dist/bibtex/bst/base/plain.bst" 1292289607 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
+  "stm32.aux" 1580666933 4007 1fa6ba3f849135adf2f81005bce94570 ""
   "thebibliography.bib" 1579801819 1534 224536f599ec4eac85ccfd3bedbb676b ""
   (generated)
-  "stm32.bbl"
   "stm32.blg"
-["pdflatex"] 1580641117 "stm32.tex" "/home/michal/Documents/STM32DSP/stm32.pdf" "stm32" 1580641117
-  "/home/michal/Documents/STM32DSP/stm32.aux" 1580641117 4008 d6d4b442f1f8ed421c6dd112249984a7 ""
+  "stm32.bbl"
+["pdflatex"] 1580666933 "stm32.tex" "/home/michal/Documents/STM32DSP/stm32.pdf" "stm32" 1580666933
+  "/home/michal/Documents/STM32DSP/stm32.aux" 1580666933 4007 1fa6ba3f849135adf2f81005bce94570 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc" 1254269338 2375 baa924870cfb487815765f9094cf3728 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc" 1202520719 2405 5dcf2c1b967ee25cc46c58cd52244aed ""
@@ -220,16 +220,16 @@
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1579802535 325216 4994121cc899affd7c476b724aa58539 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1579790290 796835 10b04348ea248e4d762368170bcbf5e7 ""
   "polsl.pdf" 1579798027 28666 0c467b16188d2152ba80c16375138b1a ""
-  "stm32.aux" 1580641117 4008 d6d4b442f1f8ed421c6dd112249984a7 ""
-  "stm32.bbl" 1580640076 49 0eba253fc001332e731e8aba3f23127b "bibtex stm32"
-  "stm32.out" 1580641117 1403 3272a68dc4f6ffe95312c7b096352fcf ""
-  "stm32.tex" 1580641116 17532 baec157039efcb1099b94a243212e948 ""
-  "stm32.toc" 1580641117 1810 ce359f997ac17ca3e72c86b90cce0a07 ""
+  "stm32.aux" 1580666933 4007 1fa6ba3f849135adf2f81005bce94570 ""
+  "stm32.bbl" 1580666677 49 0eba253fc001332e731e8aba3f23127b "bibtex stm32"
+  "stm32.out" 1580666933 1403 3272a68dc4f6ffe95312c7b096352fcf ""
+  "stm32.tex" 1580666933 18165 7a7d7ab392bbbe80455d85cdcb9780e8 ""
+  "stm32.toc" 1580666933 1810 ce359f997ac17ca3e72c86b90cce0a07 ""
   (generated)
-  "stm32.log"
-  "stm32.toc"
-  "/home/michal/Documents/STM32DSP/stm32.pdf"
-  "stm32.aux"
-  "stm32.pdf"
-  "stm32.out"
   "/home/michal/Documents/STM32DSP/stm32.log"
+  "/home/michal/Documents/STM32DSP/stm32.pdf"
+  "stm32.log"
+  "stm32.aux"
+  "stm32.out"
+  "stm32.pdf"
+  "stm32.toc"

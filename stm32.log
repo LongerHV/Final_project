@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019 Gentoo Linux) (preloaded format=pdflatex 2020.1.23)  2 FEB 2020 11:58
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019 Gentoo Linux) (preloaded format=pdflatex 2020.1.23)  2 FEB 2020 19:08
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -857,14 +857,14 @@ LaTeX Warning: Empty `thebibliography' environment on input line 3.
 ] [4
 
 ] [5] [6]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 548.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 548.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 581.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 581.
  (/home/michal/Documents/STM32DSP/stm32.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 548.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 548.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 581.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 581.
 Package rerunfilecheck Info: File `stm32.out' has not changed.
 (rerunfilecheck)             Checksum: 3272A68DC4F6FFE95312C7B096352FCF;1403.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 548.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 581.
  ) 
 Here is how much of TeX's memory you used:
  29077 strings out of 494553
@@ -875,7 +875,7 @@ Here is how much of TeX's memory you used:
  14 hyphenation exceptions out of 8191
  62i,11n,96p,723b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmri12.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
-Output written on /home/michal/Documents/STM32DSP/stm32.pdf (24 pages, 151153 bytes).
+Output written on /home/michal/Documents/STM32DSP/stm32.pdf (24 pages, 151568 bytes).
 PDF statistics:
  289 PDF objects out of 1000 (max. 8388607)
  252 compressed objects within 3 object streams
