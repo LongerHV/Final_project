@@ -5,20 +5,24 @@
 \BOOKMARK [1][-]{section.3.2}{Output generation}{chapter.3}% 5
 \BOOKMARK [1][-]{section.3.3}{Processing audio}{chapter.3}% 6
 \BOOKMARK [1][-]{section.3.4}{Effects}{chapter.3}% 7
-\BOOKMARK [0][-]{chapter.4}{External specification}{}% 8
-\BOOKMARK [1][-]{section.4.1}{Block diagram}{chapter.4}% 9
-\BOOKMARK [1][-]{section.4.2}{Desctiption}{chapter.4}% 10
-\BOOKMARK [1][-]{section.4.3}{Choice of components}{chapter.4}% 11
-\BOOKMARK [1][-]{section.4.4}{Schematic}{chapter.4}% 12
-\BOOKMARK [1][-]{section.4.5}{PCB}{chapter.4}% 13
-\BOOKMARK [1][-]{section.4.6}{Assembly}{chapter.4}% 14
-\BOOKMARK [0][-]{chapter.5}{Internal specification}{}% 15
-\BOOKMARK [1][-]{section.5.1}{Programming language}{chapter.5}% 16
-\BOOKMARK [1][-]{section.5.2}{IDE}{chapter.5}% 17
-\BOOKMARK [1][-]{section.5.3}{Text editor}{chapter.5}% 18
-\BOOKMARK [1][-]{section.5.4}{Frameworks and tools}{chapter.5}% 19
-\BOOKMARK [1][-]{section.5.5}{Software block diagram}{chapter.5}% 20
-\BOOKMARK [1][-]{section.5.6}{Description of functions and objects}{chapter.5}% 21
-\BOOKMARK [1][-]{section.5.7}{User manual}{chapter.5}% 22
-\BOOKMARK [0][-]{chapter.6}{Testing}{}% 23
-\BOOKMARK [0][-]{chapter.7}{Conclusions}{}% 24
+\BOOKMARK [2][-]{subsection.3.4.1}{Delay}{section.3.4}% 8
+\BOOKMARK [2][-]{subsection.3.4.2}{Modulation}{section.3.4}% 9
+\BOOKMARK [2][-]{subsection.3.4.3}{Biquad filter}{section.3.4}% 10
+\BOOKMARK [2][-]{subsection.3.4.4}{Drive}{section.3.4}% 11
+\BOOKMARK [0][-]{chapter.4}{External specification}{}% 12
+\BOOKMARK [1][-]{section.4.1}{Block diagram}{chapter.4}% 13
+\BOOKMARK [1][-]{section.4.2}{Desctiption}{chapter.4}% 14
+\BOOKMARK [1][-]{section.4.3}{Choice of components}{chapter.4}% 15
+\BOOKMARK [1][-]{section.4.4}{Schematic}{chapter.4}% 16
+\BOOKMARK [1][-]{section.4.5}{PCB}{chapter.4}% 17
+\BOOKMARK [1][-]{section.4.6}{Assembly}{chapter.4}% 18
+\BOOKMARK [0][-]{chapter.5}{Internal specification}{}% 19
+\BOOKMARK [1][-]{section.5.1}{Programming language}{chapter.5}% 20
+\BOOKMARK [1][-]{section.5.2}{IDE}{chapter.5}% 21
+\BOOKMARK [1][-]{section.5.3}{Text editor}{chapter.5}% 22
+\BOOKMARK [1][-]{section.5.4}{Frameworks and tools}{chapter.5}% 23
+\BOOKMARK [1][-]{section.5.5}{Software block diagram}{chapter.5}% 24
+\BOOKMARK [1][-]{section.5.6}{Description of functions and objects}{chapter.5}% 25
+\BOOKMARK [1][-]{section.5.7}{User manual}{chapter.5}% 26
+\BOOKMARK [0][-]{chapter.6}{Testing}{}% 27
+\BOOKMARK [0][-]{chapter.7}{Conclusions}{}% 28

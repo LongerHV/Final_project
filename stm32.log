@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019 Gentoo Linux) (preloaded format=pdflatex 2020.1.23)  2 FEB 2020 19:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019 Gentoo Linux) (preloaded format=pdflatex 2020.1.23)  4 FEB 2020 15:25
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -738,7 +738,7 @@ LaTeX Font Info:    Try loading font information for T1+lmss on input line 169.
 (/usr/share/texmf-dist/tex/latex/lm/t1lmss.fd
 File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-<polsl.pdf, id=103, 1202.12112pt x 1203.56645pt>
+<polsl.pdf, id=119, 1202.12112pt x 1203.56645pt>
 File: polsl.pdf Graphic file (type pdf)
 <use polsl.pdf>
 Package pdftex.def Info: polsl.pdf  used on input line 173.
@@ -825,28 +825,25 @@ LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 254.
  [3] [4]
 Chapter 3.
+[5
 
-Underfull \vbox (badness 1132) has occurred while \output is active []
+] [6] [7] [8
 
- [5
-
-] [6]
+]
 Chapter 4.
-[7
-
-] [8] [9] [10]
+[9] [10] [11] [12]
 Chapter 5.
-[11
-
-] [12]
-Chapter 6.
 [13
 
-] [14
+] [14]
+Chapter 6.
+[15
+
+] [16
 
 ]
 Chapter 7.
-[15] [16
+[17] [18
 
 ] (/home/michal/Documents/STM32DSP/stm32.bbl
 
@@ -857,28 +854,28 @@ LaTeX Warning: Empty `thebibliography' environment on input line 3.
 ] [4
 
 ] [5] [6]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 581.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 581.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 617.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 617.
  (/home/michal/Documents/STM32DSP/stm32.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 581.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 581.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 617.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 617.
 Package rerunfilecheck Info: File `stm32.out' has not changed.
-(rerunfilecheck)             Checksum: 3272A68DC4F6FFE95312C7B096352FCF;1403.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 581.
+(rerunfilecheck)             Checksum: 5234F798DF2564844279381187FD9CA7;1652.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 617.
  ) 
 Here is how much of TeX's memory you used:
- 29077 strings out of 494553
- 677889 string characters out of 6177841
+ 29089 strings out of 494553
+ 678070 string characters out of 6177841
  1030446 words of memory out of 5000000
- 32189 multiletter control sequences out of 15000+600000
- 55615 words of font info for 48 fonts, out of 8000000 for 9000
+ 32195 multiletter control sequences out of 15000+600000
+ 61612 words of font info for 50 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  62i,11n,96p,723b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmri12.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
-Output written on /home/michal/Documents/STM32DSP/stm32.pdf (24 pages, 151568 bytes).
+Output written on /home/michal/Documents/STM32DSP/stm32.pdf (26 pages, 154575 bytes).
 PDF statistics:
- 289 PDF objects out of 1000 (max. 8388607)
- 252 compressed objects within 3 object streams
- 54 named destinations out of 1000 (max. 500000)
- 210 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 319 PDF objects out of 1000 (max. 8388607)
+ 280 compressed objects within 3 object streams
+ 60 named destinations out of 1000 (max. 500000)
+ 242 words of extra memory for PDF output out of 10000 (max. 10000000)
 

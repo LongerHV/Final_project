@@ -242,10 +242,10 @@ providing butique studio recording and processing equipment with great customer 
 
 
 \chapter{Goals and tasks of the project}
-The main goal of the project is to develop a platform based around modern, high-performance microcontroller.
-The device should process stereo audio signal to achieve a selection of different effects.
-To achieve decent audio quality at least 48kHz sampling frequency should be chosen.
-
+The main goal of the project is to develop a platform based around modern,
+high-performance microcontroller.
+The device should process stereo audio signal to achieve a selection of different effects
+while delivering decent sound quality.
 Following tasks are required to finish the project:
 
 \begin{enumerate}
@@ -282,7 +282,9 @@ Following tasks are required to finish the project:
 
 
 \chapter{Topic analysis}
-This chapter is devoted to main concerns related to the project.
+This chapter is devoted to main concerns related to the project,
+that need to be considered at the beginning.
+These will determine all important features and parameters of the device.
 
 \section{Data acquisition}
 The nature of audio signal is analog. This means,
@@ -324,12 +326,45 @@ In combination with 48kHz sampling frequency this results in 21.3 ms latency.
 Outputting, processing and collecting subsequent blocks off data must be performed simultaneously.
 
 \section{Effects}
+This section is dedicated to audio effects implemented in the devices
+as well as their features and parameters.
+It is important to fully understand nature of specific effect
+in order to implement it's entire functionality in a proper way.
+
+\subsection{Delay}
+Delay is the most basic time based effects.
+It creates echo of original signal,
+which is delayed by specified amount of time.
+This delayed signal is then mixed with original.
+Delayed signal can also be attenuated and then fed back into a delay block
+in order to achieve endless, fading reflections.
+
+Because processed signal is quantized,
+delay time is described by number of samples.
+Digital implementation of this effect requires use of circular buffer,
+which size is determined by delay time required.
+Each sample collected from input is stored in the buffer
+in order to be read later and mixed to the output.
+
+\subsection{Modulation}
+Modulation effects use LFO to modulate different parameters.
+Our attention will be focused on frequency modulation
+which is based on delay effect.
+Modulation effects usually use short delay times up to 30ms
+and LFO frequency up to several Hz.
+Different functions, such as sine,
+triangular or sawtooth can be used for LFO.
+There are a few distinct modulation effects:
 \begin{itemize}
-    \item Delay
-    \item Modulation
-    \item Biquad filter
-    \item Drive
+    \item Chorus - uses delay time up to 20ms with LFO frequency up to 10Hz with medium depth.
+    \item Flanger
+    \item Vibrato
+    \item Tremolo
+    \item Phaser
 \end{itemize}
+
+\subsection{Biquad filter}
+\subsection{Drive}
 
 
 
@@ -567,6 +602,7 @@ List of frameworks and additional tools used for software development:
 \item[GPIO] - General purpose input/output
 \item[IDE] - Integrated development environment
 \item[LCD] - Liquid crystal display
+\item[LFO] - Low frequency oscillator
 \item[PCB] - Printed circuit board
 \item[RAM] - Random access memory
 \item[ROM] - Read only memory

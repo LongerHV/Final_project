@@ -332,6 +332,8 @@ INPUT /usr/share/texmf-dist/tex/latex/lm/omslmr.fd
 INPUT /usr/share/texmf-dist/tex/latex/lm/omslmr.fd
 INPUT /usr/share/texmf-dist/fonts/tfm/public/lm/ec-lmr17.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/lm/ec-lmbx12.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/lm/ec-lmr12.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/lm/ec-lmbx12.tfm
 INPUT /home/michal/Documents/STM32DSP/stm32.bbl
 INPUT /home/michal/Documents/STM32DSP/stm32.bbl
 INPUT /home/michal/Documents/STM32DSP/stm32.aux
