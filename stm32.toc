@@ -46,12 +46,12 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {5.4}Frameworks and tools}{14}{section.5.4}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.5}Software block diagram}{14}{section.5.5}% 
+\contentsline {section}{\numberline {5.5}Software block diagram}{15}{section.5.5}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.6}Description of functions and objects}{14}{section.5.6}% 
+\contentsline {section}{\numberline {5.6}Description of functions and objects}{15}{section.5.6}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.7}User manual}{14}{section.5.7}% 
+\contentsline {section}{\numberline {5.7}User manual}{15}{section.5.7}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {6}Testing}{15}{chapter.6}% 
+\contentsline {chapter}{\numberline {6}Testing}{17}{chapter.6}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {7}Conclusions}{17}{chapter.7}% 
+\contentsline {chapter}{\numberline {7}Conclusions}{19}{chapter.7}% 

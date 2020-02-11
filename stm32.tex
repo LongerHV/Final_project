@@ -375,10 +375,10 @@ while direct form 2 requires only two.
 This is the reason why direct form 2 is considered to be canonical.
 Use of proper formulas allows to implement biquad as one of many types of filters
 including high-pass, low-pass, band-pass, peak, notch, high-shelf and low-shelf.
-\cite{Biquad}
-\cite{biquad_web}
 Filters are also described by parameters such as corner frequency, quality factor
 and in some cases preak gain.
+\cite{Biquad}
+\cite{biquad_web}
 
 \subsection{Drive}
 
@@ -540,7 +540,7 @@ List of frameworks and additional tools used for software development:
     It supports ST-Link, which was used for both programming and debugging of STM32 microcontroller.
     \item GNU Embedded Toolchain for Arm
     is a suite of tools for C, C++ and Assembly programming.
-    It contains the GCC Compiler.
+    It contains the GCC Compiler as well as linker.
 \end{itemize}
 
 \section{Software block diagram}
@@ -548,6 +548,38 @@ List of frameworks and additional tools used for software development:
 \section{Description of functions and objects}
 
 \section{User manual}
+To use the device it must be connected to a power source.
+It requires 5V to be applied through the top USB port,
+which can be provided by micro USB smartphone charger,
+powerbank or directly from computer.
+
+The device has two mini jack connectors on the bottom of the board.
+Connector on the left is analog output for the signal source.
+It can be connected to line output of smartphone or computer sound card.
+Right connector is analog output and should be connected
+to an audio amplifier or active speakers.
+
+While powered, the LCD screen should light up
+and display white text on black background.
+In the left top corner, name of currently selected effect is presented.
+Below we can see a list of all parameters,
+which can affect behavior of the effect.
+On the right of each parameter, there is presented its current value.
+On the left side, there is an arrow,
+which purpose is to indicate currently selected parameter.
+
+User can interract with device using rotary encoder
+as well as black and blue buttons.
+Rotating knob changes currently selected parameter.
+To modify value of chosen parameter, user must push the encoder
+to activate edit mode. It is indicated by green color of text.
+In edit mode use can rotate knob to modify chosen value
+and press it one more time to accept changes.
+
+To change active effect, user must rotate the encoder
+while blue button is depressed. User can also reset the device if needed.
+To do it, user can press the black button,
+which a hardware reset for both microcontroller and LCD screen.
 
 \newpage
 
