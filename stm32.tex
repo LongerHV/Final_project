@@ -22,8 +22,8 @@
 \usepackage{mathtools}
 \usepackage{geometry}
 \usepackage[page]{appendix} 
-% \usepackage[style=authoryear,backend=biber]{biblatex}
-% \usepackage[backend=bibtex,style=verbose-trad2]{biblatex}
+\usepackage[backend=bibtex]{biblatex}
+\addbibresource{thebibliography.bib}
 
 \usepackage{setspace}
 \onehalfspacing
@@ -330,6 +330,8 @@ This section is dedicated to audio effects implemented in the devices
 as well as their features and parameters.
 It is important to fully understand nature of specific effect
 in order to implement it's entire functionality in a proper way.
+\cite{Zolzer1}
+\cite{Zolzer2}
 
 \subsection{Delay}
 Delay is the most basic time based effects.
@@ -348,8 +350,8 @@ in order to be read later and mixed to the output.
 
 \subsection{Modulation}
 Modulation effects use LFO to modulate different parameters.
-Our attention will be focused on frequency modulation
-which is based on delay effect.
+Our attention will be focused on pitch modulation
+which is based on delay effect and works by varying a delay time.
 Modulation effects usually use short delay times up to 30ms
 and LFO frequency up to several Hz.
 Different functions, such as sine,
@@ -357,13 +359,27 @@ triangular or sawtooth can be used for LFO.
 There are a few distinct modulation effects:
 \begin{itemize}
     \item Chorus - uses delay time up to 20ms with LFO frequency up to 10Hz with medium depth.
-    \item Flanger
-    \item Vibrato
-    \item Tremolo
-    \item Phaser
+    \item Flanger - simmilar to chorus, but uses shorter delay time and higher value of depth.
+        Flanger effects also use feedback.
+    \item Vibrato - is a different type of pitch modulation effect. It mutes original (dry) signal
+        from the mix, leaving only modulated sound.
+    \item Tremolo - in contrast to previous effects uses volume modulation instead of pitch modulation.
+    \item Phaser - modulates phase of the signal. It is done with use of all-pass filters.
 \end{itemize}
 
 \subsection{Biquad filter}
+Biquad (biquadratic) filter is a type of second order IIR digital filter.
+The biquad filter is desctibed by 5 coefficients and exists in two direct forms.
+The difference between them is that the direct form 1 uses four delay registers
+while direct form 2 requires only two.
+This is the reason why direct form 2 is considered to be canonical.
+Use of proper formulas allows to implement biquad as one of many types of filters
+including high-pass, low-pass, band-pass, peak, notch, high-shelf and low-shelf.
+\cite{Biquad}
+\cite{biquad_web}
+Filters are also described by parameters such as corner frequency, quality factor
+and in some cases preak gain.
+
 \subsection{Drive}
 
 
@@ -542,27 +558,9 @@ List of frameworks and additional tools used for software development:
 \newpage
 
 
-
 \chapter{Conclusions}
 
 \newpage
-
-
-
-% \chapter{Bibliography}
-% \begin{enumerate}
-%     \item Udo Zölzer, DAFX: Digital Audio Effects, 2002 John Wiley \& Sons Ltd, ISBN: 0-470-84604-6
-%     \item Udo Zölzer, Digital Audio Signal Processing, 2008 John Wiley \& Sons Ltd, ISBN: 978-0-470-99785-7
-% \end{enumerate}
-% \newpage
-
-
-
-% \section{Attachments}
-
-% \newpage
-
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \backmatter
@@ -573,9 +571,7 @@ List of frameworks and additional tools used for software development:
 \pagestyle{onlyPageNumbers}
 
 %%%%%%%%%%% bibliography %%%%%%%%%%%%
-\bibliographystyle{plain}
-% \bibliographystyle{ieeetr}
-\bibliography{thebibliography}
+\printbibliography
 
 %%%%%%%%%  appendices %%%%%%%%%%%%%%%%%%% 
 
@@ -601,6 +597,7 @@ List of frameworks and additional tools used for software development:
 \item[GCC] - GNU Compiler Collection
 \item[GPIO] - General purpose input/output
 \item[IDE] - Integrated development environment
+\item[IIR] - Infinite impulse response
 \item[LCD] - Liquid crystal display
 \item[LFO] - Low frequency oscillator
 \item[PCB] - Printed circuit board
