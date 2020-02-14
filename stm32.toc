@@ -30,13 +30,13 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {4.2}Desctiption}{9}{section.4.2}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.3}Choice of components}{11}{section.4.3}% 
+\contentsline {section}{\numberline {4.3}Choice of components}{10}{section.4.3}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.4}Schematic}{12}{section.4.4}% 
+\contentsline {section}{\numberline {4.4}Schematic}{11}{section.4.4}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.5}PCB}{12}{section.4.5}% 
+\contentsline {section}{\numberline {4.5}PCB}{11}{section.4.5}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.6}Assembly}{12}{section.4.6}% 
+\contentsline {section}{\numberline {4.6}Assembly}{11}{section.4.6}% 
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {5}Internal specification}{13}{chapter.5}% 
 \defcounter {refsection}{0}\relax 

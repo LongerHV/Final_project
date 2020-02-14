@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019 Gentoo Linux) (preloaded format=pdflatex 2020.1.23)  14 FEB 2020 10:38
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019 Gentoo Linux) (preloaded format=pdflatex 2020.1.23)  14 FEB 2020 11:03
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1065,11 +1065,11 @@ Chapter 3.
 Chapter 4.
 [9
 
-] [10] [11] [12]
-Chapter 5.
-[13
+] [10] [11] [12
 
 ]
+Chapter 5.
+[13]
 Underfull \vbox (badness 7030) has occurred while \output is active []
 
  [14] [15] [16
@@ -1085,23 +1085,23 @@ Chapter 7.
 ] [3] [4
 
 ]
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 636.
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 630.
  (/usr/share/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) [5] [6
 
 ] [7] [8]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 677.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 677.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 671.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 671.
  (/home/michal/Documents/STM32DSP/stm32.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 677.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 677.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 671.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 671.
 Package rerunfilecheck Info: File `stm32.out' has not changed.
 (rerunfilecheck)             Checksum: 1BD749418D95D4BEEDDBFD1719CD216B;1706.
 Package logreq Info: Writing requests to 'stm32.run.xml'.
 \openout1 = `stm32.run.xml'.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 677.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 671.
  ) 
 Here is how much of TeX's memory you used:
  35824 strings out of 494553
