@@ -22,6 +22,8 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {3.4.4}Drive}{8}{subsection.3.4.4}% 
 \defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.5}Display}{8}{section.3.5}% 
+\defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {4}External specification}{9}{chapter.4}% 
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {4.1}Block diagram}{9}{section.4.1}% 

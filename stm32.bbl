@@ -56,6 +56,18 @@
     \field{title}{Biquad formulas}
   \endentry
 
+  \entry{ST:UM2407}{manual}{}
+    \list{organization}{1}{%
+      {STMicroelectronics}%
+    }
+    \field{labeltitlesource}{title}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{number}{UM2407}
+    \field{title}{STM32H7 Nucleo-144 boards}
+    \field{year}{2019}
+  \endentry
+
   \entry{Zolzer1}{book}{}
     \name{author}{1}{}{%
       {{hash=ZU}{%

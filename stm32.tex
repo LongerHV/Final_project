@@ -150,7 +150,7 @@ texcl=true, % wylacza tryb verbatim w komentarzach jednolinijkowych
 
 
 \newcommand{\Author}{Michał Mieszczak}
-\newcommand{\Supervisor}{Dr Inż. Jerzy Fiołka}
+\newcommand{\Supervisor}{dr inż. Jerzy Fiołka}
 \newcommand{\Consultant}{Name Surname, PhD}
 \newcommand{\Title}{Realization of digital audio effects on high-performance MCU platform.}
 \newcommand{\Polsl}{Silesian University of Technology}
@@ -382,7 +382,36 @@ and in some cases preak gain.
 
 \subsection{Drive}
 
+\section{Display}
+There are different ways to connect LCD to a microcontroller.
+The most common is use of a parallel interface,
+such as Intel 8080 or Motorola 6800.
+These interfaces require 8 or 16 data lines,
+alongside few other control signals.
+Other approach involves use of serial interface,
+such as SPI or I\(^2\)C.
+It allows to reduce number of connections necessary to control the display,
+but greatly decreases data transfer rate.
 
+With connection between MCU and LCD established,
+we can focus our attention on actually sending data to be displayed.
+Common approach, seen in TV and computer monitors,
+is to constantly refresh the screen pixel by pixel.
+It involves sending huge amounts of data,
+even if displayed picture does not change.
+Since most of LCD units designed to be used with microcontrollers
+contain their own controller as well as RAM,
+constant refreshing is completely unnecessary.
+Instead, controller allows selecting a rectangular portion
+of screen, which is ment to be updated.
+This way we can eliminate problem of wasting MCU performance
+on resending the same data over and over.
+
+Sometimes different vendors provide drivers for their displays.
+Unfortunately they are usually implemented for Arduino
+and use so called polling mode,
+which blocks MCU for the time of data transfer.
+It means that custom driver must be created for this project.
 
 
 \chapter{External specification}
@@ -510,7 +539,7 @@ Another choice is PlatformIO IDE.
 It is free and open source IDE and
 comes as a plugin for Visual Studio Code and Atom text editors.
 It provides all libraries, frameworks,
-debugger server and compiler necessery for STM32 software development.
+debugger server and compiler necessary for STM32 software development.
 
 \section{Text editor}
 Visual Studio Code is a free code editor developed by Microsoft.
@@ -603,6 +632,7 @@ which a hardware reset for both microcontroller and LCD screen.
 \pagestyle{onlyPageNumbers}
 
 %%%%%%%%%%% bibliography %%%%%%%%%%%%
+\cite{ST:UM2407}
 \printbibliography
 
 %%%%%%%%%  appendices %%%%%%%%%%%%%%%%%%% 
@@ -632,6 +662,7 @@ which a hardware reset for both microcontroller and LCD screen.
 \item[IIR] - Infinite impulse response
 \item[LCD] - Liquid crystal display
 \item[LFO] - Low frequency oscillator
+\item[MCU] - Microcontroller Unit
 \item[PCB] - Printed circuit board
 \item[RAM] - Random access memory
 \item[ROM] - Read only memory
