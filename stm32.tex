@@ -475,7 +475,7 @@ SDRAM is handled by FMC present in the microcontroller.
     
     \begin{figure}[H]
         \centering
-        \includegraphics[width=\textwidth]{images/lqfp}
+        \includegraphics[width=0.6\textwidth]{images/lqfp}
         \caption{LQFP144 microcontroller package}
         \label{fig:LQFP}
     \end{figure}
@@ -700,7 +700,7 @@ which simplify the process of software development.
         \includegraphics[width=\textwidth]{images/gnu_logo}
         \label{fig:gnu}
     \end{subfigure}
-    \caption{Logos of SMT32Cube, arm and the GNU project}
+    \caption{Logos of SMT32Cube, Arm and the GNU project}
     \label{fig:tools}
 \end{figure}
 
@@ -755,39 +755,120 @@ List of frameworks and additional tools used for software development:
     Unfortunately it is not divisible by 48kHz, which is our sampling frequency.
     For that reason clock prescalers are set to obtain 396MHz clock frequency.
     This way it is easy to setup desired sampling frequency on one of the timers.
+    Clock was also configured using STM32CubeMX software.
 
-    \item Library
+    \item Environmental settings
+    
+    All settings passed to tools such as linter, compiler and linker
+    are present in platformio.ini and extra\_script.py files.
+    These settings give information about used frameworks
+    and paths to specific libraries and header files.
+
+    \begin{figure}[H]
+    \centering
+    \begin{lstlisting}
+    [platformio]
+    include_dir = ./Inc
+
+    [env:nucleo_h743zi]
+    platform = ststm32
+    board = nucleo_h743zi
+    framework = stm32cube
+    board_build.f_cpu = 396000000L
+    board_upload.maximum_ram_size = 65536
+    build_flags =   -I ${PROJECT_PACKAGES_DIR}/framework-stm32cube/h7/Drivers/CMSIS/DSP/Include
+                    -I ${PROJECT_PACKAGES_DIR}/framework-stm32cube/h7/Drivers/STM32H7xx_HAL_Driver/Inc
+                    -L ${PROJECT_PACKAGES_DIR}/framework-stm32cube/h7/Drivers/CMSIS/Lib/GCC
+                    -l libarm_cortexM7lfsp_math.a
+                    -D ARM_MATH_CM7
+                    -D __FPU_PRESENT=1
+    extra_scripts = pre:extra_script.py
+    \end{lstlisting}
+    \caption{Contentes of platformio.ini file}
+    \label{fig:ini}
+    \end{figure}
+
+    \item FPU
+
+    Floating-point unit present in the microcontroller must be enabled
+    using special compiler flags. Without them program would be compiled
+    using software floating-point, which is very slow and unefficient.
+    -mfpu=fpv5-d16 flag specifies version of arm FPU present in microcontroller.
+    -mfloat-abi=hard forces to compile with hardware floating-point.
+    Both of them are set in extra\_script.py file.
+
+    \item Cache
+    
+    STM32H7 series of microcontrollers provide both data and instruction cache.
+    This kind of memory can enhance performance of the device,
+    since it is twice as fast as other sections of RAM.
+    Despite the performance gain, cache (especially data cache)
+    must be used with caution, since it can cause some issues with DMA.
+    The solution involves using cache clear and invalidation functions.
+    These function forces transfer between RAM and cache in order to ensue,
+    that DMA is referencing valid data.
+
+    \item ADC
+    
+    ADC is set to continuous conversion mode.
+    It is constatnly converting signal with sampling rate above 100kHz.
+    Obtained samples are than transfered to a buffer using DMA.
+    Parallel to ADC, a timer is generating interrupts
+    with rate equal 48kHz. During such interrupt,
+    freshest sample is copied into block buffers. 
+    When the block buffer is full, it can be swaped with empty buffer
+    and than processed.
+
+    \item DAC
+    \item Timer
+    \item SPI
+
 \end{itemize}
 
 \section{Description of functions and objects}
 
-\begin{figure}[H]
-\centering
-\begin{lstlisting}
-class descriptor_gaussian : virtual public descriptor
-{
-   protected:
-      /** core of the gaussian fuzzy set */
-      double _mean;
-      /** fuzzyfication of the gaussian fuzzy set */
-      double _stddev;
-      
-   public:
-      /** @param mean core of the set
-          @param stddev standard deviation */
-      descriptor_gaussian (double mean, double stddev);
-      descriptor_gaussian (const descriptor_gaussian & w);
-      virtual ~descriptor_gaussian();
-      virtual descriptor * clone () const;
-      
-      /** The method elaborates membership to the gaussian fuzzy set. */
-      virtual double getMembership (double x) const;
-     
-};
-\end{lstlisting}
-\caption{The \lstinline|descriptor_gaussian| class.}
-\label{fig:pseudokod}
-\end{figure}
+\begin{itemize}
+    \item Variables and constants
+    \item Main loop
+    \begin{figure}[H]
+    \centering
+    \begin{lstlisting}
+while (true) {
+    if (block_ready) {
+        HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_SET);
+
+        // Convert data to float
+        arm_uint16_to_float(&hidden_buffer[0], &data[0][0], BLOCK_SIZE);
+        arm_uint16_to_float(&hidden_buffer[BLOCK_SIZE], &data[1][0], BLOCK_SIZE);
+
+        // Process block of data
+        master->ProcessBlock(data[0], data[1], BLOCK_SIZE);
+        master->UpdateUI();
+
+        // Convert data back to 16 bit unsigned integer
+        arm_float_to_uint16(&data[0][0], &hidden_buffer[0], BLOCK_SIZE);
+        arm_float_to_uint16(&data[1][0], &hidden_buffer[BLOCK_SIZE], BLOCK_SIZE);
+
+        // Resetting block rady flag
+        block_ready = 0;
+
+        HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_RESET);
+    }
+
+    // Display the next character if DMA is ready for next transfer
+    if(HAL_SPI_GetState(&hspi1) == HAL_SPI_STATE_READY){
+        master->DisplayPop();
+    }
+}
+    \end{lstlisting}
+    \caption{Main loop.}
+    \label{fig:loop}
+    \end{figure}
+
+    \item Timer interrupt
+    \item Effect class
+\end{itemize}
+
 
 \section{User manual}
 
