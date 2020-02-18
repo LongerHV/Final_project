@@ -14,7 +14,10 @@
 % \usepackage[polish,british]{babel} 
 \usepackage{indentfirst}
 \usepackage{lmodern}
-\usepackage{graphicx} 
+\usepackage{graphicx}
+\usepackage{subcaption}
+\captionsetup{compatibility=false}
+\usepackage{float}
 \usepackage{hyperref}
 \usepackage{booktabs}
 \usepackage{tikz}
@@ -227,7 +230,6 @@ texcl=true, % wylacza tryb verbatim w komentarzach jednolinijkowych
 
 
 
-
 \chapter{Introduction}
 The rapid development of technology lead to the moment, when anybody can afford a development board 
 and learn how to program microcontrollers without even leaving house.
@@ -323,7 +325,8 @@ The whole block of samples needs to be collected before it can be processed.
 In case of blocks consisting of 512 samples,
 there is 1024 samples delay between collecting and outputting specific sample.
 In combination with 48kHz sampling frequency this results in 21.3 ms latency.
-Outputting, processing and collecting subsequent blocks off data must be performed simultaneously.
+Outputting, processing and collecting subsequent blocks off data
+must be performed simultaneously.
 
 \section{Effects}
 This section is dedicated to audio effects implemented in the devices
@@ -381,17 +384,22 @@ and in some cases preak gain.
 \cite{biquad_web}
 
 \subsection{Drive}
+Non-linear effects, such as overdrive, distortion or fuzz,
+introduce higher harmonic frequencies into processed signal by clipping.
+It is done by passing input signal through a non-linear clipping function.
+This kind of effects are often used by guitarists,
+especially these playing in rock and metal bands.
 
 \section{Display}
 There are different ways to connect LCD to a microcontroller.
 The most common is use of a parallel interface,
-such as Intel 8080 or Motorola 6800.
-These interfaces require 8 or 16 data lines,
+such as Intel 8080, Motorola 6800 or RGB interface.
+These solutions require 8, 16 or 24 data lines,
 alongside few other control signals.
 Other approach involves use of serial interface,
 such as SPI or I\(^2\)C.
 It allows to reduce number of connections necessary to control the display,
-but greatly decreases data transfer rate.
+at cost of greatly decreased data transfer rate.
 
 With connection between MCU and LCD established,
 we can focus our attention on actually sending data to be displayed.
@@ -407,7 +415,7 @@ of screen, which is ment to be updated.
 This way we can eliminate problem of wasting MCU performance
 on resending the same data over and over.
 
-Sometimes different vendors provide drivers for their displays.
+Some vendors provide drivers for their displays.
 Unfortunately they are usually implemented for Arduino
 and use so called polling mode,
 which blocks MCU for the time of data transfer.
@@ -463,6 +471,13 @@ SDRAM is handled by FMC present in the microcontroller.
 
 \begin{itemize}
     \item Microcontroller
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{images/lqfp}
+        \caption{LQFP144 microcontroller package}
+        \label{fig:LQFP}
+    \end{figure}
 
     The microcontroller should meet certain parameters to be chosen.
     One of the most important parameters is the clock speed.
@@ -484,6 +499,7 @@ SDRAM is handled by FMC present in the microcontroller.
 
     All of above criterion is met by STM32H743ZI microcontroller.
     It is based on Arm Cortex-M7 32-bit RISC core.
+    This specific model uses LQFP144 package.
     Most important parameters of this microcontroller are listed below:
     \begin{itemize}
         \item 480MHz maximum clock frequency
@@ -494,17 +510,56 @@ SDRAM is handled by FMC present in the microcontroller.
         SPI, I2C, I2S, UART, SPDIF, USB OTG
     \end{itemize}
 
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{images/Nucleo}
+        \caption{Nucleo H7 development board}
+        \label{fig:Nucleo}
+    \end{figure}
+
     The STM32H743ZI comes one the NUCLEO-H743ZI evaluation board.
     It includes ST-LINK debugger/programmer,
     which simplified development of the device. 
+
+
     \item Operational amplifiers
-    \item Additional devices
+
+    TLC272C was operational amplifier of choice.
+    It contains two amplifiers in a single SMD package, which is SOIC-8.
+    Main constraining factor for choice of this element was power supply.
+    Analog power supplied on the board is 3.3V, so the operational amplifier
+    must be capable of operating in such condition.
+    TLC272C is designed to work with single-supply configuration
+    and voltages as low as 3V,
+    while providing 2V of undistorted output voltage swing.
 \end{itemize}
 
 \section{Schematic}
+
 Schematic was created using KiCad EDA,
 which is both cross-platform and open source software.
 It provides rich library of components and very intuitive user interface.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{images/Schematic_analog}
+    \caption{Schamatic of analog part of the device}
+    \label{fig:Schematic1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{images/Schematic_digital}
+    \caption{Schamatic of digital part of the device}
+    \label{fig:Schematic2}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{images/Schematic_connectors}
+    \caption{Schamatic of gold pin connectors}
+    \label{fig:Schematic3}
+\end{figure}
 
 \section{PCB}
 PCB layout was prepared using KiCad EDA as well.
@@ -512,24 +567,92 @@ All elements except for gold pin headers,
 rotary encoder and audio jacks are SMD (surface mounted).
 To reduce cost of the project, the PCB was designed as 2 layer board only.
 This decision resulted in increased difficulty of routing process.
+Gerber files generated by the software were sent to manufacturer in China
+and arrived two weeks later.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[h]{0.3\textwidth}
+        \includegraphics[width=\textwidth]{images/Board_front}
+        \label{fig:board1}
+        \caption{Front copper}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[h]{0.3\textwidth}
+        \includegraphics[width=\textwidth]{images/Board_back}
+        \label{fig:board2}
+        \caption{Back copper}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[h]{0.3\textwidth}
+        \includegraphics[width=\textwidth]{images/Board_silkscreen}
+        \label{fig:board3}
+        \caption{Front silkscreen}
+    \end{subfigure}
+    \caption{Copper and silkscreen layers of the PCB}
+    \label{fig:board}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{images/photo_boards}
+    \caption{Photo of front and back sides of the PCB}
+    \label{fig:photo_boards}
+\end{figure}
 
 \section{Assembly}
-The PCB was assembled by hand using 50W soldering iron and hot air rework station.
+The PCB was populated by hand using 50W soldering iron and hot air rework station.
+Two types of tin-lead solder were used during the process:
+0.25mm solder wire (Sn60 Pb40) for THT components and solder paste (Sn62 Pb36 Ag2) for SMD.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{images/photo_assembled}
+    \caption{Photo of assembled board}
+    \label{fig:pgoto_assembled}
+\end{figure}
 
 
 
 \chapter{Internal specification}
 
-\section{Programming language}
+\section{Programming environment}
+
+\subsection{Programming language}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[h]{0.3\textwidth}
+        \includegraphics[width=\textwidth]{images/c_logo}
+        \label{fig:c}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[h]{0.3\textwidth}
+        \includegraphics[width=\textwidth]{images/cpp_logo}
+        \label{fig:cpp}
+    \end{subfigure}
+    \caption{C and C++ languages logos}
+    \label{fig:board}
+\end{figure}
+
 C language is the most popular choice for STM32 development.
 It is widely supported by ST and other companies providing frameworks and libraries. 
 
 Since the object oriented approach was preferred in this project,
 C++ language was chosen.
-This allows to benefit from libraries written in C
-and gives advantages of using classes with inheritance and polymorphism.
+This allows to benefit from libraries written in C,
+but also gives advantages of using classes with inheritance and polymorphism,
+which are part of C++ language.
 
-\section{IDE}
+\subsection{IDE}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=29mm]{images/platformio-logo}
+    \caption{PlatformIO IDE logo}
+    \label{fig:plaftormio}
+\end{figure}
+
 The popular environments for STM32 development are Keil uVision, IAR and SW4STM32.
 ST also provides its own STM32CubeIDE, which is based on Eclipse.
 
@@ -539,13 +662,20 @@ comes as a plugin for Visual Studio Code and Atom text editors.
 It provides all libraries, frameworks,
 debugger server and compiler necessary for STM32 software development.
 
-\section{Text editor}
+\subsection{Text editor}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=29mm]{images/vscode}
+    \caption{Visual Studio Code logo}
+    \label{fig:vscode}
+\end{figure}
+
 Visual Studio Code is a free code editor developed by Microsoft.
 It was chosen because it is supported by PlatformIO IDE.
 VSCode provides linting and word completion extensions,
 which simplify the process of software development.
 
-\section{Frameworks and tools}
+\subsection{Frameworks and tools}
 List of frameworks and additional tools used for software development:
 
 \begin{itemize}
@@ -631,11 +761,7 @@ which a hardware reset for both microcontroller and LCD screen.
 
 %%%%%%%%%  appendices %%%%%%%%%%%%%%%%%%% 
 
-% \begin{appendices} 
-
-% \end{appendices}
-
- 
+\begin{appendices} 
 
 \chapter*{List of abbreviations and symbols}
 
@@ -656,16 +782,31 @@ which a hardware reset for both microcontroller and LCD screen.
 \item[IIR] - Infinite impulse response
 \item[LCD] - Liquid crystal display
 \item[LFO] - Low frequency oscillator
+\item[LQFP] - Low-profile quad flat pack
 \item[MCU] - Microcontroller Unit
 \item[PCB] - Printed circuit board
 \item[RAM] - Random access memory
 \item[ROM] - Read only memory
 \item[SDRAM] - Synchronous dynamic random access memory
 \item[SMD] - Surface mounted device
+\item[SOIC] - Small outline integrated circuit
 % \item[$N$] cardinality of data set
 % \item[$\mu$] membership function of a fuzzy set
 % \item[$\mathbb{E}$] set of edges of a graph
 % \item[$\mathcal{L}$] Laplace transformation
 \end{itemize}
+
+\chapter*{Contents of attached CD}
+
+The thesis is accompanied by a CD containing:
+\begin{itemize}
+\item thesis (\LaTeX\ source files and final \texttt{pdf} file),
+\item source code of the application,
+\item schematic and board layout (KiCad, \texttt{pdf} and gerber files)
+\end{itemize}
+
+\listoffigures
+
+\end{appendices}
 
 \end{document}
