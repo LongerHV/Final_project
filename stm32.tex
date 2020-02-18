@@ -335,6 +335,7 @@ It is important to fully understand nature of specific effect
 in order to implement it's entire functionality in a proper way.
 \cite{Zolzer1}
 \cite{Zolzer2}
+\cite{Smith}
 
 \subsection{Delay}
 Delay is the most basic time based effects.
@@ -617,6 +618,10 @@ Two types of tin-lead solder were used during the process:
 \chapter{Internal specification}
 
 \section{Programming environment}
+Programming environment consist of several tools,
+that need to work together to facilitate software development.
+All tools used in this project are cross-platform.
+Following section is devoted to choice of these tools.
 
 \subsection{Programming language}
 
@@ -632,11 +637,13 @@ Two types of tin-lead solder were used during the process:
         \label{fig:cpp}
     \end{subfigure}
     \caption{C and C++ languages logos}
-    \label{fig:board}
+    \label{fig:lang}
 \end{figure}
 
 C language is the most popular choice for STM32 development.
-It is widely supported by ST and other companies providing frameworks and libraries. 
+It is widely supported by ST and other companies providing frameworks and libraries.
+As a low level language, it provides control over memory management,
+which is a important factor in software development for microcontrollers.
 
 Since the object oriented approach was preferred in this project,
 C++ language was chosen.
@@ -648,7 +655,7 @@ which are part of C++ language.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=29mm]{images/platformio-logo}
+    \includegraphics[width=0.3\textwidth]{images/platformio-logo}
     \caption{PlatformIO IDE logo}
     \label{fig:plaftormio}
 \end{figure}
@@ -665,7 +672,7 @@ debugger server and compiler necessary for STM32 software development.
 \subsection{Text editor}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=29mm]{images/vscode}
+    \includegraphics[width=0.3\textwidth]{images/vscode}
     \caption{Visual Studio Code logo}
     \label{fig:vscode}
 \end{figure}
@@ -676,6 +683,27 @@ VSCode provides linting and word completion extensions,
 which simplify the process of software development.
 
 \subsection{Frameworks and tools}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[h]{0.3\textwidth}
+        \includegraphics[width=\textwidth]{images/cube_logo}
+        \label{fig:cube}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[h]{0.3\textwidth}
+        \includegraphics[width=\textwidth]{images/arm_logo}
+        \label{fig:arm}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[h]{0.3\textwidth}
+        \includegraphics[width=\textwidth]{images/gnu_logo}
+        \label{fig:gnu}
+    \end{subfigure}
+    \caption{Logos of SMT32Cube, arm and the GNU project}
+    \label{fig:tools}
+\end{figure}
+
 List of frameworks and additional tools used for software development:
 
 \begin{itemize}
@@ -696,15 +724,80 @@ List of frameworks and additional tools used for software development:
     - Open On-Chip Debugger provides programming and debugging support of boundary scan interface.
     It supports ST-Link, which was used for both programming and debugging of STM32 microcontroller.
     \item GNU Embedded Toolchain for Arm
-    is a suite of tools for C, C++ and Assembly programming.
+    is a suite of tools for C, C++ and Assembly programming provided and maintained by Arm.
     It contains the GCC Compiler as well as linker.
 \end{itemize}
 
 \section{Software block diagram}
+\cite{ST:UM2407}
+
+\section{Configuration}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{images/pin_overview}
+    \caption{Screenshot of the pin configuration in STM32CubeMX software}
+    \label{fig:pins}
+\end{figure}
+
+\begin{itemize}
+    \item Code generation
+
+    Initialization code was generated using STM32CubeMX software.
+    It provided necessery implementation of initialization functions
+    as well as general structure of the program.
+    Each enabled peripheral has its own source file
+    and corresponding header file.
+
+    \item Clock
+
+    Maximum clock frequency for this version of MCU is 400MHz.
+    Unfortunately it is not divisible by 48kHz, which is our sampling frequency.
+    For that reason clock prescalers are set to obtain 396MHz clock frequency.
+    This way it is easy to setup desired sampling frequency on one of the timers.
+
+    \item Library
+\end{itemize}
 
 \section{Description of functions and objects}
 
+\begin{figure}[H]
+\centering
+\begin{lstlisting}
+class descriptor_gaussian : virtual public descriptor
+{
+   protected:
+      /** core of the gaussian fuzzy set */
+      double _mean;
+      /** fuzzyfication of the gaussian fuzzy set */
+      double _stddev;
+      
+   public:
+      /** @param mean core of the set
+          @param stddev standard deviation */
+      descriptor_gaussian (double mean, double stddev);
+      descriptor_gaussian (const descriptor_gaussian & w);
+      virtual ~descriptor_gaussian();
+      virtual descriptor * clone () const;
+      
+      /** The method elaborates membership to the gaussian fuzzy set. */
+      virtual double getMembership (double x) const;
+     
+};
+\end{lstlisting}
+\caption{The \lstinline|descriptor_gaussian| class.}
+\label{fig:pseudokod}
+\end{figure}
+
 \section{User manual}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/photo_working}
+    \caption{Photo of the device during operation}
+    \label{fig:working}
+\end{figure}
+
 To use the device it must be connected to a power source.
 It requires 5V to be applied through the top USB port,
 which can be provided by micro USB smartphone charger,
@@ -740,11 +833,7 @@ which a hardware reset for both microcontroller and LCD screen.
 
 
 
-\chapter{Testing}
-
-
-
-\chapter{Conclusions}
+\chapter{Summary}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -756,7 +845,6 @@ which a hardware reset for both microcontroller and LCD screen.
 \pagestyle{onlyPageNumbers}
 
 %%%%%%%%%%% bibliography %%%%%%%%%%%%
-\cite{ST:UM2407}
 \printbibliography
 
 %%%%%%%%%  appendices %%%%%%%%%%%%%%%%%%% 
