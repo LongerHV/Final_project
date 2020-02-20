@@ -773,78 +773,77 @@ List of frameworks and additional tools used for software development:
     \label{fig:pins}
 \end{figure}
 
-\begin{itemize}
-    \item Code generation
+\subsection{Code generation}
 
-    Initialization code was generated using STM32CubeMX software.
-    It provided necessery implementation of initialization functions
-    as well as general structure of the program.
-    Each enabled peripheral has its own source file
-    and corresponding header file.
+Initialization code was generated using STM32CubeMX software.
+It provided necessery implementation of initialization functions
+as well as general structure of the program.
+Each enabled peripheral has its own source file
+and corresponding header file.
 
-    \item Clock
+\subsection{Clock}
 
-    Maximum clock frequency for this version of MCU is 400MHz.
-    Unfortunately it is not divisible by 48kHz, which is our sampling frequency.
-    For that reason clock prescalers are set to obtain 396MHz clock frequency.
-    This way it is easy to setup desired sampling frequency on one of the timers.
-    Clock was also configured using STM32CubeMX software.
+Maximum clock frequency for this version of MCU is 400MHz.
+Unfortunately it is not divisible by 48kHz, which is our sampling frequency.
+For that reason clock prescalers are set to obtain 396MHz clock frequency.
+This way it is easy to setup desired sampling frequency on one of the timers.
+Clock was also configured using STM32CubeMX software.
 
-    \item Environmental settings
-    
-    All settings passed to tools such as linter, compiler and linker
-    are present in platformio.ini and extra\_script.py files.
-    These settings give information about used frameworks
-    and paths to specific libraries and header files.
+\subsection{Environmental settings}
 
-    \begin{figure}[H]
-    \centering
-    \begin{lstlisting}
-    [platformio]
-    include_dir = ./Inc
+All settings passed to tools such as linter, compiler and linker
+are present in platformio.ini and extra\_script.py files.
+These settings give information about used frameworks
+and paths to specific libraries and header files.
 
-    [env:nucleo_h743zi]
-    platform = ststm32
-    board = nucleo_h743zi
-    framework = stm32cube
-    board_build.f_cpu = 396000000L
-    board_upload.maximum_ram_size = 65536
-    build_flags =   -I ${PROJECT_PACKAGES_DIR}/framework-stm32cube/h7/Drivers/CMSIS/DSP/Include
-                    -I ${PROJECT_PACKAGES_DIR}/framework-stm32cube/h7/Drivers/STM32H7xx_HAL_Driver/Inc
-                    -L ${PROJECT_PACKAGES_DIR}/framework-stm32cube/h7/Drivers/CMSIS/Lib/GCC
-                    -l libarm_cortexM7lfsp_math.a
-                    -D ARM_MATH_CM7
-                    -D __FPU_PRESENT=1
-    extra_scripts = pre:extra_script.py
-    \end{lstlisting}
-    \caption{Contentes of platformio.ini file}
-    \label{fig:ini}
-    \end{figure}
+\begin{figure}[H]
+\centering
+\begin{lstlisting}
+[platformio]
+include_dir = ./Inc
 
-    \item FPU
+[env:nucleo_h743zi]
+platform = ststm32
+board = nucleo_h743zi
+framework = stm32cube
+board_build.f_cpu = 396000000L
+board_upload.maximum_ram_size = 65536
+build_flags =   -I ${PROJECT_PACKAGES_DIR}/framework-stm32cube/h7/Drivers/CMSIS/DSP/Include
+                -I ${PROJECT_PACKAGES_DIR}/framework-stm32cube/h7/Drivers/STM32H7xx_HAL_Driver/Inc
+                -L ${PROJECT_PACKAGES_DIR}/framework-stm32cube/h7/Drivers/CMSIS/Lib/GCC
+                -l libarm_cortexM7lfsp_math.a
+                -D ARM_MATH_CM7
+                -D __FPU_PRESENT=1
+extra_scripts = pre:extra_script.py
+\end{lstlisting}
+\caption{Contentes of platformio.ini file}
+\label{fig:ini}
+\end{figure}
 
-    Floating-point unit present in the microcontroller must be enabled
-    using special compiler flags. Without them program would be compiled
-    using software floating-point, which is very slow and unefficient.
-    -mfpu=fpv5-d16 flag specifies version of arm FPU present in microcontroller.
-    -mfloat-abi=hard forces to compile with hardware floating-point.
-    Both of them are set in extra\_script.py file.
+\subsection{FPU}
 
-    \item Cache
-    
-    STM32H7 series of microcontrollers provide both data and instruction cache.
-    This kind of memory can enhance performance of the device,
-    since it is twice as fast as other sections of RAM.
-    Despite the performance gain, cache (especially data cache)
-    must be used with caution, since it can cause some issues with DMA.
-    The solution involves using cache clear and invalidation functions.
-    These function forces transfer between RAM and cache in order to ensue,
-    that DMA is referencing valid data.
+Floating-point unit present in the microcontroller must be enabled
+using special compiler flags. Without them program would be compiled
+using software floating-point, which is very slow and unefficient.
+-mfpu=fpv5-d16 flag specifies version of arm FPU present in microcontroller.
+-mfloat-abi=hard forces to compile with hardware floating-point.
+Both of them are set in extra\_script.py file.
 
-    \item Memory organization
-    \begin{figure}[H]
-    \centering
-    \begin{lstlisting}
+\subsection{Cache}
+
+STM32H7 series of microcontrollers provide both data and instruction cache.
+This kind of memory can enhance performance of the device,
+since it is twice as fast as other sections of RAM.
+Despite the performance gain, cache (especially data cache)
+must be used with caution, since it can cause some issues with DMA.
+The solution involves using cache clear and invalidation functions.
+These function forces transfer between RAM and cache in order to ensue,
+that DMA is referencing valid data.
+
+\subsection{Memory organization}
+\begin{figure}[H]
+\centering
+\begin{lstlisting}
 /* Specify the memory areas */
 MEMORY
 {
@@ -856,35 +855,32 @@ RAM_D2 (xrw)    : ORIGIN = 0x30000000, LENGTH = 288K
 RAM_D3 (xrw)    : ORIGIN = 0x38000000, LENGTH = 64K
 SDRAM (xrw)     : ORIGIN = 0xD0000000, LENGTH = 16M
 }
-    \end{lstlisting}
-    \caption{Memory layout from linker script.}
-    \label{fig:mem}
-    \end{figure}
+\end{lstlisting}
+\caption{Memory layout from linker script.}
+\label{fig:mem}
+\end{figure}
 
-    \item ADC
-    
-    ADC is set to continuous conversion mode.
-    It is constatnly converting signal with sampling rate above 100kHz.
-    Obtained samples are than transfered to a buffer using DMA.
-    Parallel to ADC, a timer is generating interrupts
-    with rate equal 48kHz. During such interrupt,
-    freshest sample is copied into block buffers. 
-    When the block buffer is full, it can be swaped with empty buffer
-    and than processed.
+\subsection{ADC}
 
-    \item DAC
-    \item Timer
-    \item SPI
+ADC is set to continuous conversion mode.
+It is constatnly converting signal with sampling rate above 100kHz.
+Obtained samples are than transfered to a buffer using DMA.
+Parallel to ADC, a timer is generating interrupts
+with rate equal 48kHz. During such interrupt,
+freshest sample is copied into block buffers. 
+When the block buffer is full, it can be swaped with empty buffer
+and than processed.
 
-\end{itemize}
+\subsection{DAC}
+\subsection{Timer}
+\subsection{SPI}
 
 \section{Description of functions and objects}
 
-\begin{itemize}
-    \item Global variables and constants
-    \begin{figure}[H]
-    \centering
-    \begin{lstlisting}
+\subsection{Global variables and constants}
+\begin{figure}[H]
+\centering
+\begin{lstlisting}
 /* USER CODE BEGIN Private defines */
 #define BLOCK_SIZE 512
 #define SAMPLING_RATE 48000
@@ -893,14 +889,14 @@ SDRAM (xrw)     : ORIGIN = 0xD0000000, LENGTH = 16M
 #define DELAY_SIZE (SAMPLING_RATE + BLOCK_SIZE) // 1s + block size
 #define MODULATION_DELAY_SIZE (2 * 1440 + BLOCK_SIZE) // 30ms + block size
 /* USER CODE END Private defines */
-    \end{lstlisting}
-    \caption{Global defines from main.h file.}
-    \label{fig:defs}
-    \end{figure}
+\end{lstlisting}
+\caption{Global defines from main.h file.}
+\label{fig:defs}
+\end{figure}
 
-    \begin{figure}[H]
-    \centering
-    \begin{lstlisting}
+\begin{figure}[H]
+\centering
+\begin{lstlisting}
 #define AXI_SRAM_D1 __attribute__((section(".axi_sram_d1")))
 #define AHB_SRAM_D2 __attribute__((section(".ahb_sram_d2")))
 #define ALIGN_32 __attribute__((aligned(0x20)))
@@ -922,15 +918,15 @@ uint16_t buffer[6][BLOCK_SIZE];
 uint16_t *input_buffer = buffer[0];
 uint16_t *hidden_buffer = buffer[2];
 uint16_t *output_buffer = buffer[4];
-    \end{lstlisting}
-    \caption{Global variables from main.cpp file.}
-    \label{fig:vars}
-    \end{figure}
+\end{lstlisting}
+\caption{Global variables from main.cpp file.}
+\label{fig:vars}
+\end{figure}
 
-    \item Main loop
-    \begin{figure}[H]
-    \centering
-    \begin{lstlisting}
+\subsection{Main loop}
+\begin{figure}[H]
+\centering
+\begin{lstlisting}
 while (true) {
   if (block_ready) {
     // Convert data to float
@@ -951,18 +947,18 @@ while (true) {
 
   // Display the next character if DMA is ready for next transfer
   if(HAL_SPI_GetState(&hspi1) == HAL_SPI_STATE_READY){
-    master->DisplayPop();
+  master->DisplayPop();
   }
 }
-    \end{lstlisting}
-    \caption{Main loop code.}
-    \label{fig:loop}
-    \end{figure}
+\end{lstlisting}
+\caption{Main loop code.}
+\label{fig:loop}
+\end{figure}
 
-    \item Timer interrupt
-    \begin{figure}[H]
-    \centering
-    \begin{lstlisting}
+\subsection{Timer interrupt}
+\begin{figure}[H]
+\centering
+\begin{lstlisting}
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
   if(htim->Instance == TIM2){
     // Reading samples from input to buffer
@@ -986,15 +982,15 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
     }
   }
 }
-    \end{lstlisting}
-    \caption{Timer interrupt code.}
-    \label{fig:timer}
-    \end{figure}
+\end{lstlisting}
+\caption{Timer interrupt code.}
+\label{fig:timer}
+\end{figure}
 
-    \item Effect class
-    \begin{figure}[H]
-    \centering
-    \begin{lstlisting}
+\subsection{Effect class}
+\begin{figure}[H]
+\centering
+\begin{lstlisting}
 class Effect {
    protected:
     char name[9];
@@ -1017,15 +1013,15 @@ class Effect {
     Parameter *GetCurrentParam();
     void SetName(const char *name);
 };
-    \end{lstlisting}
-    \caption{Effect class prototype.}
-    \label{fig:Effect}
-    \end{figure}
+\end{lstlisting}
+\caption{Effect class prototype.}
+\label{fig:Effect}
+\end{figure}
 
-    \item Parameter class
-    \begin{figure}[H]
-    \centering
-    \begin{lstlisting}
+\subsection{Parameter class}
+\begin{figure}[H]
+\centering
+\begin{lstlisting}
 class Parameter {
    private:
     char name[10];
@@ -1048,15 +1044,15 @@ class Parameter {
     void UpdateValRepr();
     void UpdateValue();
 };
-    \end{lstlisting}
-    \caption{Parameter class prototype.}
-    \label{fig:Param}
-    \end{figure}
+\end{lstlisting}
+\caption{Parameter class prototype.}
+\label{fig:Param}
+\end{figure}
 
-    \item MultiEffect class
-    \begin{figure}[H]
-    \centering
-    \begin{lstlisting}
+\subsection{MultiEffect class}
+\begin{figure}[H]
+\centering
+\begin{lstlisting}
 class MultiEffect {
    private:
     Display *my_disp;
@@ -1081,11 +1077,10 @@ class MultiEffect {
     void DisplayPop();
     void AddEffect(Effect *pNew);
 };
-    \end{lstlisting}
-    \caption{MultiEffect class prototype.}
-    \label{fig:Multi}
-    \end{figure}
-\end{itemize}
+\end{lstlisting}
+\caption{MultiEffect class prototype.}
+\label{fig:Multi}
+\end{figure}
 
 
 \section{User manual}
