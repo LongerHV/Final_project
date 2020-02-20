@@ -991,31 +991,36 @@ to SPI without CPU assistance.
 \section{Description of functions and objects}
 
 \subsection{Global variables and constants}
+On figure \ref{fig:defs} we can see constants defined in main.h file.
+These are important values, that are common for the entire program.
+
 \begin{figure}[H]
 \centering
 \begin{lstlisting}
-/* USER CODE BEGIN Private defines */
 #define BLOCK_SIZE 512
 #define SAMPLING_RATE 48000
 #define NO_OF_CHANNELS 2
 #define ADC_RESOLUTION 16
-#define DELAY_SIZE (SAMPLING_RATE + BLOCK_SIZE) // 1s + block size
-#define MODULATION_DELAY_SIZE (2 * 1440 + BLOCK_SIZE) // 30ms + block size
-/* USER CODE END Private defines */
+#define DELAY_SIZE (SAMPLING_RATE + BLOCK_SIZE)
+#define MODULATION_DELAY_SIZE (2 * 1440 + BLOCK_SIZE)
 \end{lstlisting}
 \caption{Global defines from main.h file.}
 \label{fig:defs}
 \end{figure}
 
+Declaration of global variables was required, because
+variables such as block\_ready and buffer arrays are referenced by
+both main function and timer interrupt.
+
 \begin{figure}[H]
 \centering
 \begin{lstlisting}
+// Attributes for linker
 #define AXI_SRAM_D1 __attribute__((section(".axi_sram_d1")))
 #define AHB_SRAM_D2 __attribute__((section(".ahb_sram_d2")))
 #define ALIGN_32 __attribute__((aligned(0x20)))
 
 // Global flags
-uint16_t block_counter = 0;
 uint8_t block_ready = 0;
 
 // Allocation in different parts of memory
@@ -1037,6 +1042,18 @@ uint16_t *output_buffer = buffer[4];
 \end{figure}
 
 \subsection{Main loop}
+In main function, there is an endless loop in which whole processing takes place.
+When block of 512 input samples is ready, it must be converted from unsigned integer
+format into floating-point representation.
+Than data can be processed by selected effect.
+After processing, data must be converted back into integer form, because
+it is the only form accepted by DAC.
+At the end, block\_ready flag is reset back to zero.
+
+Inside of loop, there is a second conditional block.
+This part of program is executed, when SPI DMA is ready for transfer.
+Function executed inside is responsible for displaying a single character on screen.
+
 \begin{figure}[H]
 \centering
 \begin{lstlisting}
@@ -1069,6 +1086,24 @@ while (true) {
 \end{figure}
 
 \subsection{Timer interrupt}
+As stated before, interrupt handle function is called with rate of 48kHz.
+It has high priority and
+is executed even if CPU is performing other operations.
+
+First action taken inside is cache invalidate function.
+Its jop is to ensure, that the freshest input samples
+are transfered from RAM to cache memory.
+With that taken care of, these samples can be written into
+proper input buffers.
+Next, values from output buffers are sent to DAC.
+Note, that they are shifted 4 bits to the right.
+Reason to do it is ADCs being 16 bits, while DACs are only 12 bits.
+
+Finally we can increment a block ocunter.
+If its value happens to be equal or larger than block size,
+it is time to swap buffers, reset counter and set block ready flag,
+which will trigger data processing in a main loop.
+
 \begin{figure}[H]
 \centering
 \begin{lstlisting}
@@ -1101,6 +1136,21 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 \end{figure}
 
 \subsection{Effect class}
+Effect class is a base class, from which different effects can inherit
+some parameters and functions.
+Inheritance is done using public visibility mode to ensure,
+that visibility of base class is maintained in derived class.
+
+Within public members of the class,
+we can find two pure virtual functions.
+These functions must be implemented by derived class.
+The reason for such a solution is to allow
+to create a list of different effects, which all have a pointer
+of type Effect.
+
+Effect class also implements several helper functions,
+which job is to get or set some specific values.
+
 \begin{figure}[H]
 \centering
 \begin{lstlisting}
@@ -1131,38 +1181,16 @@ class Effect {
 \label{fig:Effect}
 \end{figure}
 
-\subsection{Parameter class}
-\begin{figure}[H]
-\centering
-\begin{lstlisting}
-class Parameter {
-   private:
-    char name[10];
-    char val_repr[6];
-    char unit[3];
-    int32_t value, min, max, step;
-    friend class Effect;
-
-   public:
-    Parameter(const char *name, const char *unit, int32_t min, int32_t max, int32_t step, int32_t initial);
-    void SetName(const char *name);
-    void SetUnit(const char *unit);
-    void SetValue(int32_t value);
-    int32_t GetValue();
-    int32_t GetMin();
-    int32_t GetMax();
-    int32_t GetStep();
-    char *GetName();
-    char *GetValRepr();
-    void UpdateValRepr();
-    void UpdateValue();
-};
-\end{lstlisting}
-\caption{Parameter class prototype.}
-\label{fig:Param}
-\end{figure}
+\newpage
 
 \subsection{MultiEffect class}
+MultiEffect class is a wrapper, that holds everything together.
+It contains list of effects and have hard coded their initialization.
+It also manages data to be displayed on screen
+as well as input provided by user.
+MultiEffect class is responsible for calling necessary functions
+in order to update parameters changed by user.
+
 \begin{figure}[H]
 \centering
 \begin{lstlisting}
