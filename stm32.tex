@@ -1224,10 +1224,130 @@ class MultiEffect {
 \end{figure}
 
 \section{Effects implementation}
+
 \subsection{Delay}
+Implementation of delay effect requires dynamic allocation
+of two temorary arrays of size equal to block size.
+They serve as intermittent buffers in which data is stored
+to be reused in upcoming steps.
+
+History of samples is stored by DelayBlock objects,
+which contain a pointer to globally declared delay buffers.
+With use of methods implemented in DelayBlock class,
+block of samples is fed into delay buffer.
+
+GetTailBlock method gathers block of historical samples
+delayed by specified amount of time.
+With combination of input and delayed samples
+we can prepare a feedback block.
+This block overwrites data previously fed into the delay block.
+Feeding data into block needs to be performed twice
+to avoid data corruption with delay times lower than block size.
+
+At the end we use input and delayed samples
+to compose output block, which is then sent to DAC.
+
+\begin{figure}[H]
+\centering
+\begin{lstlisting}
+void Delay::ProcessBlock(float32_t *pData_left, float32_t *pData_right, uint32_t block_size) {
+  uint32_t current_index;
+  float32_t *temp_float = new float32_t[block_size];
+  float32_t *feedback_block = new float32_t[block_size];
+  float32_t *pData;
+  DelayBlock *channel;
+  for (uint8_t i = 0; i < 2; i++) {
+    if (i == 0) {
+      channel = this->delay_left;
+      pData = pData_left;
+    } else {
+      channel = this->delay_right;
+      pData = pData_right;
+    }
+    current_index = channel->current;
+
+    // Feed input
+    channel->FeedBlock(pData, block_size);
+    channel->SetCurrent(current_index);
+\end{lstlisting}
+\end{figure}
+\newpage
+\begin{figure}[H]
+\begin{lstlisting}[firstnumber=20]
+    // Get tail block
+    channel->GetTailBlock(temp_float, block_size);
+    // Prepare feedback block
+    arm_scale_f32(temp_float, this->feedback, feedback_block, block_size);
+    arm_add_f32(pData, feedback_block, feedback_block, block_size);
+    // Feed delay block
+    channel->FeedBlock(feedback_block, block_size);
+    // Dry gain
+    arm_scale_f32(pData, this->dry_level, pData, block_size);
+    // Wet gain
+    arm_scale_f32(temp_float, this->wet_level, temp_float, block_size);
+    // Add Wet and Dry signals
+    arm_add_f32(pData, temp_float, pData, block_size);
+  }
+  delete[] temp_float;
+  delete[] feedback_block;
+}
+\end{lstlisting}
+\caption{Implementation of delay effect}
+\label{fig:delay}
+\end{figure}
+
 \subsection{Modulation}
+Implementation of modulation effect is very simmilar to a delay.
+Only difference is that we need to use a sine function
+to modify offset between current and delayed sample.
+This is done at the beginning of the function
+and is performed for a whole block at once.
+
+\begin{figure}[H]
+\centering
+\begin{lstlisting}
+float32_t *LFO = new float32_t[block_size];
+
+// Calulate LFO value for every sample
+for(uint32_t i = 0; i < block_size; i++){
+  LFO[i] = arm_sin_f32(this->phi);
+  this->phi += this->rate * 2 * PI / (float32_t)SAMPLING_RATE;
+  if(this->phi >= 2 * PI)
+    this->phi = 0;
+}
+\end{lstlisting}
+\caption{Calculation of offset in modulation effect.}
+\label{fig:modul}
+\end{figure}
+
 \subsection{Biquad filter}
+\begin{figure}[H]
+\centering
+\begin{lstlisting}
+void Biquad::ProcessBlock(float32_t *pData_left, float32_t *pData_right, uint32_t block_size) {
+  arm_biquad_cascade_df2T_f32(this->filter_instance_L, pData_left, pData_left, block_size);
+  arm_biquad_cascade_df2T_f32(this->filter_instance_R, pData_right, pData_right, block_size);
+}
+\end{lstlisting}
+\caption{Implementation of biquad filter effect}
+\label{fig:Biq}
+\end{figure}
+
 \subsection{Drive}
+\begin{figure}[H]
+\centering
+\begin{lstlisting}
+void Drive::ProcessBlock(float32_t *pData_left, float32_t *pData_right, uint32_t block_size){
+  for(uint32_t i = 0; i < block_size; i++){
+    pData_left[i] = 2 * this->volume * atan(this->drive * pData_left[i]) * ONE_OVER_PI;
+    pData_right[i] = 2 * this->volume * atan(this->drive * pData_right[i]) * ONE_OVER_PI;
+  }
+}
+\end{lstlisting}
+\caption{Implementation of drive effect}
+\label{fig:Drv}
+\end{figure}
+
 
 \section{User manual}
 
