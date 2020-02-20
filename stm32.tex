@@ -80,6 +80,8 @@ language=C++,%
 % commentstyle=\textit,%
 % identifierstyle=\textsf,%
 % keywordstyle=\sffamily\bfseries, %\texttt, %
+% basicstyle=\small,%
+basicstyle=\fontsize{11}{13}\selectfont\ttfamily,%
 commentstyle=\itshape\color{purple!40!black},%
 identifierstyle=\color{blue},%
 keywordstyle=\bfseries\color{green!40!black},%
@@ -899,11 +901,9 @@ SDRAM (xrw)     : ORIGIN = 0xD0000000, LENGTH = 16M
     \begin{figure}[H]
     \centering
     \begin{lstlisting}
-/* USER CODE BEGIN PD */
 #define AXI_SRAM_D1 __attribute__((section(".axi_sram_d1")))
 #define AHB_SRAM_D2 __attribute__((section(".ahb_sram_d2")))
 #define ALIGN_32 __attribute__((aligned(0x20)))
-/* USER CODE END PD */
 
 // Global flags
 uint16_t block_counter = 0;
@@ -933,8 +933,6 @@ uint16_t *output_buffer = buffer[4];
     \begin{lstlisting}
 while (true) {
   if (block_ready) {
-    HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_SET);
-
     // Convert data to float
     arm_uint16_to_float(&hidden_buffer[0], &data[0][0], BLOCK_SIZE);
     arm_uint16_to_float(&hidden_buffer[BLOCK_SIZE], &data[1][0], BLOCK_SIZE);
@@ -949,8 +947,6 @@ while (true) {
 
     // Resetting block rady flag
     block_ready = 0;
-
-    HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_RESET);
   }
 
   // Display the next character if DMA is ready for next transfer
