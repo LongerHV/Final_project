@@ -74,9 +74,13 @@
 \usepackage{listings}
 \lstset{%
 language=C++,%
-commentstyle=\textit,%
-identifierstyle=\textsf,%
-keywordstyle=\sffamily\bfseries, %\texttt, %
+% commentstyle=\textit,%
+% identifierstyle=\textsf,%
+% keywordstyle=\sffamily\bfseries, %\texttt, %
+commentstyle=\itshape\color{purple!40!black},%
+identifierstyle=\color{blue},%
+keywordstyle=\bfseries\color{green!40!black},%
+stringstyle=\color{orange},
 %captionpos=b,%
 tabsize=3,%
 frame=lines,%
@@ -84,7 +88,7 @@ numbers=left,%
 numberstyle=\tiny,%
 numbersep=5pt,%
 breaklines=true,%
-morekeywords={descriptor_gaussian,descriptor,partition,fcm_possibilistic,dataset,my_exception,exception,std,vector},%
+morekeywords={uint8_t, uint16_t, uint32_t, int8_t, int16_t, int32_t, float32_t, __attribute__, section, aligned},%
 escapeinside={@*}{*@},%
 texcl=true, % wylacza tryb verbatim w komentarzach jednolinijkowych
 }
@@ -470,76 +474,80 @@ SDRAM is handled by FMC present in the microcontroller.
 
 \section{Choice of components}
 
+\subsection {Microcontroller}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{images/lqfp}
+    \caption{LQFP144 microcontroller package}
+    \label{fig:LQFP}
+\end{figure}
+
+The microcontroller should meet certain parameters to be chosen.
+One of the most important parameters is the clock speed.
+Digital signal processing requires a lot of processor instructions
+per each audio sample, so high clock speed is preferred.
+
+The second important criterion is amount of memory.
+The microcontroller should have at least 128kB of ROM
+to fit the written program.
+Size of RAM should be as high as possible,
+because delay effects require a lot of memory.
+
+Presence of FPU is preferred due to its performance benefits.
+Dedicated floating-point hardware greatly decreases time
+needed for floating-point calculations.
+
+To reduce the total cost of the device,
+proper A/D and D/A converters could be included in the microcontroller.
+
+All of above criterion is met by STM32H743ZI microcontroller.
+It is based on Arm Cortex-M7 32-bit RISC core.
+This specific model uses LQFP144 package.
+Most important parameters of this microcontroller are listed below:
 \begin{itemize}
-    \item Microcontroller
-    
-    \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.6\textwidth]{images/lqfp}
-        \caption{LQFP144 microcontroller package}
-        \label{fig:LQFP}
-    \end{figure}
-
-    The microcontroller should meet certain parameters to be chosen.
-    One of the most important parameters is the clock speed.
-    Digital signal processing requires a lot of processor instructions
-    per each audio sample, so high clock speed is preferred.
-
-    The second important criterion is amount of memory.
-    The microcontroller should have at least 128kB of ROM
-    to fit the written program.
-    Size of RAM should be as high as possible,
-    because delay effects require a lot of memory.
-
-    Presence of FPU is preferred due to its performance benefits.
-    Dedicated floating-point hardware greatly decreases time
-    needed for floating-point calculations.
-
-    To reduce the total cost of the device,
-    proper A/D and D/A converters could be included in the microcontroller.
-
-    All of above criterion is met by STM32H743ZI microcontroller.
-    It is based on Arm Cortex-M7 32-bit RISC core.
-    This specific model uses LQFP144 package.
-    Most important parameters of this microcontroller are listed below:
-    \begin{itemize}
-        \item 480MHz maximum clock frequency
-        \item 1MB of RAM and 2MB of Flash memory
-        \item single and double precision FPU and set of DPS instructions
-        \item 16-bit ADC and 12-bit DAC
-        \item 140 I/Os and selection of peripherals such as hardware
-        SPI, I2C, I2S, UART, SPDIF, USB OTG
-    \end{itemize}
-
-    \begin{figure}[H]
-        \centering
-        \includegraphics[width=\textwidth]{images/Nucleo}
-        \caption{Nucleo H7 development board}
-        \label{fig:Nucleo}
-    \end{figure}
-
-    The STM32H743ZI comes one the NUCLEO-H743ZI evaluation board.
-    It includes ST-LINK debugger/programmer,
-    which simplified development of the device. 
-
-
-    \item Operational amplifiers
-
-    TLC272C was operational amplifier of choice.
-    It contains two amplifiers in a single SMD package, which is SOIC-8.
-    Main constraining factor for choice of this element was power supply.
-    Analog power supplied on the board is 3.3V, so the operational amplifier
-    must be capable of operating in such condition.
-    TLC272C is designed to work with single-supply configuration
-    and voltages as low as 3V,
-    while providing 2V of undistorted output voltage swing.
+    \item 480MHz maximum clock frequency
+    \item 1MB of RAM and 2MB of Flash memory
+    \item single and double precision FPU and set of DPS instructions
+    \item 16-bit ADC and 12-bit DAC
+    \item 140 I/Os and selection of peripherals such as hardware
+    SPI, I2C, I2S, UART, SPDIF, USB OTG
 \end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{images/Nucleo}
+    \caption{Nucleo H7 development board}
+    \label{fig:Nucleo}
+\end{figure}
+
+The STM32H743ZI comes one the NUCLEO-H743ZI evaluation board.
+It includes ST-LINK debugger/programmer,
+which simplified development of the device. 
+
+
+\subsection {Operational amplifiers}
+
+TLC272C was operational amplifier of choice.
+It contains two amplifiers in a single SMD package, which is SOIC-8.
+Main constraining factor for choice of this element was power supply.
+Analog power supplied on the board is 3.3V, so the operational amplifier
+must be capable of operating in such condition.
+TLC272C is designed to work with single-supply configuration
+and voltages as low as 3V,
+while providing 2V of undistorted output voltage swing.
 
 \section{Schematic}
 
 Schematic was created using KiCad EDA,
 which is both cross-platform and open source software.
 It provides rich library of components and very intuitive user interface.
+
+Schematic is divided into three parts,
+each containing component related to each other.
+Analog part is devoted to input and output amplifiers.
+In digital section we can find external memory, LCD and rotary encoder.
+Last part is dedicated to gold pins connecting shield to a Nucleo board.
 
 \begin{figure}[H]
     \centering
@@ -550,14 +558,14 @@ It provides rich library of components and very intuitive user interface.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{images/Schematic_digital}
+    \includegraphics[width=0.8\textwidth]{images/Schematic_digital}
     \caption{Schamatic of digital part of the device}
     \label{fig:Schematic2}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{images/Schematic_connectors}
+    \includegraphics[width=0.8\textwidth]{images/Schematic_connectors}
     \caption{Schamatic of gold pin connectors}
     \label{fig:Schematic3}
 \end{figure}
@@ -808,6 +816,26 @@ List of frameworks and additional tools used for software development:
     These function forces transfer between RAM and cache in order to ensue,
     that DMA is referencing valid data.
 
+    \item Memory organization
+    \begin{figure}[H]
+    \centering
+    \begin{lstlisting}
+/* Specify the memory areas */
+MEMORY
+{
+ITCMRAM (xrw)   : ORIGIN = 0x00000000, LENGTH = 64K
+FLASH (rx)      : ORIGIN = 0x08000000, LENGTH = 2048K
+DTCMRAM (xrw)   : ORIGIN = 0x20000000, LENGTH = 128K
+RAM_D1 (xrw)    : ORIGIN = 0x24000000, LENGTH = 512K
+RAM_D2 (xrw)    : ORIGIN = 0x30000000, LENGTH = 288K
+RAM_D3 (xrw)    : ORIGIN = 0x38000000, LENGTH = 64K
+SDRAM (xrw)     : ORIGIN = 0xD0000000, LENGTH = 16M
+}
+    \end{lstlisting}
+    \caption{Memory layout from linker script.}
+    \label{fig:mem}
+    \end{figure}
+
     \item ADC
     
     ADC is set to continuous conversion mode.
@@ -829,44 +857,215 @@ List of frameworks and additional tools used for software development:
 
 \begin{itemize}
     \item Variables and constants
+    \begin{figure}[H]
+    \centering
+    \begin{lstlisting}
+/* USER CODE BEGIN Private defines */
+#define BLOCK_SIZE 512
+#define SAMPLING_RATE 48000
+#define NO_OF_CHANNELS 2
+#define ADC_RESOLUTION 16
+#define DELAY_SIZE (SAMPLING_RATE + BLOCK_SIZE) // 1s + block size
+#define MODULATION_DELAY_SIZE (2 * 1440 + BLOCK_SIZE) // 30ms + block size
+/* USER CODE END Private defines */
+    \end{lstlisting}
+    \caption{Global defines from main.h file.}
+    \label{fig:defs}
+    \end{figure}
+
+    \begin{figure}[H]
+    \centering
+    \begin{lstlisting}
+/* USER CODE BEGIN PD */
+#define AXI_SRAM_D1 __attribute__((section(".axi_sram_d1")))
+#define AHB_SRAM_D2 __attribute__((section(".ahb_sram_d2")))
+#define ALIGN_32 __attribute__((aligned(0x20)))
+/* USER CODE END PD */
+
+// Global flags
+uint16_t block_counter = 0;
+uint8_t block_ready = 0;
+
+// Allocation in different parts of memory
+float32_t AXI_SRAM_D1 delay_buffer1[DELAY_SIZE];
+float32_t AXI_SRAM_D1 delay_buffer2[DELAY_SIZE];
+float32_t AXI_SRAM_D1 mod_buffer1[MODULATION_DELAY_SIZE];
+float32_t AXI_SRAM_D1 mod_buffer2[MODULATION_DELAY_SIZE];
+uint8_t AHB_SRAM_D2 ALIGN_32 character_buffer[128];
+uint32_t AHB_SRAM_D2 ALIGN_32 input_sample[2];
+
+// Defining global buffers
+uint16_t buffer[6][BLOCK_SIZE];
+uint16_t *input_buffer = buffer[0];
+uint16_t *hidden_buffer = buffer[2];
+uint16_t *output_buffer = buffer[4];
+    \end{lstlisting}
+    \caption{Global variables from main.cpp file.}
+    \label{fig:vars}
+    \end{figure}
+
     \item Main loop
     \begin{figure}[H]
     \centering
     \begin{lstlisting}
 while (true) {
-    if (block_ready) {
-        HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_SET);
+  if (block_ready) {
+    HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_SET);
 
-        // Convert data to float
-        arm_uint16_to_float(&hidden_buffer[0], &data[0][0], BLOCK_SIZE);
-        arm_uint16_to_float(&hidden_buffer[BLOCK_SIZE], &data[1][0], BLOCK_SIZE);
+    // Convert data to float
+    arm_uint16_to_float(&hidden_buffer[0], &data[0][0], BLOCK_SIZE);
+    arm_uint16_to_float(&hidden_buffer[BLOCK_SIZE], &data[1][0], BLOCK_SIZE);
 
-        // Process block of data
-        master->ProcessBlock(data[0], data[1], BLOCK_SIZE);
-        master->UpdateUI();
+    // Process block of data
+    master->ProcessBlock(data[0], data[1], BLOCK_SIZE);
+    master->UpdateUI();
 
-        // Convert data back to 16 bit unsigned integer
-        arm_float_to_uint16(&data[0][0], &hidden_buffer[0], BLOCK_SIZE);
-        arm_float_to_uint16(&data[1][0], &hidden_buffer[BLOCK_SIZE], BLOCK_SIZE);
+    // Convert data back to 16 bit unsigned integer
+    arm_float_to_uint16(&data[0][0], &hidden_buffer[0], BLOCK_SIZE);
+    arm_float_to_uint16(&data[1][0], &hidden_buffer[BLOCK_SIZE], BLOCK_SIZE);
 
-        // Resetting block rady flag
-        block_ready = 0;
+    // Resetting block rady flag
+    block_ready = 0;
 
-        HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_RESET);
-    }
+    HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_RESET);
+  }
 
-    // Display the next character if DMA is ready for next transfer
-    if(HAL_SPI_GetState(&hspi1) == HAL_SPI_STATE_READY){
-        master->DisplayPop();
-    }
+  // Display the next character if DMA is ready for next transfer
+  if(HAL_SPI_GetState(&hspi1) == HAL_SPI_STATE_READY){
+    master->DisplayPop();
+  }
 }
     \end{lstlisting}
-    \caption{Main loop.}
+    \caption{Main loop code.}
     \label{fig:loop}
     \end{figure}
 
     \item Timer interrupt
+    \begin{figure}[H]
+    \centering
+    \begin{lstlisting}
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
+  if(htim->Instance == TIM2){
+    // Reading samples from input to buffer
+    SCB_InvalidateDCache_by_Addr(input_sample, 32);
+    input_buffer[block_counter] = (uint16_t)input_sample[0];
+    input_buffer[block_counter+BLOCK_SIZE] = (uint16_t)input_sample[1];
+
+    // Writing samples to output
+    HAL_DAC_SetValue(&hdac1, DAC1_CHANNEL_1, DAC_ALIGN_12B_R, output_buffer[block_counter]>>4);
+    HAL_DAC_SetValue(&hdac1, DAC1_CHANNEL_2, DAC_ALIGN_12B_R, output_buffer[block_counter+BLOCK_SIZE]>>4);
+
+    block_counter++;
+    if (block_counter >= BLOCK_SIZE){
+      // Swapping buffers
+      uint16_t* temp = output_buffer;
+      output_buffer = hidden_buffer;
+      hidden_buffer = input_buffer;
+      input_buffer = temp;
+      block_counter = 0;
+      block_ready = 1;
+    }
+  }
+}
+    \end{lstlisting}
+    \caption{Timer interrupt code.}
+    \label{fig:timer}
+    \end{figure}
+
     \item Effect class
+    \begin{figure}[H]
+    \centering
+    \begin{lstlisting}
+class Effect {
+   protected:
+    char name[9];
+    Effect *pNext;
+    Effect *pPrev;
+    friend class MultiEffect;
+
+   public:
+    Parameter *parameters[10];
+    uint8_t number_of_parameters;
+    int8_t current_parameter;
+
+    Effect();
+    ~Effect();
+    virtual void ProcessBlock(float32_t *pData_left, float32_t *pData_right, uint32_t block_size) = 0;
+    virtual void UpdateParameters() = 0;
+    char *GetName();
+    char *GetParamName(int8_t param_id);
+    char *GetParamValRepr(int8_t param_id);
+    Parameter *GetCurrentParam();
+    void SetName(const char *name);
+};
+    \end{lstlisting}
+    \caption{Effect class prototype.}
+    \label{fig:Effect}
+    \end{figure}
+
+    \item Parameter class
+    \begin{figure}[H]
+    \centering
+    \begin{lstlisting}
+class Parameter {
+   private:
+    char name[10];
+    char val_repr[6];
+    char unit[3];
+    int32_t value, min, max, step;
+    friend class Effect;
+
+   public:
+    Parameter(const char *name, const char *unit, int32_t min, int32_t max, int32_t step, int32_t initial);
+    void SetName(const char *name);
+    void SetUnit(const char *unit);
+    void SetValue(int32_t value);
+    int32_t GetValue();
+    int32_t GetMin();
+    int32_t GetMax();
+    int32_t GetStep();
+    char *GetName();
+    char *GetValRepr();
+    void UpdateValRepr();
+    void UpdateValue();
+};
+    \end{lstlisting}
+    \caption{Parameter class prototype.}
+    \label{fig:Param}
+    \end{figure}
+
+    \item MultiEffect class
+    \begin{figure}[H]
+    \centering
+    \begin{lstlisting}
+class MultiEffect {
+   private:
+    Display *my_disp;
+    Effect *current_effect, *pHead, *pTail;
+    VU *VU_pre_L, *VU_pre_R, *VU_post_L, *VU_post_R;
+    TIM_HandleTypeDef *htim;
+    uint8_t param_flag = 1;
+    uint8_t val_flag = 0;
+    uint8_t button_states = 0;
+    uint8_t button_pressed = 0;
+    uint16_t last_tim_cnt = 0x7FFF;
+
+    void InitializeLCD(SPI_HandleTypeDef *hspi);
+    void InitializeEffects();
+
+   public:
+    MultiEffect(TIM_HandleTypeDef *encoder_timer, SPI_HandleTypeDef *tft_spi);
+    void ProcessBlock(float32_t *pData_left, float32_t *pData_right, uint32_t block_size);
+    void UpdateUI();
+    float32_t UpdateEncoder(TIM_HandleTypeDef *htim, float32_t var, float32_t min, float32_t max, float32_t step);
+    uint8_t UpdateEncoder(TIM_HandleTypeDef *htim);
+    void DisplayPop();
+    void AddEffect(Effect *pNew);
+};
+    \end{lstlisting}
+    \caption{MultiEffect class prototype.}
+    \label{fig:Multi}
+    \end{figure}
 \end{itemize}
 
 
