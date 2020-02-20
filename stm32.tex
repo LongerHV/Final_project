@@ -1321,6 +1321,13 @@ for(uint32_t i = 0; i < block_size; i++){
 \end{figure}
 
 \subsection{Biquad filter}
+Biquad filter implementation relies on functions
+delivered with CMSIS DSP library.
+Direct form II was used, because its algorithm is more efficient.
+Main challange in this case was calculation of filter coefficients.
+Since user can change parameters of filter at any time,
+coefficients must be calculated straightaway.
+
 \begin{figure}[H]
 \centering
 \begin{lstlisting}
@@ -1333,7 +1340,41 @@ void Biquad::ProcessBlock(float32_t *pData_left, float32_t *pData_right, uint32_
 \label{fig:Biq}
 \end{figure}
 
+\begin{figure}[H]
+\centering
+\begin{lstlisting}
+void Biquad::RecalculateCoeffitients() {
+  uint8_t type = this->type;
+  float32_t K = arm_tan(PI * (float32_t)this->Fc / (float32_t)this->Fs);
+  float32_t norm, a0, a1, a2, b1, b2;
+  switch (type) {
+    case LOWPASS:
+      norm = 1 / (1 + K / Q + K * K);
+      a0 = K * K * norm;
+      a1 = 2 * a0;
+      a2 = a0;
+      b1 = 2 * (K * K - 1) * norm;
+      b2 = (1 - K / Q + K * K) * norm;
+      break;
+    case HIGHPASS:
+      norm = 1 / (1 + K / Q + K * K);
+      a0 = norm;
+      a1 = -2 * a0;
+      a2 = a0;
+      b1 = 2 * (K * K - 1) * norm;
+      b2 = (1 - K / Q + K * K) * norm;
+      break;
+// . . .
+\end{lstlisting}
+\caption{Fragment of code calculationg filter coefficients.}
+\label{fig:Biq2}
+\end{figure}
+
 \subsection{Drive}
+Drive algorithm is definitely the most straightforward.
+It involves passing each sample through an inverse tangent function,
+which is a part of standard math library in C, and scaling it.
+
 \begin{figure}[H]
 \centering
 \begin{lstlisting}
