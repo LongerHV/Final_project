@@ -375,12 +375,19 @@ in order to implement it's entire functionality in a proper way.
 \cite{Smith}
 
 \subsection{Delay}
-Delay is the most basic time based effects.
+Delay, also known as comb filter, is the most basic time based effect.
 It creates echo of original signal,
 which is delayed by specified amount of time.
 This delayed signal is then mixed with original.
 Delayed signal can also be attenuated and then fed back into a delay block
 in order to achieve endless, fading reflections.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.618\textwidth]{images/comb}
+    \caption{Universal comb filter}
+    \label{fig:comb}
+\end{figure}
 
 Because processed signal is quantized,
 delay time is described by number of samples.
@@ -397,6 +404,14 @@ Modulation effects usually use short delay times up to 30ms
 and LFO frequency up to several Hz.
 Different functions, such as sine,
 triangular or sawtooth can be used for LFO.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/modulation}
+    \caption{Block diagram of standard effect with variable delay line.}
+    \label{fig:Mod}
+\end{figure}
+
 There are a few distinct modulation effects:
 \begin{itemize}
     \item Chorus - uses delay time up to 20ms with LFO frequency up to 10Hz with medium depth.
@@ -420,6 +435,29 @@ Filters are also described by parameters such as corner frequency, quality facto
 and in some cases preak gain.
 \cite{Biquad}
 \cite{biquad_web}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[t]{0.25\textwidth}
+        \includegraphics[width=\textwidth]{images/filter_shelving}
+        \label{fig:shelf}
+        \caption{Shelving filter}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[t]{0.45\textwidth}
+        \includegraphics[width=\textwidth]{images/filter_pass}
+        \label{fig:pass}
+        \caption{High and low-pass filters}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[t]{0.25\textwidth}
+        \includegraphics[width=\textwidth]{images/filter_peak}
+        \label{fig:peak}
+        \caption{Peak filter}
+    \end{subfigure}
+    \caption{Some kinds of filters, that can be implemented using biquad.}
+    \label{fig:biquad}
+\end{figure}
 
 \subsection{Drive}
 Non-linear effects, such as overdrive, distortion or fuzz,
@@ -463,6 +501,13 @@ It means that custom driver must be created for this project.
 \chapter{External specification}
 
 \section{Block diagram}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{images/Block}
+    \caption{Block diagram of device.}
+    \label{fig:block}
+\end{figure}
 
 \section{Desctiption}
 Device was designed in a form of a “shield” for NUCLEO development board.
@@ -579,7 +624,7 @@ which is both cross-platform and open source software.
 It provides rich library of components and very intuitive user interface.
 
 Schematic is divided into three parts,
-each containing component related to each other.
+each containing components related to each other.
 Analog part is devoted to input and output amplifiers.
 In digital section we can find external memory, LCD and rotary encoder.
 Last part is dedicated to gold pins connecting shield to a Nucleo board.
@@ -593,14 +638,14 @@ Last part is dedicated to gold pins connecting shield to a Nucleo board.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{images/Schematic_digital}
+    \includegraphics[width=0.9\textwidth]{images/Schematic_digital}
     \caption{Schamatic of digital part of the device}
     \label{fig:Schematic2}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{images/Schematic_connectors}
+    \includegraphics[width=\textwidth]{images/Schematic_connectors}
     \caption{Schamatic of gold pin connectors}
     \label{fig:Schematic3}
 \end{figure}
@@ -639,7 +684,14 @@ and arrived two weeks later.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{images/photo_boards}
+    \includegraphics[width=0.9\textwidth]{images/PCB3D}
+    \caption{3D render of the PCB.}
+    \label{fig:pcb3d}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.618\textwidth]{images/photo_boards}
     \caption{Photo of front and back sides of the PCB}
     \label{fig:photo_boards}
 \end{figure}
@@ -651,7 +703,7 @@ Two types of tin-lead solder were used during the process:
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{images/photo_assembled}
+    \includegraphics[width=0.618\textwidth]{images/photo_assembled}
     \caption{Photo of assembled board}
     \label{fig:pgoto_assembled}
 \end{figure}
@@ -698,7 +750,7 @@ which are part of C++ language.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.3\textwidth]{images/platformio-logo}
+    \includegraphics[width=0.5\textwidth]{images/platformio-logo}
     \caption{PlatformIO IDE logo}
     \label{fig:plaftormio}
 \end{figure}
@@ -715,7 +767,7 @@ debugger server and compiler necessary for STM32 software development.
 \subsection{Text editor}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.3\textwidth]{images/vscode}
+    \includegraphics[width=0.5\textwidth]{images/vscode}
     \caption{Visual Studio Code logo}
     \label{fig:vscode}
 \end{figure}
@@ -729,23 +781,30 @@ which simplify the process of software development.
 
 \begin{figure}[H]
     \centering
-    \begin{subfigure}[h]{0.3\textwidth}
+    \begin{subfigure}[h]{0.23\textwidth}
         \includegraphics[width=\textwidth]{images/cube_logo}
         \label{fig:cube}
     \end{subfigure}
     ~
-    \begin{subfigure}[h]{0.3\textwidth}
+    \begin{subfigure}[h]{0.23\textwidth}
         \includegraphics[width=\textwidth]{images/arm_logo}
         \label{fig:arm}
     \end{subfigure}
     ~
-    \begin{subfigure}[h]{0.3\textwidth}
+    \begin{subfigure}[h]{0.23\textwidth}
         \includegraphics[width=\textwidth]{images/gnu_logo}
         \label{fig:gnu}
     \end{subfigure}
-    \caption{Logos of SMT32Cube, Arm and the GNU project}
+    ~
+    \begin{subfigure}[h]{0.23\textwidth}
+        \includegraphics[width=\textwidth]{images/git}
+        \label{fig:git}
+    \end{subfigure}
+    \caption{Logos of SMT32Cube, Arm, GNU project and Git}
     \label{fig:tools}
 \end{figure}
+
+\newpage
 
 List of frameworks and additional tools used for software development:
 
@@ -772,9 +831,20 @@ List of frameworks and additional tools used for software development:
     \item GNU Embedded Toolchain for Arm
     is a suite of tools for C, C++ and Assembly programming provided and maintained by Arm.
     It contains the GCC Compiler as well as linker.
+    \item Git
+    is a version control system. It allows to track changes in code
+    and revert to any previous state.
+    It can also act as a backup, because data can be stored on external server.
 \end{itemize}
 
 \section{Software block diagram}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{images/Block2}
+    \caption{Block diagram of the program.}
+    \label{fig:block2}
+\end{figure}
 
 \section{Configuration}
 
@@ -854,12 +924,12 @@ These function forces transfer between RAM and cache in order to ensue,
 that DMA is referencing valid data.
 
 \subsection{Memory organization}
+Memory in STM32H743 microcontrollers is divided into several segments,
+which can be seen on figure \ref{fig:mem}.
+
 \begin{figure}[H]
 \centering
 \begin{lstlisting}
-/* Specify the memory areas */
-MEMORY
-{
 ITCMRAM (xrw)   : ORIGIN = 0x00000000, LENGTH = 64K
 FLASH (rx)      : ORIGIN = 0x08000000, LENGTH = 2048K
 DTCMRAM (xrw)   : ORIGIN = 0x20000000, LENGTH = 128K
@@ -867,14 +937,31 @@ RAM_D1 (xrw)    : ORIGIN = 0x24000000, LENGTH = 512K
 RAM_D2 (xrw)    : ORIGIN = 0x30000000, LENGTH = 288K
 RAM_D3 (xrw)    : ORIGIN = 0x38000000, LENGTH = 64K
 SDRAM (xrw)     : ORIGIN = 0xD0000000, LENGTH = 16M
-}
 \end{lstlisting}
-\caption{Memory layout from linker script.}
+\caption{Memory areas specified in linker script.}
 \label{fig:mem}
 \end{figure}
 
-\subsection{ADC}
+2MB of FLASH is used to store a program instructions and non-volatile data.
+ITCMRAM and DTCMRAM regions are cache memory.
+Main RAM memory was chosen to be located at RAM\_D3 region.
+It is only 64k, but it is big enough to allocate all object and variables.
+RAM\_D2 is reserved exclusively for DMA buffers,
+which must be properly aligned in memory.
+Last used memory region is 512kB RAM\_D1.
+In this section all delay buffers are placed.
+They are located there, because they take a lot of space.
 
+\subsection{Timer}
+There are two timers used in this project.
+TIM4 is used to handle rotation encoder.
+It counts impulses to determine number of turns 
+performed by the user.
+Second timer, used to determine sampling frequency, is TIM2.
+It is set up to generate an interrupt every 20.8us,
+which corresponds to 48kHz sampling frequency.
+
+\subsection{ADC}
 ADC is set to continuous conversion mode.
 It is constatnly converting signal with sampling rate above 100kHz.
 Obtained samples are than transfered to a buffer using DMA.
@@ -885,8 +972,21 @@ When the block buffer is full, it can be swaped with empty buffer
 and than processed.
 
 \subsection{DAC}
-\subsection{Timer}
+DAC implementation was much easier than ADC.
+Output samples are passed to converters in the 48kHz timer interrupt.
+
 \subsection{SPI}
+SPI is utilized to send data from microcontroller to LCD.
+It is set to full-duplex mode and sends 8 bit frames with MSB first.
+Referring to datasheet for the ST3577 display controller
+maximum clock frequency is 15MHz,
+but testing showed no data corruption up to 26MHz.
+\cite{Sitronix:ST7735}
+
+SPI is set to work with DMA.
+This approach relieve some load from MCU,
+since data is transfered directly from memory
+to SPI without CPU assistance.
 
 \section{Description of functions and objects}
 
@@ -1168,6 +1268,7 @@ which a hardware reset for both microcontroller and LCD screen.
 \begin{itemize}
 \item[ADC] - Analog to digital converter
 \item[API] - Application programming interface
+\item[CPU] - Central processing unit
 \item[DAC] - Digital to analog converter
 \item[DC] - Direct current
 \item[DMA] - Direct memory access
@@ -1190,6 +1291,7 @@ which a hardware reset for both microcontroller and LCD screen.
 \item[SDRAM] - Synchronous dynamic random access memory
 \item[SMD] - Surface mounted device
 \item[SOIC] - Small outline integrated circuit
+\item[SPI] - Serial peripheral interface
 % \item[$N$] cardinality of data set
 % \item[$\mu$] membership function of a fuzzy set
 % \item[$\mathbb{E}$] set of edges of a graph
