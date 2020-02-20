@@ -42,6 +42,8 @@
 	commentstyle=\color{gray}
 }
 
+% Helps when line is to wide and can't be broken properly
+\setlength{\emergencystretch}{10pt}
 %%%%%%%%%
 
  
@@ -54,6 +56,7 @@
 \fancyhead[LO]{\nouppercase{\it\rightmark}}
 \fancyhead[RE]{\nouppercase{\it\leftmark}}
 \fancyhead[LE,RO]{\it\thepage}
+\setlength{\headheight}{15pt}% at least 14.49998pt
 
 
 \fancypagestyle{onlyPageNumbers}{%
@@ -163,6 +166,9 @@ texcl=true, % wylacza tryb verbatim w komentarzach jednolinijkowych
 \newcommand{\Polsl}{Silesian University of Technology}
 \newcommand{\Faculty}{Faculty of Automatic Control, Electronics and Computer Science}
 
+
+% Deals with some compatibility warning
+\pgfplotsset{compat=1.16}
 
 \begin{document} 
 	
@@ -331,6 +337,23 @@ there is 1024 samples delay between collecting and outputting specific sample.
 In combination with 48kHz sampling frequency this results in 21.3 ms latency.
 Outputting, processing and collecting subsequent blocks off data
 must be performed simultaneously.
+
+Data collected from converters is represented as unsigned integer values.
+For 16 bit converter we get values between 0 and 16536 (\(2^16\)).
+Such format is not suitable for processing.
+To deal with it, samples should be first converted into fixed or floating-point values.
+Fixed-point data type can represent fractional values in range from -1 to 1.
+Main disadvantage of fixed-point approach is easy overflow.
+These problem can be eliminated by using floating-point numbers instead.
+Floating-point introduces exponent bits alongside with mantissa (fraction bits).
+\cite{ST:DSP}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{images/float}
+    \caption{32-bit floating-point representation.}
+    \label{fig:Float}
+\end{figure}
 
 \section{Effects}
 This section is dedicated to audio effects implemented in the devices
@@ -856,7 +879,7 @@ SDRAM (xrw)     : ORIGIN = 0xD0000000, LENGTH = 16M
 \section{Description of functions and objects}
 
 \begin{itemize}
-    \item Variables and constants
+    \item Global variables and constants
     \begin{figure}[H]
     \centering
     \begin{lstlisting}
