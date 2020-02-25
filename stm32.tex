@@ -1,4 +1,4 @@
-% !TeX spellcheck = en_GB
+%wer  !TeX spellcheck = en_GB
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                        %
 %    Engineer thesis LaTeX template      % 
@@ -243,14 +243,24 @@ texcl=true, % wylacza tryb verbatim w komentarzach jednolinijkowych
 
 
 \chapter{Introduction}
-The rapid development of technology lead to the moment, when anybody can afford a development board 
-and learn how to program microcontrollers without even leaving house.
-Hobbysts all around the world create products in wide range of applications, that can easily compete
-with their professional counterparts in both price and quality.
+The rapid development of technology lead to the moment,
+when anybody can afford a development board.
+There are literally thousands of different choices
+covering wide spectrum of applications and price ranges.
+Learning how to program microcontrollers without leaving a house
+has became possible thanks to evolution of the internet.
+Hundreds of websites provide tutorials devoted to
+many topics and aspects of embedded technology,
+which are addressed to beginners as well as 
+experienced developers.
+
+Hobbysts all around the world create products for different applications,
+that can easily compete with their professional counterparts in both price and quality.
 
 One example of such a field is market of sound related equipment.
 More and more small companies are growing out of nowhere,
-providing butique studio recording and processing equipment with great customer service and support.
+providing butique studio recording and processing equipment
+with great customer service and support.
 
 
 
@@ -424,18 +434,6 @@ There are a few distinct modulation effects:
 \end{itemize}
 
 \subsection{Biquad filter}
-Biquad (biquadratic) filter is a type of second order IIR digital filter.
-The biquad filter is desctibed by 5 coefficients and exists in two direct forms.
-The difference between them is that the direct form 1 uses four delay registers
-while direct form 2 requires only two.
-This is the reason why direct form 2 is considered to be canonical.
-Use of proper formulas allows to implement biquad as one of many types of filters
-including high-pass, low-pass, band-pass, peak, notch, high-shelf and low-shelf.
-Filters are also described by parameters such as corner frequency, quality factor
-and in some cases preak gain.
-\cite{Biquad}
-\cite{biquad_web}
-
 \begin{figure}[H]
     \centering
     \begin{subfigure}[t]{0.25\textwidth}
@@ -457,6 +455,35 @@ and in some cases preak gain.
     \end{subfigure}
     \caption{Some kinds of filters, that can be implemented using biquad.}
     \label{fig:biquad}
+\end{figure}
+
+Biquad (biquadratic) filter is a type of second order IIR digital filter.
+The biquad filter is desctibed by 5 coefficients and exists in two direct forms.
+The difference between them is that the direct form 1 uses four delay registers
+while direct form 2 requires only two.
+This is the reason why direct form 2 is considered to be canonical.
+Use of proper formulas allows to implement biquad as one of many types of filters
+including high-pass, low-pass, band-pass, peak, notch, high-shelf and low-shelf.
+Filters are also described by parameters such as corner frequency, quality factor
+and in some cases preak gain.
+\cite{Biquad}
+\cite{biquad_web}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[t]{0.45\textwidth}
+        \includegraphics[width=\textwidth]{images/DF1}
+        \label{fig:df1}
+        \caption{Direct form I}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[t]{0.45\textwidth}
+        \includegraphics[width=\textwidth]{images/DF2}
+        \label{fig:df2}
+        \caption{Direct form II}
+    \end{subfigure}
+    \caption{Direct forms of the biquad filter.}
+    \label{fig:biquad2}
 \end{figure}
 
 \subsection{Drive}
@@ -837,7 +864,23 @@ List of frameworks and additional tools used for software development:
     It can also act as a backup, because data can be stored on external server.
 \end{itemize}
 
+\newpage
+
 \section{Software block diagram}
+On the figure \ref{fig:block2} we can see a software block diagram.
+The diagram consist of two paths.
+Part on the left shows a main path with all initialization procedures.
+It also contains an infinite loop in which processor is waiting
+for a block\_ready flag to be set.
+This condition triggers action of processing a block of data.
+During time between succesive data blocks,
+processor updates the screen.
+
+Second part is showing a timer interrupt.
+It contains all instructions related
+to reading from and writing to converters.
+A block\_ready flag is set in this function
+when input buffer is full of samples.
 
 \begin{figure}[H]
     \centering
@@ -1394,7 +1437,7 @@ void Drive::ProcessBlock(float32_t *pData_left, float32_t *pData_right, uint32_t
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{images/photo_working}
+    \includegraphics[angle=90,width=0.618\textwidth]{images/photo_working}
     \caption{Photo of the device during operation}
     \label{fig:working}
 \end{figure}
@@ -1432,10 +1475,34 @@ while blue button is depressed. User can also reset the device if needed.
 To do it, user can press the black button,
 which a hardware reset for both microcontroller and LCD screen.
 
-
-
 \chapter{Summary}
+All goals and tasks of the projects were accomplished.
+Process involved different aspects of technology.
+One of was them creation of schematic and board layout,
+which are only the first step necessary to obtain 
+the physical layer of the device.
+The next step was whole manufacturing process.
+Fortunately PCB manufacturers provide great support
+and require only gerber files to create a board.
+Last step to create a device was assembly,
+which required some manual skills.
 
+Creating software requires completely different
+knowledge and skills than all previous steps.
+Understanding of arm architecture was necessary
+to select proper tools and configure device properly.
+Experience with object oriented programming
+allowed to create very modular and easy to modify program.
+
+Whole project was very educational.
+It required reading user manuals and datasheets of particular components
+in order to obtain desired results.
+Developing software involved some debugging,
+which was simplified thanks to selected tools.
+
+The project is very flexible and has some room for potential expansion.
+There is still free memory to implement new effect, more complex UI,
+and more features such as casscading effects.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \backmatter
@@ -1481,6 +1548,7 @@ which a hardware reset for both microcontroller and LCD screen.
 \item[SMD] - Surface mounted device
 \item[SOIC] - Small outline integrated circuit
 \item[SPI] - Serial peripheral interface
+\item[UI] - User interface
 % \item[$N$] cardinality of data set
 % \item[$\mu$] membership function of a fuzzy set
 % \item[$\mathbb{E}$] set of edges of a graph
