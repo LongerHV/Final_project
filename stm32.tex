@@ -243,7 +243,7 @@ texcl=true, % wylacza tryb verbatim w komentarzach jednolinijkowych
 
 
 
-\chapter{Introduction}
+\chapter{Introduction}\label{ch:intro}
 The rapid development of technology lead to the moment,
 when anybody can afford a development board.
 There are literally thousands of different choices
@@ -266,7 +266,7 @@ with great customer service and support.
 
 
 
-\chapter{Goals and tasks of the project}
+\chapter{Goals and tasks of the project}\label{ch:goals}
 The main goal of the project is to develop a platform based around modern,
 high-performance microcontroller.
 
@@ -310,7 +310,7 @@ Following tasks are required to finish the project:
 
 
 
-\chapter{Topic analysis}
+\chapter{Topic analysis}\label{ch:analysis}
 This chapter is devoted to main concerns related to the project,
 that need to be considered at the beginning.
 These will determine all important features and parameters of the device.
@@ -400,11 +400,11 @@ in order to achieve endless, fading reflections.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.618\textwidth]{images/comb}
-    \caption{Universal comb filter}
+    \caption{Universal comb filter\cite{Zolzer1}.}
     \label{fig:comb}
 \end{figure}
 
-Because processed signal is quantized,
+Because processed signal is sampled,
 delay time is described by number of samples.
 Digital implementation of this effect requires use of circular buffer,
 which size is determined by delay time required.
@@ -423,7 +423,7 @@ triangular or sawtooth can be used for LFO.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{images/modulation}
-    \caption{Block diagram of standard effect with variable delay line.}
+    \caption{Block diagram of standard effect with variable delay line\cite{Zolzer1}.}
     \label{fig:Mod}
 \end{figure}
 
@@ -439,6 +439,44 @@ There are a few distinct modulation effects:
 \end{itemize}
 
 \subsection{Biquad filter}
+Biquad (biquadratic) filter is a type of second order IIR digital filter.
+The biquad filter is desctibed by 5 coefficients and exists in two direct forms.
+Biquad filter is described by following transfer function:
+
+\(H(z) = \frac{b_0 + b_1z^{-1} + b_2z^{-2}}{1 + a_1z^{-1} + a_2z^{-2}}\)
+
+The difference between direct forms is that the direct form 1 uses four delay registers
+while direct form 2 requires only two.
+This is the reason why direct form 2 is more efficient and considered to be canonical.
+Figure \ref{fig:biquad2} shows block diagrams of two different
+direct forms of a biquad filter.
+
+Use of proper formulas allows to implement biquad as one of many types of filters
+including high-pass, low-pass, band-pass, peak, notch, high-shelf and low-shelf.
+Filters are also described by parameters such as corner frequency, quality factor
+and in some cases preak gain.
+Figure \ref{fig:biquad} shows characteristics of some filters,
+that can be implemented using biquad algorithm
+\cite{Biquad},
+\cite{biquad_web}.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[t]{0.55\textwidth}
+        \includegraphics[width=\textwidth]{images/DF1}
+        \label{fig:df1}
+        \caption{Direct form I}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[t]{0.4\textwidth}
+        \includegraphics[width=\textwidth]{images/DF2}
+        \label{fig:df2}
+        \caption{Transposed direct form II}
+    \end{subfigure}
+    \caption{Direct forms of the biquad filter\cite{CMSIS_DSP}.}
+    \label{fig:biquad2}
+\end{figure}
+
 \begin{figure}[H]
     \centering
     \begin{subfigure}[t]{0.25\textwidth}
@@ -458,37 +496,8 @@ There are a few distinct modulation effects:
         \label{fig:peak}
         \caption{Peak filter}
     \end{subfigure}
-    \caption{Some kinds of filters, that can be implemented using biquad.}
+    \caption{Some kinds of filters, that can be implemented using biquad\cite{Zolzer2}.}
     \label{fig:biquad}
-\end{figure}
-
-Biquad (biquadratic) filter is a type of second order IIR digital filter.
-The biquad filter is desctibed by 5 coefficients and exists in two direct forms.
-The difference between them is that the direct form 1 uses four delay registers
-while direct form 2 requires only two.
-This is the reason why direct form 2 is considered to be canonical.
-Use of proper formulas allows to implement biquad as one of many types of filters
-including high-pass, low-pass, band-pass, peak, notch, high-shelf and low-shelf.
-Filters are also described by parameters such as corner frequency, quality factor
-and in some cases preak gain.
-\cite{Biquad}
-\cite{biquad_web}
-
-\begin{figure}[H]
-    \centering
-    \begin{subfigure}[t]{0.45\textwidth}
-        \includegraphics[width=\textwidth]{images/DF1}
-        \label{fig:df1}
-        \caption{Direct form I}
-    \end{subfigure}
-    ~
-    \begin{subfigure}[t]{0.45\textwidth}
-        \includegraphics[width=\textwidth]{images/DF2}
-        \label{fig:df2}
-        \caption{Direct form II}
-    \end{subfigure}
-    \caption{Direct forms of the biquad filter.}
-    \label{fig:biquad2}
 \end{figure}
 
 \subsection{Drive}
@@ -530,13 +539,17 @@ which blocks MCU for the time of data transfer.
 It means that custom driver must be created for this project.
 
 
-\chapter{External specification}
+\chapter{External specification}\label{ch:external}
+The Chapter \ref{ch:external} presents description of hardware components used in this project.
 
 \section{Block diagram}
+Figure \ref{fig:block} shows a block diagram of the device.
+All external components are presented around a microcontroller
+alongside with necessary connections.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{images/Block}
+    \includegraphics[width=0.75\textwidth]{images/Block}
     \caption{Block diagram of device.}
     \label{fig:block}
 \end{figure}
@@ -734,7 +747,7 @@ Two types of tin-lead solder were used during the process:
 
 
 
-\chapter{Internal specification}
+\chapter{Internal specification}\label{ch:internal}
 
 \section{Programming environment}
 Programming environment consist of several tools,
@@ -1326,6 +1339,8 @@ Direct form II was used, because its algorithm is more efficient.
 Main challange in this case was calculation of filter coefficients.
 Since user can change parameters of filter at any time,
 coefficients must be calculated straightaway.
+Formulas necessary to calculate coefficients were found on the internet
+\cite{biquad_web}.
 
 \begin{figure}[H]
 \centering
@@ -1335,7 +1350,7 @@ void Biquad::ProcessBlock(float32_t *pData_left, float32_t *pData_right, uint32_
   arm_biquad_cascade_df2T_f32(this->filter_instance_R, pData_right, pData_right, block_size);
 }
 \end{lstlisting}
-\caption{Implementation of biquad filter effect}
+\caption{Implementation of biquad filter effect.}
 \label{fig:Biq}
 \end{figure}
 
@@ -1362,10 +1377,9 @@ void Biquad::RecalculateCoeffitients() {
       a2 = a0;
       b1 = 2 * (K * K - 1) * norm;
       b2 = (1 - K / Q + K * K) * norm;
-      break;
-// . . .
+      break;    // . . .
 \end{lstlisting}
-\caption{Fragment of code calculationg filter coefficients.}
+\caption{Fragment of code calculationg filter coefficients\cite{biquad_web}.}
 \label{fig:Biq2}
 \end{figure}
 
@@ -1431,7 +1445,37 @@ while blue button is depressed. User can also reset the device if needed.
 To do it, user can press the black button,
 which a hardware reset for both microcontroller and LCD screen.
 
-\chapter{Summary}
+Figure \ref{fig:screens} shows different screens
+avaliable for corresponding effects.
+On picture b) we can see, that one of the parameters is green.
+It indicates, that parameter is in edit mode, as described previously.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[t]{0.23\textwidth}
+        \includegraphics[width=\textwidth]{images/screen1}
+        \caption{Delay screen.}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[t]{0.23\textwidth}
+        \includegraphics[width=\textwidth]{images/screen2}
+        \caption{Modulation.}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[t]{0.23\textwidth}
+        \includegraphics[width=\textwidth]{images/screen3}
+        \caption{Biquad screen.}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[t]{0.23\textwidth}
+        \includegraphics[width=\textwidth]{images/screen4}
+        \caption{Drive screen.}
+    \end{subfigure}
+    \caption{Pictures of screen in different views.}
+    \label{fig:screens}
+\end{figure}
+
+\chapter{Summary}\label{ch:summary}
 All goals and tasks of the projects were accomplished.
 Process involved different aspects of technology.
 One of was them creation of schematic and board layout,
