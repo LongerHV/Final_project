@@ -397,6 +397,11 @@ This delayed signal is then mixed with original.
 Delayed signal can also be attenuated and then fed back into a delay block
 in order to achieve endless, fading reflections.
 
+Figure \ref{fig:comb} presents block diagram of such a delay stage.
+Z \(^{-M}\) block symbolizes a delay by M amount of samples.
+Parameters FF (feedforward), FB (feedback) and BL (blend)
+are representing gain of different signals.
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.618\textwidth]{images/comb}
@@ -426,6 +431,14 @@ triangular or sawtooth can be used for LFO.
     \caption{Block diagram of standard effect with variable delay line\cite{Zolzer1}.}
     \label{fig:Mod}
 \end{figure}
+
+On the figure \ref{fig:Mod} we can see a block diagram of a
+time-based modulation effect.
+It is almost identical to diagram of comb filter,
+only difference beeing a variable delay line.
+Instead of delaying input signal by constant number of samples,
+length of delay line changes in time
+and is determined by a modulation function.
 
 There are a few distinct modulation effects:
 \begin{itemize}
@@ -507,37 +520,6 @@ It is done by passing input signal through a non-linear clipping function.
 This kind of effects are often used by guitarists,
 especially these playing in rock and metal bands.
 
-\section{Display}
-There are different ways to connect LCD to a microcontroller.
-The most common is use of a parallel interface,
-such as Intel 8080, Motorola 6800 or RGB interface.
-These solutions require 8, 16 or 24 data lines,
-alongside few other control signals.
-Other approach involves use of serial interface,
-such as SPI or I\(^2\)C.
-It allows to reduce number of connections necessary to control the display,
-at cost of greatly decreased data transfer rate.
-
-With connection between MCU and LCD established,
-we can focus our attention on actually sending data to be displayed.
-Common approach, seen in TV and computer monitors,
-is to constantly refresh the screen pixel by pixel.
-It involves sending huge amounts of data,
-even if displayed picture does not change.
-Since most of LCD units designed to be used with microcontrollers
-contain their own controller as well as RAM,
-constant refreshing is completely unnecessary.
-Instead, controller allows selecting a rectangular portion
-of screen, which is ment to be updated.
-This way we can eliminate problem of wasting MCU performance
-on resending the same data over and over.
-
-Some vendors provide drivers for their displays.
-Unfortunately they are usually implemented for Arduino
-and use so called polling mode,
-which blocks MCU for the time of data transfer.
-It means that custom driver must be created for this project.
-
 
 \chapter{External specification}\label{ch:external}
 The Chapter \ref{ch:external} presents description of hardware components used in this project.
@@ -554,52 +536,11 @@ alongside with necessary connections.
     \label{fig:block}
 \end{figure}
 
-\section{Desctiption}
-Device was designed in a form of a “shield” for NUCLEO development board.
-The NUCLEO board provides a ST-Link programmer/debugger
-and voltage regulators required to power the board from 5V USB.
-The shield is populated with analog and digital parts
-as well as two audio jacks for analog input and output.
-Separate power lines and ground planes are used for digital and analog supply.
-
-Device relays on both onboard digital to analog
-and analog to digital converters present in the microcontroller,
-so external preamplifiers are the only thing needed on the audio path.
-Input preamplifier consist of two stages.
-First stage acts as a buffer and provides about 14.5dB boost.
-Boost is added to improve performance of converters.
-At this point DC offset is added, because unipolar voltage supply was used.
-The second stage is a basic phase inverter with unity gain.
-Outputs of both stages are fed into differential inputs of ADC
-and are sampled by microcontroller.
-
-Output preamplifier consist of single inverting operational amplifier.
-It provides -20dB attenuation necessary to achieve line level on output.
-After output stage there is a 1.5Hz high-pass filter,
-whose task is to eliminate DC offset.
-Both input and output preamplifiers are stereo and introduce 20kHz low-pass filter
-to prevent aliasing and noise.
-All 3 operational amplifiers are decoupled using a 100nF capacitor.
-\cite{ST:DAC}
-
-TFT LCD is used to provide necessary information to the user.
-It is connected to the board using gold pin headers and sockets.
-Display communicates with microcontroller through full duplex SPI connection.
-
-To allow user to interact with the device, a rotary encoder was introduced.
-It is connected to microcontroller and is handled by internal timer.
-Push button of the encoder and additional user button are connected
-to GPIOs of the microcontroller with external pull-up resistors.
-
-Additionally the board is equipped with 32MB SDRAM chip
-(of which only 16MB is accessible).
-It is not used by the program of this project, but allows for future improvements.
-SDRAM is handled by FMC (eng. Flexible memory controller) present in the microcontroller.
-
-\section{Choice of components}
+\section{Construction of the device}
+This section is devoted to choice of elements
+and description of their arrangement.
 
 \subsection {Microcontroller}
-
 The microcontroller should meet certain parameters to be chosen.
 One of the most important parameters is the clock speed.
 Digital signal processing requires a lot of processor instructions
@@ -632,6 +573,10 @@ Most important parameters of this microcontroller are listed below:
     SPI, I2C, I2S, UART, SPDIF, USB OTG
 \end{itemize}
 
+\subsection{Development board}
+The STM32H743ZI comes one the NUCLEO-H743ZI evaluation board,
+which can be seen on figure \ref{fig:Nucleo}.
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{images/Nucleo}
@@ -639,12 +584,36 @@ Most important parameters of this microcontroller are listed below:
     \label{fig:Nucleo}
 \end{figure}
 
-The STM32H743ZI comes one the NUCLEO-H743ZI evaluation board.
-It includes ST-LINK debugger/programmer,
-which simplified development of the device. 
+Device was designed in a form of a “shield” for Nucleo board.
+The Nucleo board provides a ST-Link programmer/debugger
+and voltage regulators required to power the board from 5V USB.
+Clock signal can be acquired either from ST-Link or
+external crystal oscillators.
+Board also provides ethernet and USB OTG connectors,
+which are not used in this project.
+
+\subsection{Converters}
+Device relays on both onboard digital to analog
+and analog to digital converters present in the microcontroller,
+so external preamplifiers are the only thing needed on the audio path.
+Input preamplifier consist of two stages.
+First stage acts as a buffer and provides about 14.5dB boost.
+Boost is added to improve performance of converters.
+At this point DC offset is added, because unipolar voltage supply was used.
+The second stage is a basic phase inverter with unity gain.
+Outputs of both stages are fed into differential inputs of ADC
+and are sampled by microcontroller.
+
+Output preamplifier consist of single inverting operational amplifier.
+It provides -20dB attenuation necessary to achieve line level on output.
+After output stage there is a 1.5Hz high-pass filter,
+whose task is to eliminate DC offset.
+Both input and output preamplifiers are stereo and introduce 20kHz low-pass filter
+to prevent aliasing and noise.
+All 3 operational amplifiers are decoupled using a 100nF capacitor.
+\cite{ST:DAC}
 
 \subsection {Operational amplifiers}
-
 TLC272C was operational amplifier of choice\cite{TI:TLC272}.
 It contains two amplifiers in a single SMD package, which is SOIC-8.
 Main constraining factor for choice of this element was power supply.
@@ -654,36 +623,96 @@ TLC272C is designed to work with single-supply configuration
 and voltages as low as 3V,
 while providing 2V of undistorted output voltage swing.
 
-\section{Schematic}
+\subsection{Display}
+TFT LCD is necessary to provide necessary information to the user.
+There are different ways to connect LCD to a microcontroller.
+The most common is use of a parallel interface,
+such as Intel 8080, Motorola 6800 or RGB interface.
+These solutions require 8, 16 or 24 data lines,
+alongside few other control signals.
+Other approach involves use of serial interface,
+such as SPI or I\(^2\)C.
+It allows to reduce number of connections necessary to control the display,
+at cost of greatly decreased data transfer rate.
 
+With connection between MCU and LCD established,
+we can focus our attention on actually sending data to be displayed.
+Common approach, seen in TV and computer monitors,
+is to constantly refresh the screen pixel by pixel.
+It involves sending huge amounts of data,
+even if displayed picture does not change.
+Since most of LCD units designed to be used with microcontrollers
+contain their own controller as well as RAM,
+constant refreshing is completely unnecessary.
+Instead, controller allows selecting a rectangular portion
+of screen, which is ment to be updated.
+This way we can eliminate problem of wasting MCU performance
+on resending the same data over and over.
+
+This project does not require high resolution,
+because only besic information must be provided for a user.
+That is why ST7735 TFT LCD was selected.
+It is 128x160 pixels dot matrix display
+and has 1.8 inch diagonal.
+
+Some vendors provide drivers for their displays.
+Unfortunately they are usually implemented for Arduino
+and use so called polling mode,
+which blocks MCU for the time of data transfer.
+It means that custom driver must be created for this project.
+
+\subsection{User interraction}
+To allow user to interact with the device, a rotary encoder was introduced.
+It is connected to microcontroller and is handled by internal timer.
+By rotating the knob, user can navigate in the menu
+in order to modify parameters and chang an active effect.
+Push button of the encoder and additional user button are connected
+to GPIOs of the microcontroller with external pull-up resistors.
+Buttons allow user to select different modes in menu.
+User interface navigation is explained in details
+in section \ref{ch:manual}.
+
+\subsection{Additional devices}
+Additionally the board is equipped with 32MB SDRAM chip
+(of which only 16MB is accessible).
+It is not used by the program of this project, but allows for future improvements.
+SDRAM is handled by FMC (eng. Flexible memory controller) present in the microcontroller.
+
+\section{Schematic}
 Schematic was created using KiCad EDA,
 which is both cross-platform and open source software.
 It provides rich library of components and very intuitive user interface.
 
 Schematic is divided into three parts,
 each containing components related to each other.
-Analog part is devoted to input and output amplifiers.
-In digital section we can find external memory, LCD and rotary encoder.
-Last part is dedicated to gold pins connecting shield to a Nucleo board.
+Analog part, presented on figure \ref{fig:Schematic1}, is devoted to input and output amplifiers.
+In digital section, on figure \ref{fig:Schematic2}, we can find external memory, LCD and rotary encoder.
+Figure \ref{fig:Schematic3} presents the last part,
+which is dedicated to gold pins connecting shield to a Nucleo board.
+
+Power supply for a shield is provided by Nucleo board.
+Digital and analog power sections are separated to deduce noise.
+Use of local bypass capacitors was necessary to provide stable
+supply voltage fo all different components in the circuit.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{images/Schematic_analog}
-    \caption{Schamatic of analog part of the device}
+    \caption{Schamatic of analog part of the device.}
     \label{fig:Schematic1}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{images/Schematic_digital}
-    \caption{Schamatic of digital part of the device}
+    \includegraphics[width=0.8\textwidth]{images/Schematic_digital}
+    \caption{Schamatic of digital part of the device.}
     \label{fig:Schematic2}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{images/Schematic_connectors}
-    \caption{Schamatic of gold pin connectors}
+    \caption{Schamatic of gold pin connectors.}
     \label{fig:Schematic3}
 \end{figure}
 
@@ -693,8 +722,17 @@ All elements except for gold pin headers,
 rotary encoder and audio jacks are SMD (surface mounted).
 To reduce cost of the project, the PCB was designed as 2 layer board only.
 This decision resulted in increased difficulty of routing process.
+
+Since both analog and digital signals are present in the circuits
+some extra steps were required during PCB design.
+Important part was separation of grounds,
+which resulted in two separate ground planes.
+On figure \ref{fig:board} we can see copper and 
+silkscreen layers of designed board.
+
 Gerber files generated by the software were sent to manufacturer in China
 and arrived two weeks later.
+Manufectured boards can be seen on figure \ref{fig:photo_boards}.
 
 \begin{figure}[H]
     \centering
@@ -721,13 +759,6 @@ and arrived two weeks later.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{images/PCB3D}
-    \caption{3D render of the PCB.}
-    \label{fig:pcb3d}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
     \includegraphics[width=0.618\textwidth]{images/photo_boards}
     \caption{Photo of front and back sides of the PCB}
     \label{fig:photo_boards}
@@ -737,12 +768,21 @@ and arrived two weeks later.
 The PCB was populated by hand using 50W soldering iron and hot air rework station.
 Two types of tin-lead solder were used during the process:
 0.25mm solder wire (Sn60 Pb40) for THT components and solder paste (Sn62 Pb36 Ag2) for SMD.
+Visualisation and photo of assembled board can be seen
+on figures \ref{fig:pcb3d} and \ref{fig:photo_assembled}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{images/PCB3D}
+    \caption{3D render of the PCB.}
+    \label{fig:pcb3d}
+\end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.618\textwidth]{images/photo_assembled}
     \caption{Photo of assembled board}
-    \label{fig:pgoto_assembled}
+    \label{fig:photo_assembled}
 \end{figure}
 
 
@@ -1403,7 +1443,7 @@ void Drive::ProcessBlock(float32_t *pData_left, float32_t *pData_right, uint32_t
 \end{figure}
 
 
-\section{User manual}
+\section{User manual}\label{ch:manual}
 
 \begin{figure}[H]
     \centering
@@ -1474,6 +1514,8 @@ It indicates, that parameter is in edit mode, as described previously.
     \caption{Pictures of screen in different views.}
     \label{fig:screens}
 \end{figure}
+
+\chapter{Verification}\label{ch:verification}
 
 \chapter{Summary}\label{ch:summary}
 All goals and tasks of the projects were accomplished.
