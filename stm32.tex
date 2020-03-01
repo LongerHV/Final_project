@@ -632,7 +632,7 @@ which simplified development of the device.
 
 \subsection {Operational amplifiers}
 
-TLC272C was operational amplifier of choice.
+TLC272C was operational amplifier of choice\cite{TI:TLC272}.
 It contains two amplifiers in a single SMD package, which is SOIC-8.
 Main constraining factor for choice of this element was power supply.
 Analog power supplied on the board is 3.3V, so the operational amplifier
@@ -873,7 +873,9 @@ Clock was also configured using STM32CubeMX software.
 All settings passed to tools such as linter, compiler and linker
 are present in platformio.ini and extra\_script.py files.
 These settings give information about used frameworks
-and paths to specific libraries and header files.
+and paths to specific libraries and header files
+\cite{platformio},
+\cite{gcc}.
 
 \begin{figure}[H]
 \centering
