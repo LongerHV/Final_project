@@ -321,7 +321,7 @@ Range of audible frequencies is considered to be 20Hz to 20kHz
 and we need the whole range to acheive reasonable quality.
 According to the concept of Nyquist frequency, the sampling frequency should be at least
 twice as high as maximum frequency present in the signal.
-In case of audio signal, it must be at leasu 40kHz.
+In case of audio signal, it must be at least 40kHz.
 There are some typical sampling frequencies preffered for audio signals such as: 44,1kHz, 48kHz,
 96kHz, 192kHz and it would be a good idea to use one of them.
 
@@ -359,7 +359,7 @@ Outputting, processing and collecting subsequent blocks off data
 must be performed simultaneously.
 
 Data collected from converters is represented as unsigned integer values.
-For 16 bit converter we get values between 0 and 16536 (\(2^16\)).
+For 16 bit converter we get values between 0 and 65536(\(2^{16}\)).
 Such format is not suitable for processing.
 To deal with it, samples should be first converted into fixed or floating-point values.
 Fixed-point data type can represent fractional values in range from -1 to 1.
@@ -747,21 +747,6 @@ Following section is devoted to choice of these tools.
 
 \subsection{Programming language}
 
-\begin{figure}[H]
-    \centering
-    \begin{subfigure}[h]{0.3\textwidth}
-        \includegraphics[width=\textwidth]{images/c_logo}
-        \label{fig:c}
-    \end{subfigure}
-    ~
-    \begin{subfigure}[h]{0.3\textwidth}
-        \includegraphics[width=\textwidth]{images/cpp_logo}
-        \label{fig:cpp}
-    \end{subfigure}
-    \caption{C and C++ languages logos}
-    \label{fig:lang}
-\end{figure}
-
 C language is the most popular choice for STM32 development.
 It is widely supported by ST and other companies providing frameworks and libraries.
 As a low level language, it provides control over memory management,
@@ -775,29 +760,14 @@ which are part of C++ language.
 
 \subsection{IDE}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\textwidth]{images/platformio-logo}
-    \caption{PlatformIO IDE logo}
-    \label{fig:plaftormio}
-\end{figure}
-
-The popular environments for STM32 development are Keil uVision, IAR and SW4STM32.
+The popular environments for STM32 development are Keil uVision and IAR.
 ST also provides its own STM32CubeIDE, which is based on Eclipse.
 
 Another choice is PlatformIO IDE.
 It is free and open source IDE and
-comes as a plugin for Visual Studio Code and Atom text editors.
+comes as a plugin for Visual Studio Code.
 It provides all libraries, frameworks,
 debugger server and compiler necessary for STM32 software development.
-
-\subsection{Text editor}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\textwidth]{images/vscode}
-    \caption{Visual Studio Code logo}
-    \label{fig:vscode}
-\end{figure}
 
 Visual Studio Code is a free code editor developed by Microsoft.
 It was chosen because it is supported by PlatformIO IDE.
@@ -805,31 +775,6 @@ VSCode provides linting and word completion extensions,
 which simplify the process of software development.
 
 \subsection{Frameworks and tools}
-
-\begin{figure}[H]
-    \centering
-    \begin{subfigure}[h]{0.23\textwidth}
-        \includegraphics[width=\textwidth]{images/cube_logo}
-        \label{fig:cube}
-    \end{subfigure}
-    ~
-    \begin{subfigure}[h]{0.23\textwidth}
-        \includegraphics[width=\textwidth]{images/arm_logo}
-        \label{fig:arm}
-    \end{subfigure}
-    ~
-    \begin{subfigure}[h]{0.23\textwidth}
-        \includegraphics[width=\textwidth]{images/gnu_logo}
-        \label{fig:gnu}
-    \end{subfigure}
-    ~
-    \begin{subfigure}[h]{0.23\textwidth}
-        \includegraphics[width=\textwidth]{images/git}
-        \label{fig:git}
-    \end{subfigure}
-    \caption{Logos of SMT32Cube, Arm, GNU project and Git}
-    \label{fig:tools}
-\end{figure}
 
 \newpage
 
@@ -901,7 +846,7 @@ when input buffer is full of samples.
 \subsection{Code generation}
 
 Initialization code was generated using STM32CubeMX software.
-It provided necessery implementation of initialization functions
+It provides necessery implementation of initialization functions
 as well as general structure of the program.
 Each enabled peripheral has its own source file
 and corresponding header file.
@@ -941,7 +886,7 @@ build_flags =   -I ${PROJECT_PACKAGES_DIR}/framework-stm32cube/h7/Drivers/CMSIS/
                 -D __FPU_PRESENT=1
 extra_scripts = pre:extra_script.py
 \end{lstlisting}
-\caption{Contentes of platformio.ini file}
+\caption{Contents of platformio.ini file}
 \label{fig:ini}
 \end{figure}
 
@@ -1007,7 +952,7 @@ which corresponds to 48kHz sampling frequency.
 \subsection{ADC}
 ADC is set to continuous conversion mode.
 It is constatnly converting signal with sampling rate above 100kHz.
-Obtained samples are than transfered to a buffer using DMA.
+Obtained samples are then transfered to a buffer using DMA.
 Parallel to ADC, a timer is generating interrupts
 with rate equal 48kHz. During such interrupt,
 freshest sample is copied into block buffers. 
@@ -1088,7 +1033,7 @@ uint16_t *output_buffer = buffer[4];
 In main function, there is an endless loop in which whole processing takes place.
 When block of 512 input samples is ready, it must be converted from unsigned integer
 format into floating-point representation.
-Than data can be processed by selected effect.
+Then data can be processed by selected effect.
 After processing, data must be converted back into integer form, because
 it is the only form accepted by DAC.
 At the end, block\_ready flag is reset back to zero.
@@ -1134,7 +1079,7 @@ It has high priority and
 is executed even if CPU is performing other operations.
 
 First action taken inside is cache invalidate function.
-Its jop is to ensure, that the freshest input samples
+Its job is to ensure, that the freshest input samples
 are transfered from RAM to cache memory.
 With that taken care of, these samples can be written into
 proper input buffers.
@@ -1142,7 +1087,7 @@ Next, values from output buffers are sent to DAC.
 Note, that they are shifted 4 bits to the right.
 Reason to do it is ADCs being 16 bits, while DACs are only 12 bits.
 
-Finally we can increment a block ocunter.
+Finally we can increment a block counter.
 If its value happens to be equal or larger than block size,
 it is time to swap buffers, reset counter and set block ready flag,
 which will trigger data processing in a main loop.
