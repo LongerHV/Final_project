@@ -267,10 +267,6 @@ with great customer service and support.
 
 
 \chapter{Goals and tasks of the project}\label{ch:goals}
-The main goal of the project is to develop a platform based around modern,
-high-performance microcontroller.
-
-
 The main goal of the project is to develop an extention to existing development board,
 which uses a modern, high-performance microcontroller.
 The device should process stereo audio signal to achieve a selection of different effects
@@ -280,7 +276,7 @@ Following tasks are required to finish the project:
 \begin{enumerate}
     \item Choice of components
     \begin{itemize}
-        \item microcontroller
+        \item evaluation board
         \item operational amplifiers
         \item additional devices
     \end{itemize}
@@ -560,8 +556,8 @@ needed for floating-point calculations.
 To reduce the total cost of the device,
 proper A/D and D/A converters could be included in the microcontroller.
 
-All of above criterion is met by STM32H743ZI microcontroller.
-\cite{ST:RM}
+All of above criterion is met by STM32H743ZI microcontroller
+\cite{ST:RM}.
 It is based on Arm Cortex-M7 32-bit RISC core.
 This specific model uses LQFP144 package.
 Most important parameters of this microcontroller are listed below:
@@ -597,7 +593,7 @@ which are not used in this project.
 TLC272C was operational amplifier of choice\cite{TI:TLC272}.
 It contains two precision amplifiers in a single SOIC-8 package.
 
-Analog power supplied on the board is 3.3V, so the operational amplifier
+Analog power supply on the board is 3.3V, so the operational amplifier
 must be capable of operating in such condition.
 TLC272C is designed to work with single-supply configuration
 and voltages as low as 3V,
@@ -611,6 +607,13 @@ Both of these parameters have values suitable for audio applications.
 Device relays on both onboard digital to analog
 and analog to digital converters present in the microcontroller,
 so external preamplifiers are the only thing needed on the audio path.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{images/Input_preamp}
+    \caption{Schematic of input preamplifier.}
+    \label{fig:input}
+\end{figure}
 
 Input preamplifier consist of two stages
 preceded by a high-pass filter.
@@ -632,6 +635,13 @@ and are sampled by microcontroller.
 To prevent aliasing and noise,
 input preamplifiers introduce first order 20kHz RC low-pass filter.
 It is enough to eliminate any unwanted behaviour of the circuit.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{images/Output_preamp}
+    \caption{Schematic of output preamplifier.}
+    \label{fig:output}
+\end{figure}
 
 Output preamplifier consist of single inverting operational amplifier.
 It provides -20dB attenuation necessary to achieve line level on output.
@@ -666,7 +676,7 @@ This way we can eliminate problem of wasting MCU performance
 on resending the same data over and over.
 
 This project does not require high resolution,
-because only besic information must be provided for a user.
+because only basic information must be provided for a user.
 That is why ST7735 TFT LCD was selected.
 It is 128x160 pixels dot matrix display
 and has 1.8 inch diagonal.
@@ -681,7 +691,7 @@ It means that custom driver must be created for this project.
 To allow user to interact with the device, a rotary encoder was introduced.
 It is connected to microcontroller and is handled by internal timer.
 By rotating the knob, user can navigate in the menu
-in order to modify parameters and chang an active effect.
+in order to modify parameters and change an active effect.
 Push button of the encoder and additional user button are connected
 to GPIOs of the microcontroller with external pull-up resistors.
 Buttons allow user to select different modes in menu.
@@ -707,7 +717,7 @@ Figure \ref{fig:Schematic3} presents the last part,
 which is dedicated to gold pins connecting shield to a Nucleo board.
 
 Power supply for a shield is provided by Nucleo board.
-Digital and analog power sections are separated to deduce noise.
+Digital and analog power sections are separated to reduce noise.
 Use of local bypass capacitors was necessary to provide stable
 supply voltage fo all different components in the circuit.
 
@@ -752,31 +762,31 @@ Manufectured boards can be seen on figure \ref{fig:photo_boards}.
 
 \begin{figure}[H]
     \centering
-    \begin{subfigure}[h]{0.3\textwidth}
+    \begin{subfigure}[h]{0.273\textwidth}
         \includegraphics[width=\textwidth]{images/Board_front}
         \label{fig:board1}
         \caption{Front copper}
     \end{subfigure}
     ~
-    \begin{subfigure}[h]{0.3\textwidth}
+    \begin{subfigure}[h]{0.273\textwidth}
         \includegraphics[width=\textwidth]{images/Board_back}
         \label{fig:board2}
         \caption{Back copper}
     \end{subfigure}
     ~
-    \begin{subfigure}[h]{0.3\textwidth}
+    \begin{subfigure}[h]{0.273\textwidth}
         \includegraphics[width=\textwidth]{images/Board_silkscreen}
         \label{fig:board3}
         \caption{Front silkscreen}
     \end{subfigure}
-    \caption{Copper and silkscreen layers of the PCB}
+    \caption{Copper and silkscreen layers of the PCB (1:2 scale).}
     \label{fig:board}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.618\textwidth]{images/photo_boards}
-    \caption{Photo of front and back sides of the PCB}
+    \caption{Photo of front and back sides of the PCB.}
     \label{fig:photo_boards}
 \end{figure}
 
@@ -804,11 +814,13 @@ on figures \ref{fig:pcb3d} and \ref{fig:photo_assembled}.
 
 
 \chapter{Internal specification}\label{ch:internal}
+The chapter \ref{ch:internal} is devoted to choice of
+programming tools and writing the program itself.
 
 \section{Programming environment}
 Programming environment consist of several tools,
 that need to work together to facilitate software development.
-All tools used in this project are cross-platform.
+All tools used in this project are free and cross-platform.
 Following section is devoted to choice of these tools.
 
 \subsection{Programming language}
@@ -893,6 +905,8 @@ to reading from and writing to converters.
 A block\_ready flag is set in this function
 when input buffer is full of samples.
 
+\newpage
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{images/Block2}
@@ -929,8 +943,9 @@ devices present on Nucleo board and grey are not used at all.
 Clock cource is set to be HSE (eng. High speed external),
 it means that external crystal oscillator is used to
 provide stable clock frequency.
-Maximum clock frequency for this version of MCU is 400MHz.
-Unfortunately it is not divisible by 48kHz, which is our sampling frequency.
+Maximum clock frequency for this version of MCU is supposed to be 480MHz,
+but microcontroller did not work properly with clock speed above 400MHz.
+Unfortunately 400MHz is not divisible by 48kHz, which is our sampling frequency.
 For that reason clock prescalers are set to obtain 396MHz clock frequency.
 This way it is easy to setup desired sampling frequency on one of the timers.
 This timer is used to generate interrupts with frequency of 48kHz,
@@ -975,7 +990,7 @@ extra_scripts = pre:extra_script.py
 Floating-point unit present in the microcontroller must be enabled
 using special compiler flags. Without them program would be compiled
 using software floating-point, which is very slow and unefficient.
--mfpu=fpv5-d16 flag specifies version of arm FPU present in microcontroller.
+-mfpu=fpv5-d16 flag specifies version of Arm FPU present in microcontroller.
 -mfloat-abi=hard forces to compile with hardware floating-point.
 Both of them are set in extra\_script.py file.
 
@@ -988,7 +1003,7 @@ Despite the performance gain, cache (especially data cache)
 must be used with caution, since it can cause some issues with DMA.
 \cite{dma}
 The solution involves using cache clear and invalidation functions.
-These function forces transfer between RAM and cache in order to ensue,
+These function forces transfer between RAM and cache in order to ensure,
 that DMA is referencing valid data.
 
 \subsection{Memory organization}
@@ -1072,7 +1087,7 @@ These are important values, that are common for the entire program.
 #define DELAY_SIZE (SAMPLING_RATE + BLOCK_SIZE)
 #define MODULATION_DELAY_SIZE (2 * 1440 + BLOCK_SIZE)
 \end{lstlisting}
-\caption{Global defines from main.h file.}
+\caption{Global definitions from main.h file.}
 \label{fig:defs}
 \end{figure}
 
@@ -1295,7 +1310,7 @@ class MultiEffect {
 
 \subsection{Delay}
 Implementation of delay effect requires dynamic allocation
-of two temorary arrays of size equal to block size.
+of two temporary arrays of size equal to block size.
 They serve as intermittent buffers in which data is stored
 to be reused in upcoming steps.
 
@@ -1460,11 +1475,14 @@ void Drive::ProcessBlock(float32_t *pData_left, float32_t *pData_right, uint32_t
 
 
 \section{User manual}\label{ch:manual}
+Following section contains a guide of
+how to use the device.
+Figure \ref{fig:working} shows working device.
 
 \begin{figure}[H]
     \centering
     \includegraphics[angle=90,width=0.618\textwidth]{images/photo_working}
-    \caption{Photo of the device during operation}
+    \caption{Photo of the device during operation.}
     \label{fig:working}
 \end{figure}
 
@@ -1571,7 +1589,7 @@ which required some manual skills.
 
 Creating software requires completely different
 knowledge and skills than all previous steps.
-Understanding of arm architecture was necessary
+Understanding of Arm architecture was necessary
 to select proper tools and configure device properly.
 Experience with object oriented programming
 allowed to create very modular and easy to modify program.
@@ -1599,43 +1617,39 @@ and more features such as casscading effects.
 
 %%%%%%%%%  appendices %%%%%%%%%%%%%%%%%%% 
 
-\begin{appendices} 
+% \begin{appendices} 
 
-\chapter*{List of abbreviations and symbols}
+% \chapter*{List of abbreviations and symbols}
 
-\begin{itemize}
-\item[ADC] - Analog to digital converter
-\item[API] - Application programming interface
-\item[CPU] - Central processing unit
-\item[DAC] - Digital to analog converter
-\item[DC] - Direct current
-\item[DMA] - Direct memory access
-\item[DSP] - Digital signal processing
-\item[EDA] - Electronic design automation
-\item[FFT] - Fast fourier transform
-\item[FMC] - Flexible momory controller
-\item[FPU] - Floating-point uint
-\item[GCC] - GNU Compiler Collection
-\item[GPIO] - General purpose input/output
-\item[IDE] - Integrated development environment
-\item[IIR] - Infinite impulse response
-\item[LCD] - Liquid crystal display
-\item[LFO] - Low frequency oscillator
-\item[LQFP] - Low-profile quad flat pack
-\item[MCU] - Microcontroller Unit
-\item[PCB] - Printed circuit board
-\item[RAM] - Random access memory
-\item[ROM] - Read only memory
-\item[SDRAM] - Synchronous dynamic random access memory
-\item[SMD] - Surface mounted device
-\item[SOIC] - Small outline integrated circuit
-\item[SPI] - Serial peripheral interface
-\item[UI] - User interface
-% \item[$N$] cardinality of data set
-% \item[$\mu$] membership function of a fuzzy set
-% \item[$\mathbb{E}$] set of edges of a graph
-% \item[$\mathcal{L}$] Laplace transformation
-\end{itemize}
+% \begin{itemize}
+% \item[ADC] - Analog to digital converter
+% \item[API] - Application programming interface
+% \item[CPU] - Central processing unit
+% \item[DAC] - Digital to analog converter
+% \item[DC] - Direct current
+% \item[DMA] - Direct memory access
+% \item[DSP] - Digital signal processing
+% \item[EDA] - Electronic design automation
+% \item[FFT] - Fast fourier transform
+% \item[FMC] - Flexible momory controller
+% \item[FPU] - Floating-point uint
+% \item[GCC] - GNU Compiler Collection
+% \item[GPIO] - General purpose input/output
+% \item[IDE] - Integrated development environment
+% \item[IIR] - Infinite impulse response
+% \item[LCD] - Liquid crystal display
+% \item[LFO] - Low frequency oscillator
+% \item[LQFP] - Low-profile quad flat pack
+% \item[MCU] - Microcontroller Unit
+% \item[PCB] - Printed circuit board
+% \item[RAM] - Random access memory
+% \item[ROM] - Read only memory
+% \item[SDRAM] - Synchronous dynamic random access memory
+% \item[SMD] - Surface mounted device
+% \item[SOIC] - Small outline integrated circuit
+% \item[SPI] - Serial peripheral interface
+% \item[UI] - User interface
+% \end{itemize}
 
 \chapter*{Contents of attached CD}
 
@@ -1647,8 +1661,8 @@ The thesis is accompanied by a CD containing:
 \item audio recordings presenting selected effects
 \end{itemize}
 
-\listoffigures
+% \listoffigures
 
-\end{appendices}
+% \end{appendices}
 
 \end{document}
