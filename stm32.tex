@@ -1578,6 +1578,10 @@ It indicates, that parameter is in edit mode, as described previously.
 \end{figure}
 
 \chapter{Verification}\label{ch:verification}
+This chapter is devoted to testing a device.
+In following sections there ara timing diagrams and frequency
+responses, which demonstrate working effects.
+
 \section{Power consumption}
 Power consumption was measured using a multimeter.
 Nucleo board enables measurement of current,
@@ -1587,17 +1591,109 @@ In combination with 5V supply voltage,
 we obtain 1.25W of power consumption.
 
 \section{Time diagrams}
+Time diagrams were created using Audacity software and USB sound card.
+
 \begin{itemize}
-    \item delay
-    \item modulation
+    \item Delay
+
+    Figure \ref{fig:delay} presents timing diagram of delay effect.
+    Part on the top shows input signal,
+    which is an impulse generated with analog function generator.
+    On the bottom of the picture, output of our device is presented.
+    We can see fading reflections of the original signal.
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.95\textwidth]{images/delay}
+        \caption{}
+        \label{fig:delay}
+    \end{figure}
+    
+    \item Modulation
+
+    Timing diagram of modulation effect is presented at figure \ref{fig:mod}.
+    Top part shows input signal, which is a 1kHz sine wave.
+    Modulated signal can be seen at the bottom.
+    Degradation of output signal is visible,
+    which is caused by stretching signal in time.
+    This problem could be resolved by using higher sampling frequency.
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.95\textwidth]{images/modulation2}
+        \caption{}
+        \label{fig:mod}
+    \end{figure}
+
+    \item Drive
+    Measurments of drive effect can be observed on figure \ref{fig:drive}.
+    Peaks of input signal are flatened to produce harsh sound.
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.95\textwidth]{images/drive}
+        \caption{}
+        \label{fig:drive}
+    \end{figure}
 \end{itemize}
 
 \section{Characteristics}
-\begin{itemize}
-    \item Low-pass filter
-    \item High-pass filter
-    \item 
-\end{itemize}
+Figure \ref{fig:filters} contains frequency response of different types of filters 
+implemented using biquad algorithm.
+RMAA 5.5 software was used to perform these measurements.
+All filters have frequency set to 1kHz and Q-factor to 0.7.
+
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}[t]{0.45\textwidth}
+        \includegraphics[width=\textwidth]{images/0_LPF}
+        \caption{Low-pass filter.}
+    \end{subfigure}
+    ~
+    \centering
+    \begin{subfigure}[t]{0.45\textwidth}
+        \includegraphics[width=\textwidth]{images/1_HPF}
+        \caption{High-pass filter.}
+    \end{subfigure}
+    ~
+    \centering
+    \begin{subfigure}[t]{0.45\textwidth}
+        \includegraphics[width=\textwidth]{images/3_peak_minus3}
+        \caption{Peak filter (-3dB).}
+    \end{subfigure}
+    ~
+    \centering
+    \begin{subfigure}[t]{0.45\textwidth}
+        \includegraphics[width=\textwidth]{images/3_peak_plus3}
+        \caption{Peak filter (+3dB).}
+    \end{subfigure}
+    ~
+    \centering
+    \begin{subfigure}[t]{0.45\textwidth}
+        \includegraphics[width=\textwidth]{images/2_band}
+        \caption{Band-pass filter.}
+    \end{subfigure}
+    ~
+    \centering
+    \begin{subfigure}[t]{0.45\textwidth}
+        \includegraphics[width=\textwidth]{images/4_notch}
+        \caption{Notch filter.}
+    \end{subfigure}
+    ~
+    \centering
+    \begin{subfigure}[t]{0.45\textwidth}
+        \includegraphics[width=\textwidth]{images/5_low}
+        \caption{Low-shelf filter (+3dB).}
+    \end{subfigure}
+    ~
+    \centering
+    \begin{subfigure}[t]{0.45\textwidth}
+        \includegraphics[width=\textwidth]{images/6_high}
+        \caption{High-shelf filter (+3dB).}
+    \end{subfigure}
+    \caption{Measured frequency responses.}
+    \label{fig:filters}
+\end{figure}
 
 \section{Recordings}
 Attached CD contain audio files,
@@ -1686,7 +1782,8 @@ The thesis is accompanied by a CD containing:
 \item thesis (\LaTeX\ source files and final \texttt{pdf} file),
 \item source code of the application,
 \item schematic and board layout (KiCad, \texttt{pdf} and gerber files),
-\item audio recordings presenting selected effects
+\item audio recording:w
+ presenting selected effects
 \end{itemize}
 
 % \listoffigures
